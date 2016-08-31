@@ -50,15 +50,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericRepos\GenericEFRepository.cs" />
-    <Compile Include="GenericRepos\GenericListRepository.cs" />
-    <Compile Include="GenericRepos\GenericSqlRepository.cs" />
     <Compile Include="GenericRepos\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\AppartmentEFRepo.cs" />
+    <Compile Include="Repos\BuildingInvoiceEFRepo.cs" />
+    <Compile Include="Repos\IAppartmentRepository.cs" />
+    <Compile Include="Repos\IBuildingInvoiceRepository.cs" />
+    <Compile Include="Repos\IInvoiceRepository.cs" />
+    <Compile Include="Repos\InvoiceEFRepo.cs" />
+    <Compile Include="Repos\IReadingRepository.cs" />
+    <Compile Include="Repos\ReadingEFRepo.cs" />
     <Compile Include="SqlDriver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{A34B17A5-9BE4-4214-940B-3439D476E165}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
