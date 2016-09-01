@@ -6,13 +6,67 @@
         xmlns:local="clr-namespace:tarsashazkezelo_admin_frontend"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
+    </Window.Resources>
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="708*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="Height" Value="40"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Button x:Name="ServiceButton" Content="Szolgáltatások" FontSize="20" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="238" Height="40" Command="{Binding Path=ServiceButtonCommand}"/>
+        <DockPanel Grid.Row="1" Visibility="{Binding Path=Visibility, Converter={StaticResource BoolToVis}}">
+            <ListBox x:Name="listBox" ItemsSource="{Binding Path=Services}" FontSize="20" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="659" Margin="10,10,0,0" VerticalAlignment="Top" Width="236" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2"/>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-        <Button x:Name="button" Content="Főórák" FontSize="20" HorizontalAlignment="Left" Height="40" Margin="10,10,0,0" VerticalAlignment="Top" Width="240"/>
+                <Button Content="Szolgáltatás hozzáadása" Grid.Column="0" Command="{Binding Path=AddServiceCommand}"></Button>
+                <Button Content="Szolgáltatás törlése" Grid.Column="1" Command="{Binding Path=RemoveServiceCommand}"></Button>
+                <Button Content="Mentés" Grid.Column="2" Command="{Binding Path=SaveServiceCommand}"></Button>
+            </Grid>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
 
+                </Grid.RowDefinitions>
+
+                <Grid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="20"></Setter>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                        <Setter Property="Height" Value="40"></Setter>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="20"></Setter>
+                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <Label x:Name="label" Content="ID:" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="label1" Content="Név:" Grid.Column="0" Grid.Row="1"/>
+                <Label x:Name="label2" Content="Főóra állása:" Grid.Column="0" Grid.Row="2"/>
+
+                <TextBox x:Name="textBox" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" Text="{Binding Path=EditedService.ID}"/>
+                <TextBox x:Name="textBox1" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=EditedService.Name}"/>
+                <TextBox x:Name="textBox2" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path=EditedService.MainMeter.Reading}"/>
+            </Grid>
+
+        </DockPanel>
     </Grid>
 </Window>
