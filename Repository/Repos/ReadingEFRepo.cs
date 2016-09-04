@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class ReadingEFRepo : GenericEFRepository<Readings>, IReadingRepository
+    public class ReadingEFRepo : GenericEFRepository<Readings>, IReadingRepository
     {
         public ReadingEFRepo(DbContext context) : base(context)
         {

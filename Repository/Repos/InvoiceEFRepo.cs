@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class InvoiceEFRepo : GenericEFRepository<Invoices>, IInvoiceRepository
+    public class InvoiceEFRepo : GenericEFRepository<Invoices>, IInvoiceRepository
     {
         public InvoiceEFRepo(DbContext context) : base(context)
         {
@@ -32,6 +32,11 @@ namespace Repository.Repos
         public IQueryable<Invoices> GetInvoicesByService(int serviceId)
         {
             return Get(akt => akt.Readings.Meters.ServiceId == serviceId);
+        }
+
+        public Invoices GetLast()
+        {
+            return GetAll().OrderBy(akt => akt.Id).Last();
         }
     }
 }

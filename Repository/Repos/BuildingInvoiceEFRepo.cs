@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class BuildingInvoiceEFRepo : GenericEFRepository<BuildingInvoices>, IBuildingInvoiceRepository
+    public class BuildingInvoiceEFRepo : GenericEFRepository<BuildingInvoices>, IBuildingInvoiceRepository
     {
         public BuildingInvoiceEFRepo(DbContext context) : base(context)
         {
@@ -23,6 +23,11 @@ namespace Repository.Repos
         public override BuildingInvoices GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();
+        }
+
+        public BuildingInvoices GetLast()
+        {
+            return GetAll().OrderBy(akt => akt.Id).Last();
         }
     }
 }

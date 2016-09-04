@@ -13,5 +13,6 @@ namespace Repository.Repos
         IQueryable<Invoices> GetInvoicesByService(int serviceId);
         IQueryable<Invoices> GetInvoicesByAppartment(int appId);
         IQueryable<Invoices> GetInvoicesByMeter(int meterId);
+        Invoices GetLast();
     }
 }

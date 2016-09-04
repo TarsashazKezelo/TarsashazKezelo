@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class ServiceEFRepo : GenericEFRepository<Services>, IServiceRepository
+    public class ServiceEFRepo : GenericEFRepository<Services>, IServiceRepository
     {
         public ServiceEFRepo(DbContext context) : base(context)
         {

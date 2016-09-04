@@ -11,5 +11,6 @@ namespace Repository.Repos
     interface IBuildingInvoiceRepository : IRepository<BuildingInvoices>
     {
         IQueryable<BuildingInvoices> GetBuildingInvoicesByService(int serviceId);
+        BuildingInvoices GetLast();
     }
 }

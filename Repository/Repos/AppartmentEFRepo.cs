@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class AppartmentEFRepo : GenericEFRepository<Appartments>, IAppartmentRepository
+    public class AppartmentEFRepo : GenericEFRepository<Appartments>, IAppartmentRepository
     {
         public AppartmentEFRepo(DbContext context) : base(context)
         {

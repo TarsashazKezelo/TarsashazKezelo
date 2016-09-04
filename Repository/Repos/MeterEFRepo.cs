@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class MeterEFRepo : GenericEFRepository<Meters>, IMeterRepository
+    public class MeterEFRepo : GenericEFRepository<Meters>, IMeterRepository
     {
         public MeterEFRepo(DbContext context) : base(context)
         {
