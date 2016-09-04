@@ -67,7 +67,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void AddServiceMethod()
         {
-            Services.Add(new Service { ID = 0, MainMeter = new MainMeter { ID = 0, Reading = 0 }, Name = "" });
+            Services.Add(new Service { ID = 0, MainMeter = new MainMeter { ID = 0, Reading = 0 }, Name = "Szolgáltatás" });
             SelectedService = Services.Last();
         }
 

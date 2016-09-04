@@ -14,24 +14,20 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _id, value); }
         }
 
-        private double _reading;
+        private float _reading;
 
-        public double Reading
+        public float Reading
         {
             get { return _reading; }
             set { Set(ref _reading, value); }
         }
 
-        private ObservableCollection<BuildingInvoice> _buildingInvoices;
+        private BuildingInvoice _buildingInvoice;
 
-        public ObservableCollection<BuildingInvoice> BuildingInvoices
+        public BuildingInvoice BuildingInvoice
         {
-            get { return _buildingInvoices; }
-        }
-
-        public MainMeter()
-        {
-            _buildingInvoices=new ObservableCollection<BuildingInvoice>();
+            get { return _buildingInvoice; }
+            set { Set(ref _buildingInvoice, value); }
         }
     }
 }

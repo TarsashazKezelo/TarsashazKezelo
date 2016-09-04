@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 
 namespace tarsashazkezelo_admin_frontend.Model
 {
-    public class Service:ObservableObject
+    public class Service : ObservableObject
     {
         private int _id;
 
@@ -21,12 +22,12 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _name, value); }
         }
 
-        private MainMeter _mainMeter;
+        private ObservableCollection<MainMeter> _mainMeters;
 
-        public MainMeter MainMeter
+        public ObservableCollection<MainMeter> MainMeters
         {
-            get { return _mainMeter; }
-            set { Set(ref _mainMeter, value); }
+            get { return _mainMeters; }
+            set { Set(ref _mainMeters, value); }
         }
     }
 }
