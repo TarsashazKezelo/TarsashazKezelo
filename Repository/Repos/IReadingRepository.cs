@@ -10,5 +10,8 @@ namespace Repository.Repos
 {
     interface IReadingRepository : IRepository<Readings>
     {
+        IQueryable<Readings> GetReadingsByAppartment(int appId);
+        IQueryable<Readings> GetReadingsByService(int serviceId);
+        IQueryable<Readings> GetReadingsByMeter(int meterId);
     }
 }

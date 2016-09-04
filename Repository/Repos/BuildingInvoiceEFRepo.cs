@@ -15,6 +15,11 @@ namespace Repository.Repos
         {
         }
 
+        public IQueryable<BuildingInvoices> GetBuildingInvoicesByService(int serviceId)
+        {
+            return Get(akt => akt.MainMeters.ServiceId == serviceId);
+        }
+
         public override BuildingInvoices GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();

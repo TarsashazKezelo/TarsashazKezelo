@@ -57,9 +57,15 @@
     <Compile Include="Repos\IAppartmentRepository.cs" />
     <Compile Include="Repos\IBuildingInvoiceRepository.cs" />
     <Compile Include="Repos\IInvoiceRepository.cs" />
+    <Compile Include="Repos\IMainMeterRepository.cs" />
+    <Compile Include="Repos\IMeterRepository.cs" />
     <Compile Include="Repos\InvoiceEFRepo.cs" />
     <Compile Include="Repos\IReadingRepository.cs" />
+    <Compile Include="Repos\IServiceRepository.cs" />
+    <Compile Include="Repos\MainMeterEFRepo.cs" />
+    <Compile Include="Repos\MeterEFRepo.cs" />
     <Compile Include="Repos\ReadingEFRepo.cs" />
+    <Compile Include="Repos\ServiceEFRepo.cs" />
     <Compile Include="SqlDriver.cs" />
   </ItemGroup>
   <ItemGroup>

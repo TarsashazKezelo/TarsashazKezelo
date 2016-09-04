@@ -19,21 +19,6 @@ namespace Repository.GenericRepos
         {
             context.Dispose();
         }
-        public void Delete(TEntity entityToDelete)
-        {
-            context.Set<TEntity>().Remove(entityToDelete);
-            context.Entry<TEntity>(entityToDelete).State = EntityState.Deleted;
-            context.SaveChanges();
-        }
-        public void Delete(int id)
-        {
-            TEntity entityToDelete = GetById(id);
-            if (entityToDelete == null)
-            {
-                throw new ArgumentException("No Data");
-            }
-            Delete(entityToDelete);
-        }
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter)
         {
             return GetAll().Where(filter);

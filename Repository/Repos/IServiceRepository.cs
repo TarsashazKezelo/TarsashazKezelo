@@ -8,8 +8,7 @@ using Entities;
 
 namespace Repository.Repos
 {
-    interface IBuildingInvoiceRepository : IRepository<BuildingInvoices>
+    interface IServiceRepository : IRepository<Services>
     {
-        IQueryable<BuildingInvoices> GetBuildingInvoicesByService(int serviceId);
     }
 }

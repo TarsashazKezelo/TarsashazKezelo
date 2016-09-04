@@ -14,15 +14,24 @@ namespace Repository.Repos
         public InvoiceEFRepo(DbContext context) : base(context)
         {
         }
-
-        public decimal CalculateTotal()
-        {
-            throw new NotImplementedException();
-        }
-
         public override Invoices GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();
+        }
+
+        public IQueryable<Invoices> GetInvoicesByAppartment(int appId)
+        {
+            return Get(akt => akt.Readings.Meters.AppartmentId == appId);
+        }
+
+        public IQueryable<Invoices> GetInvoicesByMeter(int meterId)
+        {
+            return Get(akt => akt.Readings.MeterId == meterId);
+        }
+
+        public IQueryable<Invoices> GetInvoicesByService(int serviceId)
+        {
+            return Get(akt => akt.Readings.Meters.ServiceId == serviceId);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace Repository.Repos
 {
     interface IInvoiceRepository : IRepository<Invoices>
     {
-        decimal CalculateTotal();
+        IQueryable<Invoices> GetInvoicesByService(int serviceId);
+        IQueryable<Invoices> GetInvoicesByAppartment(int appId);
+        IQueryable<Invoices> GetInvoicesByMeter(int meterId);
     }
 }

@@ -19,5 +19,20 @@ namespace Repository.Repos
         {
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
+
+        public IQueryable<Readings> GetReadingsByAppartment(int appId)
+        {
+            return Get(akt => akt.Meters.AppartmentId == appId);
+        }
+
+        public IQueryable<Readings> GetReadingsByMeter(int meterId)
+        {
+            return Get(akt => akt.MeterId == meterId);
+        }
+
+        public IQueryable<Readings> GetReadingsByService(int serviceId)
+        {
+            return Get(akt => akt.Meters.ServiceId == serviceId);
+        }
     }
 }
