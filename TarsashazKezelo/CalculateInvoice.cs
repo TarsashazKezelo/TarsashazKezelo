@@ -50,31 +50,32 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             double amount = bInv.Amount;
             if (main.Reading != null)
             {
-                double unit = double.Parse((bInv.Amount / (main.Reading - prev.Reading)).ToString());
+                double unit = (bInv.Amount / (main.Reading - prev.Reading)).Value;
                 foreach (var item in validMeters)
                 {
                     Readings lastR = ReadingRepo.Get(akt => akt.MeterId == item.Id).OrderBy(akt => akt.Id).Last();
                     Readings prevR = ReadingRepo.Get(akt => akt.MeterId == item.Id && akt.Id < lastR.Id).OrderBy(akt => akt.Id).Last();
                     Invoices inv = new Invoices();
                     inv.ReadingId = lastR.Id;
-                    inv.Amount = double.Parse(((lastR.Reading - prevR.Reading) * unit).ToString());
+                    inv.Amount = ((lastR.Reading - prevR.Reading) * unit).Value;
                     amount -= inv.Amount;
                     inv.Deadline = DateTime.Today.AddDays(14);
                     InvRepo.Insert(inv);
                 }
             }
+            CalculateBySize(withoutMeters, amount);
         }
         public void CalculateBySize(List<Meters> meters, double amount)
         {
             double allsize = 0;
             foreach (var item in meters)
             {
-                allsize += double.Parse(item.Appartments.Size.ToString());
+                allsize += item.Appartments.Size.Value;
             }
             foreach (var item in meters)
             {
                 Invoices inv = new Invoices();
-                inv.Amount = double.Parse((item.Appartments.Size * amount / allsize).ToString());
+                inv.Amount = (item.Appartments.Size * amount / allsize).Value;
                 inv.Deadline = DateTime.Today.AddDays(14);
                 InvRepo.Insert(inv);
             }
@@ -85,12 +86,12 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             int allresidents = 0;
             foreach (var item in meters)
             {
-                allresidents += int.Parse(item.Appartments.Residents.ToString());
+                allresidents += item.Appartments.Residents.Value;
             }
             foreach (var item in meters)
             {
                 Invoices inv = new Invoices();
-                inv.Amount = double.Parse((item.Appartments.Residents * amount / allresidents).ToString());
+                inv.Amount = (item.Appartments.Residents * amount / allresidents).Value;
                 inv.Deadline = DateTime.Today.AddDays(14);
                 InvRepo.Insert(inv);
             }
