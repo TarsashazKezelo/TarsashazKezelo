@@ -15,6 +15,23 @@ namespace Repository.Repos
         {
         }
 
+        public void Delete(Meters meterToDelete)
+        {
+            context.Set<Meters>().Remove(meterToDelete);
+            context.Entry<Meters>(meterToDelete).State = EntityState.Deleted;
+            context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            Meters meterToDelete = GetById(id);
+            if (meterToDelete == null)
+            {
+                throw new ArgumentException("No Data");
+            }
+            Delete(meterToDelete);
+        }
+
         public override Meters GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();

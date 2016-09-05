@@ -12,5 +12,7 @@ namespace Repository.Repos
     {
         IQueryable<Meters> GetMetersByAppartment(int appId);
         IQueryable<Meters> GetMetersByService(int serviceId);
+        void Delete(int id);
+        void Delete(Meters meterToDelete);
     }
 }
