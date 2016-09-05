@@ -68,6 +68,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CalculateByResidents" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_BuildingInvoices_MainMeters">
           <End Role="MainMeters" Type="Self.MainMeters" Multiplicity="1" />
@@ -252,6 +253,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CalculateByResidents" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="MainMeters" Relationship="Self.FK_MainMeters_Services" FromRole="Services" ToRole="MainMeters" />
           <NavigationProperty Name="Meters" Relationship="Self.FK_Meters_Services" FromRole="Services" ToRole="Meters" />
         </EntityType>
@@ -434,6 +436,7 @@
               <MappingFragment StoreEntitySet="Services">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CalculateByResidents" ColumnName="CalculateByResidents" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

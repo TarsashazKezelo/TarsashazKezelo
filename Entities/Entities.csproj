@@ -136,14 +136,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="TarsashazDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TarsashazDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="TarsashazDBModel.edmx.diagram">
       <DependentUpon>TarsashazDBModel.edmx</DependentUpon>
     </None>
