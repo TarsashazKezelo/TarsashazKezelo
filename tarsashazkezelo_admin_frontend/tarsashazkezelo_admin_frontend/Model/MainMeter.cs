@@ -22,12 +22,27 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _reading, value); }
         }
 
+        private DateTime _date;
+
+        public DateTime Date
+        {
+            get { return _date; }
+            set { Set(ref _date, value); }
+        }
+
+        
+
         private BuildingInvoice _buildingInvoice;
 
         public BuildingInvoice BuildingInvoice
         {
             get { return _buildingInvoice; }
             set { Set(ref _buildingInvoice, value); }
+        }
+
+        public MainMeter()
+        {
+            _buildingInvoice=new BuildingInvoice();
         }
     }
 }
