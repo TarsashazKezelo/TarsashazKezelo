@@ -38,5 +38,16 @@ namespace Repository.Repos
         {
             return GetAll().OrderBy(akt => akt.Id).Last();
         }
+        public override void Insert(Invoices newEntity)
+        {
+            foreach (var item in GetAll())
+            {
+                if (item.ReadingId==newEntity.ReadingId)
+                {
+                    return;
+                }
+            }
+            base.Insert(newEntity);
+        }
     }
 }

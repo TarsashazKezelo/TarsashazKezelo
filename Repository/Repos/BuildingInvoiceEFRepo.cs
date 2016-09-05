@@ -29,5 +29,16 @@ namespace Repository.Repos
         {
             return GetAll().OrderBy(akt => akt.Id).Last();
         }
+        public override void Insert(BuildingInvoices newEntity)
+        {
+            foreach (var item in GetAll())
+            {
+                if (item.MainMeterId==newEntity.MainMeterId)
+                {
+                    return;
+                }
+            }
+            base.Insert(newEntity);
+        }
     }
 }

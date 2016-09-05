@@ -28,7 +28,7 @@ namespace Repository.GenericRepos
             return context.Set<TEntity>();
         }
         abstract public TEntity GetById(int id);
-        public void Insert(TEntity newEntity)
+        public virtual void Insert(TEntity newEntity)
         {
             context.Set<TEntity>().Add(newEntity);
             context.Entry<TEntity>(newEntity).State = EntityState.Added;
