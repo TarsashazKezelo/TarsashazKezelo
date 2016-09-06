@@ -66,10 +66,12 @@
     <Compile Include="Repos\InvoiceEFRepo.cs" />
     <Compile Include="Repos\IReadingRepository.cs" />
     <Compile Include="Repos\IServiceRepository.cs" />
+    <Compile Include="Repos\IUserRepo.cs" />
     <Compile Include="Repos\MainMeterEFRepo.cs" />
     <Compile Include="Repos\MeterEFRepo.cs" />
     <Compile Include="Repos\ReadingEFRepo.cs" />
     <Compile Include="Repos\ServiceEFRepo.cs" />
+    <Compile Include="Repos\UserRepo.cs" />
     <Compile Include="SqlDriver.cs" />
   </ItemGroup>
   <ItemGroup>
