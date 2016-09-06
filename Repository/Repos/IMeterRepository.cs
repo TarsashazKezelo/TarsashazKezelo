@@ -14,5 +14,7 @@ namespace Repository.Repos
         IQueryable<Meters> GetMetersByService(int serviceId);
         void Delete(int id);
         void Delete(Meters meterToDelete);
+        IQueryable<Meters> GetValid();
+        IQueryable<Meters> GetInvalid();
     }
 }

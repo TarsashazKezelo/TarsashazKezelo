@@ -37,6 +37,11 @@ namespace Repository.Repos
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
 
+        public IQueryable<Meters> GetInvalid()
+        {
+            return Get(akt => !akt.Valid);
+        }
+
         public IQueryable<Meters> GetMetersByAppartment(int appId)
         {
             return Get(akt => akt.AppartmentId == appId);
@@ -45,6 +50,11 @@ namespace Repository.Repos
         public IQueryable<Meters> GetMetersByService(int serviceId)
         {
             return Get(akt => akt.ServiceId == serviceId);
+        }
+
+        public IQueryable<Meters> GetValid()
+        {
+            return Get(akt => akt.Valid);
         }
     }
 }

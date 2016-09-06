@@ -54,8 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\AppartmentEFRepo.cs" />
     <Compile Include="Repos\BuildingInvoiceEFRepo.cs" />
+    <Compile Include="Repos\ComplexRepositoryMethods.cs" />
     <Compile Include="Repos\IAppartmentRepository.cs" />
     <Compile Include="Repos\IBuildingInvoiceRepository.cs" />
+    <Compile Include="Repos\IComplexRepositoryMethods.cs" />
     <Compile Include="Repos\IInvoiceRepository.cs" />
     <Compile Include="Repos\IMainMeterRepository.cs" />
     <Compile Include="Repos\IMeterRepository.cs" />
