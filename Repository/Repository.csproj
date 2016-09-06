@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="GenericRepos\GenericEFRepository.cs" />
     <Compile Include="GenericRepos\IRepository.cs" />
+    <Compile Include="InitDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\AdminRepo.cs" />
     <Compile Include="Repos\AppartmentEFRepo.cs" />
