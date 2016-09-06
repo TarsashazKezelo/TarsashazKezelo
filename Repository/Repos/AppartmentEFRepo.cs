@@ -20,7 +20,7 @@ namespace Repository.Repos
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
 
-        public void Modify(int id, string owner, int residents, float balance)
+        public void Modify(int id, string owner, int residents, double balance)
         {
             Appartments akt = GetById(id);
             if (akt == null)

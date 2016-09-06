@@ -10,6 +10,6 @@ namespace Repository.Repos
 {
     interface IAppartmentRepository :IRepository<Appartments>
     {
-        void Modify(int id, string owner, int residents, float balance);
+        void Modify(int id, string owner, int residents, double balance);
     }
 }
