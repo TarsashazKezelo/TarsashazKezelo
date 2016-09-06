@@ -81,6 +81,10 @@
       <Project>{A34B17A5-9BE4-4214-940B-3439D476E165}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\tarsashazkezelo_admin_frontend\tarsashazkezelo_admin_frontend\tarsashazkezelo_admin_frontend.csproj">
+      <Project>{b6cb1eac-bd08-480b-b4dc-a08be12c7c09}</Project>
+      <Name>tarsashazkezelo_admin_frontend</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

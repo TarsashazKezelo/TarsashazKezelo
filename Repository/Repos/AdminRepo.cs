@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities;
 using System.IO;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
+using tarsashazkezelo_admin_frontend.Model;
+using Entities;
 
 namespace Repository.Repos
 {
@@ -35,49 +36,130 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             appartmentRepo = new AppartmentEFRepo(context);
             invoiceRepo = new InvoiceEFRepo(context);
         }
-        public void AddBuildingInvoice(BuildingInvoices buildingInvoice)
+        public void AddBuildingInvoice(BuildingInvoice buildingInvoice)
         {
-            buildingRepo.Insert(buildingInvoice);
+            BuildingInvoices bInv = new BuildingInvoices();
+            bInv.Amount = buildingInvoice.Amount;
+            bInv.Date = buildingInvoice.Date;
+            bInv.Description = buildingInvoice.Description;
+            bInv.Id = buildingInvoice.ID;
+            bInv.MainMeterId = buildingInvoice.MainMeterId;
+            buildingRepo.Insert(bInv);
         }
-        public void AddMainMeter(MainMeters mainMeter)
+        public void AddMainMeter(MainMeter mainMeter)
         {
-            mainMeterRepo.Insert(mainMeter);
+            MainMeters mMeter = new MainMeters();
+            mMeter.Date = mainMeter.Date;
+            mMeter.Id = mainMeter.ID;
+            mMeter.Reading = mainMeter.Reading;
+            mMeter.ServiceId = mainMeter.ServiceId;
+            mainMeterRepo.Insert(mMeter);
         }
-        public void AddMeter(Meters meter)
+        public void AddMeter(Meter meter)
         {
-            meterRepo.Insert(meter);
+            Meters m = new Meters();
+            m.AppartmentId = meter.AppartmentId;
+            m.Id = meter.ID;
+            m.ServiceId = meter.ServiceId;
+            m.Valid = meter.Valid;
+            meterRepo.Insert(m);
         }
-        public void AddService(Services service)
+        public void AddService(Service service)
         {
-            serviceRepo.Insert(service);
+            Services serv = new Services();
+            serv.CalculateByResidents = service.CalculateByResidents;
+            serv.Id = service.ID;
+            serv.Name = service.Name;
+            serviceRepo.Insert(serv);
         }
-        public ObservableCollection<Appartments> GetAppartments()
+        public ObservableCollection<Apartment> GetAppartments()
         {
-            return new ObservableCollection<Appartments>(appartmentRepo.GetAll());
+            ObservableCollection<Apartment> oc = new ObservableCollection<Apartment>();
+            foreach (var item in appartmentRepo.GetAll())
+            {
+                Apartment app = new Apartment();
+                app.Balance = item.Balance.Value;
+                app.ID = item.Id;
+                app.Owner = item.Owner;
+                app.Residents = item.Residents.Value;
+                oc.Add(app);
+            }
+            return oc;
         }
-        public ObservableCollection<BuildingInvoices> GetBuildingInvoices()
+        public ObservableCollection<BuildingInvoice> GetBuildingInvoices()
         {
-            return new ObservableCollection<BuildingInvoices>(buildingRepo.GetAll());
+            ObservableCollection<BuildingInvoice> oc = new ObservableCollection<BuildingInvoice>();
+            foreach (var item in buildingRepo.GetAll())
+            {
+                BuildingInvoice bInv = new BuildingInvoice();
+                bInv.Amount = item.Amount;
+                bInv.Date = item.Date;
+                bInv.Description = item.Description;
+                bInv.ID = item.Id;
+                bInv.MainMeterId = item.MainMeterId;
+                oc.Add(bInv);
+            }
+            return oc;
         }
-        public ObservableCollection<Invoices> GetInvoices()
+        public ObservableCollection<Invoice> GetInvoices()
         {
-            return new ObservableCollection<Invoices>(invoiceRepo.GetAll());
+            ObservableCollection<Invoice> oc = new ObservableCollection<Invoice>();
+            foreach (var item in invoiceRepo.GetAll())
+            {
+                Invoice inv = new Invoice();
+                inv.Amount = item.Amount;
+                inv.DeadLine = item.Deadline;
+                inv.Description = item.Description;
+                inv.ID = item.Id;
+                inv.ReadingId = item.ReadingId;
+                oc.Add(inv);
+            }
+            return oc;
         }
-        public ObservableCollection<MainMeters> GetMainMeters()
+        public ObservableCollection<MainMeter> GetMainMeters()
         {
-            return new ObservableCollection<MainMeters>(mainMeterRepo.GetAll());
+            ObservableCollection<MainMeter> oc = new ObservableCollection<MainMeter>();
+            foreach (var item in mainMeterRepo.GetAll())
+            {
+                MainMeter mMeter = new MainMeter();
+                mMeter.Date = item.Date;
+                mMeter.ID = item.Id;
+                mMeter.Reading = item.Reading;
+                mMeter.ServiceId = item.ServiceId;
+                oc.Add(mMeter);
+            }
+            return oc;
         }
-        public ObservableCollection<Meters> GetMeters()
+        public ObservableCollection<Meter> GetMeters()
         {
-            return new ObservableCollection<Meters>(meterRepo.GetAll());
+            ObservableCollection<Meter> oc = new ObservableCollection<Meter>();
+            foreach (var item in meterRepo.GetAll())
+            {
+                Meter meter = new Meter();
+                meter.AppartmentId = item.AppartmentId;
+                meter.ID = item.Id;
+                meter.Valid = item.Valid;
+                meter.ServiceId = item.ServiceId;
+                oc.Add(meter);
+            }
+            return oc;
         }
-        public ObservableCollection<Services> GetServices()
+        public ObservableCollection<Service> GetServices()
         {
-            return new ObservableCollection<Services>(serviceRepo.GetAll());
+            ObservableCollection<Service> oc = new ObservableCollection<Service>();
+            foreach (var item in serviceRepo.GetAll())
+            {
+                Service serv = new Service();
+                serv.CalculateByResidents = item.CalculateByResidents;
+                serv.ID = item.Id;
+                serv.Name = item.Name;
+                oc.Add(serv);
+            }
+            return oc;
         }
-        public void ModifyAppartment(Appartments appartment)
+        public void ModifyAppartment(Apartment appartment)
         {
-            appartmentRepo.Modify(appartment.Id, appartment.Owner, appartment.Residents.Value, appartment.Balance.Value);
+            appartmentRepo.Modify(appartment.ID, appartment.Owner, appartment.Residents, appartment.Balance);
         }
     }
 }

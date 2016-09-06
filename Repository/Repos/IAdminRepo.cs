@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities;
 using System.Collections.ObjectModel;
+using tarsashazkezelo_admin_frontend.Model;
 
 namespace Repository.Repos
 {
     interface IAdminRepo
     {
-        ObservableCollection<Appartments> GetAppartments();
-        void ModifyAppartment(Appartments appartment);
-        ObservableCollection<BuildingInvoices> GetBuildingInvoices();
-        void AddBuildingInvoice(BuildingInvoices buildingInvoice);
-        ObservableCollection<Invoices> GetInvoices();
-        ObservableCollection<MainMeters> GetMainMeters();
-        void AddMainMeter(MainMeters mainMeter);
-        ObservableCollection<Meters> GetMeters();
-        void AddMeter(Meters meter);
-        ObservableCollection<Services> GetServices();
-        void AddService(Services service);
+        ObservableCollection<Apartment> GetAppartments();
+        void ModifyAppartment(Apartment appartment);
+        ObservableCollection<BuildingInvoice> GetBuildingInvoices();
+        void AddBuildingInvoice(BuildingInvoice buildingInvoice);
+        ObservableCollection<Invoice> GetInvoices();
+        ObservableCollection<MainMeter> GetMainMeters();
+        void AddMainMeter(MainMeter mainMeter);
+        ObservableCollection<Meter> GetMeters();
+        void AddMeter(Meter meter);
+        ObservableCollection<Service> GetServices();
+        void AddService(Service service);
     }
 }
