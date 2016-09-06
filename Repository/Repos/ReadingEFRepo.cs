@@ -20,6 +20,13 @@ namespace Repository.Repos
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
 
+        public double GetLastReadingDifference(int meterId)
+        {
+            Readings last = GetReadingsByMeter(meterId).OrderBy(akt => akt.Id).Last();
+            Readings prev = GetReadingsByMeter(meterId).Where(akt => akt != last).OrderBy(akt => akt.Id).Last();
+            return (last.Reading - prev.Reading).Value;
+        }
+
         public IQueryable<Readings> GetReadingsByAppartment(int appId)
         {
             return Get(akt => akt.Meters.AppartmentId == appId);

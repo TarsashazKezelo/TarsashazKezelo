@@ -38,6 +38,8 @@ namespace Repository.Repos
                     return;
                 }
             }
+            ComplexRepositoryMethods repo = new ComplexRepositoryMethods();
+            repo.Calculate(newEntity);
             base.Insert(newEntity);
         }
     }

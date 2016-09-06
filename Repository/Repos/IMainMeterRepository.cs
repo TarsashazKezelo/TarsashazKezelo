@@ -11,5 +11,6 @@ namespace Repository.Repos
     interface IMainMeterRepository : IRepository<MainMeters>
     {
         IQueryable<MainMeters> GetMainMetersByService(int serviceId);
+        double GetLastReadingDifference(int serviceId);
     }
 }
