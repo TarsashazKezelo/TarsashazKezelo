@@ -41,5 +41,16 @@ namespace Repository.Repos
         {
             return Get(akt => akt.Meters.ServiceId == serviceId);
         }
+        public override void Insert(Readings newEntity)
+        {
+            foreach (var item in GetReadingsByMeter(newEntity.MeterId))
+            {
+                if (newEntity.Reading<item.Reading)
+                {
+                    return;
+                }
+            }
+            base.Insert(newEntity);
+        }
     }
 }
