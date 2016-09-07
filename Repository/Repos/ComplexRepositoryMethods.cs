@@ -32,20 +32,21 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             MainMeters main = buildingInvoice.MainMeters;
             Services serv = main.Services;
             double amount = buildingInvoice.Amount;
+            string desc = buildingInvoice.Description;
             if (main.Reading != null)
             {
-                CalculateByMeters(meterRepo, mainRepo, invRepo, ref amount, serv.Id);
+                CalculateByMeters(meterRepo, mainRepo, invRepo, ref amount, serv.Id, desc);
             }
             if (serv.CalculateByResidents)
             {
-                CalculateByResidents(meterRepo, amount, serv.Id);
+                CalculateByResidents(meterRepo, amount, serv.Id, desc);
             }
             else
             {
-                CalculateBySize(meterRepo, amount, serv.Id);
+                CalculateBySize(meterRepo, amount, serv.Id, desc);
             }
         }
-        private void CalculateByMeters(MeterEFRepo repo, MainMeterEFRepo mainRepo, InvoiceEFRepo invRepo, ref double amount, int serviceId)
+        private void CalculateByMeters(MeterEFRepo repo, MainMeterEFRepo mainRepo, InvoiceEFRepo invRepo, ref double amount, int serviceId, string description)
         {
             IQueryable<Meters> meters = repo.GetValidByService(serviceId);
             foreach (var item in meters)
@@ -55,10 +56,11 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
                 inv.Deadline = DateTime.Today.AddDays(14);
                 inv.Amount = repo.GetLastReadingDifference(item.Id) * unit;
                 inv.ReadingId = repo.GetLastReadingId(item.Id);
+                inv.Description = description;
                 invRepo.Insert(inv);
             }
         }
-        private void CalculateBySize(MeterEFRepo repo, double amount, int serviceId)
+        private void CalculateBySize(MeterEFRepo repo, double amount, int serviceId, string description)
         {
             IQueryable<Meters> meters = meterRepo.GetInvalidByService(serviceId);
             double allsize = 0;
@@ -71,10 +73,11 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
                 Invoices inv = new Invoices();
                 inv.Amount = (item.Appartments.Size * amount / allsize).Value;
                 inv.Deadline = DateTime.Today.AddDays(14);
+                inv.Description = description;
                 invRepo.Insert(inv);
             }
         }
-        private void CalculateByResidents(MeterEFRepo repo, double amount, int serviceId)
+        private void CalculateByResidents(MeterEFRepo repo, double amount, int serviceId, string description)
         {
             IQueryable<Meters> meters = meterRepo.GetInvalidByService(serviceId);
             int allresidents = 0;
@@ -87,6 +90,7 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
                 Invoices inv = new Invoices();
                 inv.Amount = (item.Appartments.Residents * amount / allresidents).Value;
                 inv.Deadline = DateTime.Today.AddDays(14);
+                inv.Description = description;
                 invRepo.Insert(inv);
             }
         }
