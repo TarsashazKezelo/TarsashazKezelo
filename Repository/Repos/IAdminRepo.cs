@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using tarsashazkezelo_admin_frontend.Model;
 
 namespace Repository.Repos
 {

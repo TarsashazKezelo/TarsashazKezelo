@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
-using tarsashazkezelo_admin_frontend.Model;
 using Entities;
+using System.Reflection;
 
 namespace Repository.Repos
 {
@@ -26,6 +26,7 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         public AdminRepo()
         {
             InitRepos();
+            Reflection();
         }
         void InitRepos()
         {
@@ -35,6 +36,36 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             serviceRepo = new ServiceEFRepo(context);
             appartmentRepo = new AppartmentEFRepo(context);
             invoiceRepo = new InvoiceEFRepo(context);
+        }
+        Type BuildingInvoice;
+        Type MainMeter;
+        Type Meter;
+        Type Service;
+        Type Apartment;
+        Type Invoice;
+        object bI;
+        object mM;
+        object m;
+        object s;
+        object a;
+        object i;
+        void Reflection()
+        {
+            string location = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName) +
+                @"\tarsashazkezelo_admin_frontend\tarsashazkezelo_admin_frontend\bin\Debug\valami.dll";
+            Assembly refLib = Assembly.LoadFile(location);
+            BuildingInvoice = refLib.GetType("tarsashazkezelo_admin_frontend.Model.BuildingInvoice");
+            MainMeter = refLib.GetType("tarsashazkezelo_admin_frontend.Model.MainMeter");
+            Meter = refLib.GetType("tarsashazkezelo_admin_frontend.Model.Meter");
+            Service = refLib.GetType("tarsashazkezelo_admin_frontend.Model.Service");
+            Apartment = refLib.GetType("tarsashazkezelo_admin_frontend.Model.Apartment");
+            Invoice = refLib.GetType("tarsashazkezelo_admin_frontend.Model.Invoice");
+            bI = Activator.CreateInstance(BuildingInvoice);
+            mM = Activator.CreateInstance(MainMeter);
+            m = Activator.CreateInstance(Meter);
+            s = Activator.CreateInstance(Service);
+            a = Activator.CreateInstance(Apartment);
+            i = Activator.CreateInstance(Invoice);
         }
         public void AddBuildingInvoice(BuildingInvoice buildingInvoice)
         {
