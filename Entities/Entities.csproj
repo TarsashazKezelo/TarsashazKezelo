@@ -111,6 +111,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="sql\script.txt" />
     <Content Include="TarsashazDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

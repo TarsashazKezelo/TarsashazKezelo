@@ -1,0 +1,197 @@
+﻿/****** .mdf neve elérési úttal a projectDB helyére!!!!!! ******/
+USE [projectDB]
+GO
+/****** Object:  Table [dbo].[Appartments]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Appartments](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Owner] [nvarchar](255) NULL,
+	[Size] [float] NULL,
+	[Residents] [int] NULL,
+	[Balance] [float] NULL,
+ CONSTRAINT [PK_Appartments] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[BuildingInvoices]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BuildingInvoices](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MainMeterId] [int] NOT NULL,
+	[Amount] [float] NOT NULL,
+	[Date] [date] NOT NULL,
+	[Description] [nvarchar](max) NULL,
+ CONSTRAINT [PK_BuildingInvoices] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Invoices]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Invoices](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ReadingId] [int] NOT NULL,
+	[Amount] [float] NOT NULL,
+	[Deadline] [date] NOT NULL,
+	[Description] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Invoices] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[MainMeters]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MainMeters](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ServiceId] [int] NOT NULL,
+	[Reading] [float] NULL,
+	[Date] [date] NOT NULL,
+ CONSTRAINT [PK_MainMeters] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Messages]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Messages](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AppartmentId] [int] NOT NULL,
+	[Message] [nvarchar](max) NOT NULL,
+	[ToAdmin] [bit] NOT NULL,
+ CONSTRAINT [PK_Messages] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Meters]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Meters](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AppartmentId] [int] NOT NULL,
+	[ServiceId] [int] NOT NULL,
+	[Valid] [bit] NOT NULL,
+ CONSTRAINT [PK_Meters] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Readings]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Readings](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MeterId] [int] NOT NULL,
+	[Reading] [float] NULL,
+	[Date] [date] NOT NULL,
+ CONSTRAINT [PK_Readings] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Services]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Services](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[CalculateByResidents] [bit] NOT NULL,
+ CONSTRAINT [PK_Services] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 2016.09.07. 20:43:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AppartmentId] [int] NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[BuildingInvoices]  WITH CHECK ADD  CONSTRAINT [FK_BuildingInvoices_MainMeters] FOREIGN KEY([MainMeterId])
+REFERENCES [dbo].[MainMeters] ([Id])
+GO
+ALTER TABLE [dbo].[BuildingInvoices] CHECK CONSTRAINT [FK_BuildingInvoices_MainMeters]
+GO
+ALTER TABLE [dbo].[Invoices]  WITH CHECK ADD  CONSTRAINT [FK_Invoices_Readings] FOREIGN KEY([ReadingId])
+REFERENCES [dbo].[Readings] ([Id])
+GO
+ALTER TABLE [dbo].[Invoices] CHECK CONSTRAINT [FK_Invoices_Readings]
+GO
+ALTER TABLE [dbo].[MainMeters]  WITH CHECK ADD  CONSTRAINT [FK_MainMeters_Services] FOREIGN KEY([ServiceId])
+REFERENCES [dbo].[Services] ([Id])
+GO
+ALTER TABLE [dbo].[MainMeters] CHECK CONSTRAINT [FK_MainMeters_Services]
+GO
+ALTER TABLE [dbo].[Messages]  WITH CHECK ADD  CONSTRAINT [FK_Messages_Appartments] FOREIGN KEY([AppartmentId])
+REFERENCES [dbo].[Appartments] ([Id])
+GO
+ALTER TABLE [dbo].[Messages] CHECK CONSTRAINT [FK_Messages_Appartments]
+GO
+ALTER TABLE [dbo].[Meters]  WITH CHECK ADD  CONSTRAINT [FK_Meters_Appartments] FOREIGN KEY([AppartmentId])
+REFERENCES [dbo].[Appartments] ([Id])
+GO
+ALTER TABLE [dbo].[Meters] CHECK CONSTRAINT [FK_Meters_Appartments]
+GO
+ALTER TABLE [dbo].[Meters]  WITH CHECK ADD  CONSTRAINT [FK_Meters_Services] FOREIGN KEY([ServiceId])
+REFERENCES [dbo].[Services] ([Id])
+GO
+ALTER TABLE [dbo].[Meters] CHECK CONSTRAINT [FK_Meters_Services]
+GO
+ALTER TABLE [dbo].[Readings]  WITH CHECK ADD  CONSTRAINT [FK_Readings_Meters] FOREIGN KEY([MeterId])
+REFERENCES [dbo].[Meters] ([Id])
+GO
+ALTER TABLE [dbo].[Readings] CHECK CONSTRAINT [FK_Readings_Meters]
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Appartments] FOREIGN KEY([AppartmentId])
+REFERENCES [dbo].[Appartments] ([Id])
+GO
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Appartments]
+GO
