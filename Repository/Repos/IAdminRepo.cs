@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Repository.Repos
 {
     interface IAdminRepo
     {
-        ObservableCollection<Apartment> GetAppartments();
+        BindingList<Apartment> GetAppartments();
         void ModifyAppartment(Apartment appartment);
         ObservableCollection<BuildingInvoice> GetBuildingInvoices();
         void AddBuildingInvoice(BuildingInvoice buildingInvoice);

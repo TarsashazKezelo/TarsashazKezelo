@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Collections.ObjectModel;
 using Entities;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace Repository.Repos
 {
@@ -91,9 +92,9 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             serv.Name = service.Name;
             serviceRepo.Insert(serv);
         }
-        public ObservableCollection<Apartment> GetAppartments()
+        public BindingList<Apartment> GetAppartments()
         {
-            ObservableCollection<Apartment> oc = new ObservableCollection<Apartment>();
+            BindingList<Apartment> oc = new BindingList<Apartment>();
             foreach (var item in appartmentRepo.GetAll())
             {
                 Apartment app = new Apartment();
