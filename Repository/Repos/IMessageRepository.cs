@@ -12,5 +12,10 @@ namespace Repository.Repos
     {
         void Delete(int id);
         void Delete(Messages messageToDelete);
+        IQueryable<Messages> GetMessagesByAppartment(int appartmentId);
+        IQueryable<Messages> GetToAdminByAppartment(int appartmentId);
+        IQueryable<Messages> GetFromAdminByAppartment(int appartmentId);
+        IQueryable<Messages> GetAllToAdmin();
+        IQueryable<Messages> GetAllFromAdmin();
     }
 }
