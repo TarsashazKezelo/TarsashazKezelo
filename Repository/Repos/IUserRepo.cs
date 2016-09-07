@@ -10,8 +10,18 @@ namespace Repository.Repos
     interface IUserRepo
     {
         void AddReading(Readings reading);
-        IQueryable<Readings> GetReadings();
+        IQueryable<Meters> GetMeters();
+        IQueryable<Readings> GetReadingsByMeter(int meterId);
         IQueryable<Invoices> GetInvoices();
+        IQueryable<Invoices> GetInvoicesByMeter(int meterId);
+        IQueryable<Invoices> GetActiveInvoices();
+        IQueryable<Invoices> GetExpiredActiveInvoices();
         Appartments GetAppartmentData();
+        void ModifyPassword(string oldPassword, string newPassword);
+        void AddMessage(string message);
+        void DeleteMessage(int messageId);
+        IQueryable<Messages> GetMessages();
+        IQueryable<Messages> GetInbox();
+        IQueryable<Messages> GetOutbox();
     }
 }

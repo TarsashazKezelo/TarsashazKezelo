@@ -21,11 +21,17 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         ReadingEFRepo readingRepo;
         AppartmentEFRepo appartmentRepo;
         InvoiceEFRepo invoiceRepo;
+        MeterEFRepo meterRepo;
+        UserEFRepo userRepo;
+        MessageEFRepo messageRepo;
         public void InitRepos()
         {
             readingRepo = new ReadingEFRepo(context);
             appartmentRepo = new AppartmentEFRepo(context);
             invoiceRepo = new InvoiceEFRepo(context);
+            meterRepo = new MeterEFRepo(context);
+            userRepo = new UserEFRepo(context);
+            messageRepo = new MessageEFRepo(context);
         }
         public void AddReading(Readings reading)
         {
@@ -42,9 +48,63 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             return invoiceRepo.GetInvoicesByAppartment(APPARTMENTID);
         }
 
-        public IQueryable<Readings> GetReadings()
+        public IQueryable<Readings> GetReadingsByMeter(int meterId)
         {
-            return readingRepo.GetReadingsByAppartment(APPARTMENTID);
+            return readingRepo.GetReadingsByAppartment(APPARTMENTID).Where(akt => akt.MeterId == meterId);
+        }
+
+        public IQueryable<Meters> GetMeters()
+        {
+            return meterRepo.GetMetersByAppartment(APPARTMENTID);
+        }
+
+        public IQueryable<Invoices> GetInvoicesByMeter(int meterId)
+        {
+            return invoiceRepo.GetInvoicesByMeter(meterId);
+        }
+
+        public IQueryable<Invoices> GetActiveInvoices()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Invoices> GetExpiredActiveInvoices()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyPassword(string oldPassword, string newPassword)
+        {
+            userRepo.Modify(APPARTMENTID, oldPassword, newPassword);
+        }
+
+        public void AddMessage(string message)
+        {
+            Messages newMessage = new Messages();
+            newMessage.AppartmentId = APPARTMENTID;
+            newMessage.Message = message;
+            newMessage.ToAdmin = true;
+            messageRepo.Insert(newMessage);
+        }
+
+        public void DeleteMessage(int messageId)
+        {
+            messageRepo.Delete(messageId);
+        }
+
+        public IQueryable<Messages> GetMessages()
+        {
+            return messageRepo.GetMessagesByAppartment(APPARTMENTID);
+        }
+
+        public IQueryable<Messages> GetInbox()
+        {
+            return messageRepo.GetFromAdminByAppartment(APPARTMENTID);
+        }
+
+        public IQueryable<Messages> GetOutbox()
+        {
+            return messageRepo.GetToAdminByAppartment(APPARTMENTID);
         }
     }
 }
