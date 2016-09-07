@@ -24,6 +24,7 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         ServiceEFRepo serviceRepo;
         AppartmentEFRepo appartmentRepo;
         InvoiceEFRepo invoiceRepo;
+        MessageEFRepo messageRepo;
         public AdminRepo()
         {
             InitRepos();
@@ -36,6 +37,7 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             serviceRepo = new ServiceEFRepo(context);
             appartmentRepo = new AppartmentEFRepo(context);
             invoiceRepo = new InvoiceEFRepo(context);
+            messageRepo = new MessageEFRepo(context);
         }
         public void AddBuildingInvoice(BuildingInvoices buildingInvoice)
         {
@@ -85,6 +87,35 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         public void InitDatabase()
         {
             InitDatabase init = Repository.InitDatabase.Instance;
+        }
+
+        public void AddMessage(string message, int appartmentId)
+        {
+            Messages newMessage = new Messages();
+            newMessage.AppartmentId = appartmentId;
+            newMessage.Message = message;
+            newMessage.ToAdmin = false;
+            messageRepo.Insert(newMessage);
+        }
+
+        public void DeleteMessage(int messageId)
+        {
+            messageRepo.Delete(messageId);
+        }
+
+        public IQueryable<Messages> GetMessages()
+        {
+            return messageRepo.GetAll();
+        }
+
+        public IQueryable<Messages> GetInbox()
+        {
+            return messageRepo.GetAllToAdmin();
+        }
+
+        public IQueryable<Messages> GetOutbox()
+        {
+            return messageRepo.GetAllFromAdmin();
         }
     }
 }
