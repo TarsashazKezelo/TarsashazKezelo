@@ -75,12 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Interfaces\IApartment.cs" />
-    <Compile Include="Interfaces\IBuildingInvoice.cs" />
-    <Compile Include="Interfaces\IInvoice.cs" />
-    <Compile Include="Interfaces\IMainMeter.cs" />
-    <Compile Include="Interfaces\IMeter.cs" />
-    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\IAdminFunctions.cs" />
     <Compile Include="Model\Apartment.cs" />
     <Compile Include="Model\BuildingInvoice.cs" />
     <Compile Include="Model\Invoice.cs" />
