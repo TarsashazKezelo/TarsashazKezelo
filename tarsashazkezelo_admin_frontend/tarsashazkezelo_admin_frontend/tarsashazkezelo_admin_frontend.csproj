@@ -75,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddServiceWindow.xaml.cs">
+      <DependentUpon>AddServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IAdminFunctions.cs" />
     <Compile Include="Model\Apartment.cs" />
     <Compile Include="Model\BuildingInvoice.cs" />
@@ -82,9 +85,14 @@
     <Compile Include="Model\MainMeter.cs" />
     <Compile Include="Model\Meter.cs" />
     <Compile Include="Model\Service.cs" />
+    <Compile Include="ViewModel\AddServiceViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ServiceViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="AddServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

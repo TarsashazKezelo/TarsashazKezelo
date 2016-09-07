@@ -26,6 +26,14 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _owner, value); }
         }
 
+        private float _size;
+
+        public float Size
+        {
+            get { return _size; }
+            set { Set(ref _size, value); }
+        }
+
         private int _residents;
 
         public int Residents

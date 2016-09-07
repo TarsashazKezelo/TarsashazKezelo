@@ -31,5 +31,7 @@ namespace tarsashazkezelo_admin_frontend.Interfaces
         void AddService(Service s);
 
         ObservableCollection<Service> GetServices();
+
+        void InitDatabase();
     }
 }
