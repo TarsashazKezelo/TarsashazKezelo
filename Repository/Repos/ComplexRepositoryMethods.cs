@@ -57,6 +57,7 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
                 inv.Amount = repo.GetLastReadingDifference(item.Id) * unit;
                 inv.ReadingId = repo.GetLastReadingId(item.Id);
                 inv.Description = description;
+                inv.Paid = false;
                 invRepo.Insert(inv);
             }
         }
@@ -74,6 +75,7 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
                 inv.Amount = (item.Appartments.Size * amount / allsize).Value;
                 inv.Deadline = DateTime.Today.AddDays(14);
                 inv.Description = description;
+                inv.Paid = false;
                 invRepo.Insert(inv);
             }
         }
@@ -91,6 +93,7 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
                 inv.Amount = (item.Appartments.Residents * amount / allresidents).Value;
                 inv.Deadline = DateTime.Today.AddDays(14);
                 inv.Description = description;
+                inv.Paid = false;
                 invRepo.Insert(inv);
             }
         }

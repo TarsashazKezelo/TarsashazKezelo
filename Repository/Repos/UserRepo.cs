@@ -106,5 +106,17 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         {
             return messageRepo.GetToAdminByAppartment(APPARTMENTID);
         }
+
+        public void PayToBalance(double amount)
+        {
+            appartmentRepo.GetById(APPARTMENTID).Balance += amount;
+        }
+
+        public void PayFromBalance(int invoiceId)
+        {
+            Invoices inv = invoiceRepo.GetById(invoiceId);
+            appartmentRepo.GetById(APPARTMENTID).Balance -=inv.Amount;
+            inv.Paid = true;
+        }
     }
 }

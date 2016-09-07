@@ -48,6 +48,7 @@ CREATE TABLE [dbo].[Invoices](
 	[Amount] [float] NOT NULL,
 	[Deadline] [date] NOT NULL,
 	[Description] [nvarchar](max) NULL,
+	[Paid] [bit] NOT NULL,
  CONSTRAINT [PK_Invoices] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
