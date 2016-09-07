@@ -13,6 +13,5 @@ namespace Repository.Repos
         IQueryable<Readings> GetReadings();
         IQueryable<Invoices> GetInvoices();
         Appartments GetAppartmentData();
-        void ModifyAppartment(string owner, double size, int residents);
     }
 }

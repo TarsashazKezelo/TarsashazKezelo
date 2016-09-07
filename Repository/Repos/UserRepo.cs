@@ -46,10 +46,5 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         {
             return readingRepo.GetReadingsByAppartment(APPARTMENTID);
         }
-
-        public void ModifyAppartment(string owner, double size, int residents)
-        {
-            appartmentRepo.Modify(APPARTMENTID, owner, residents, size);
-        }
     }
 }
