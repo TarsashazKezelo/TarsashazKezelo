@@ -30,6 +30,16 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _mainMeters, value); }
         }
 
+        private bool _calculateByResidents;
+
+        public bool CalculateByResidents
+        {
+            get { return _calculateByResidents; }
+            set { Set(ref _calculateByResidents, value); }
+        }
+
+        
+
         public Service()
         {
             _mainMeters=new ObservableCollection<MainMeter>();

@@ -14,6 +14,15 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _id, value); }
         }
 
+        private int _serviceID;
+
+        public int ServiceID
+        {
+            get { return _serviceID; }
+            set { Set(ref _serviceID, value); }
+        }
+
+
         private float _reading;
 
         public float Reading
@@ -29,8 +38,6 @@ namespace tarsashazkezelo_admin_frontend.Model
             get { return _date; }
             set { Set(ref _date, value); }
         }
-
-        
 
         private BuildingInvoice _buildingInvoice;
 

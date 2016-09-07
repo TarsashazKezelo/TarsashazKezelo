@@ -29,11 +29,9 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="ServiceButton" Grid.Column="0" Content="Szolgáltatások" FontSize="20" Margin="10" Command="{Binding Path=ServiceButtonCommand}"/>
         </Grid>
-
-        <StackPanel Grid.Row="1" Visibility="{Binding Path=ServiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+        <!--Visibility="{Binding Path=ServiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}"-->
+        <StackPanel Grid.Row="1" >
             <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=Service}">
-                <ListBox ItemsSource="{Binding Path=Services}" FontSize="20" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" Height="660" Width="200" Margin="10" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" />
-                
                 <Grid DockPanel.Dock="Bottom">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -41,10 +39,9 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Content="Szolgáltatás hozzáadása" Grid.Column="0" Command="{Binding Path=AddServiceCommand}"></Button>
-                    <Button Content="Mentés" Grid.Column="1" Command="{Binding Path=SaveServiceCommand}"></Button>
-                    
+
                 </Grid>
-                
+                <ListBox ItemsSource="{Binding Path=Services}" FontSize="20" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" Height="660" Width="200" Margin="10" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" />
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -62,7 +59,7 @@
                         </Style>
                     </Grid.Resources>
                     <Label Content="Név:" Grid.Column="0"></Label>
-                    <TextBox Grid.Column="1" Text="{Binding Path=EditedService.Name}"></TextBox>
+                    <Label Grid.Column="1" Content="{Binding Path=SelectedService.Name}"></Label>
                 </Grid>
             </DockPanel>
         </StackPanel>

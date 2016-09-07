@@ -18,6 +18,22 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _id, value); }
         }
 
+        private int _appartmentID;
+
+        public int AppartmentID
+        {
+            get { return _appartmentID; }
+            set { Set(ref _appartmentID, value); }
+        }
+
+        private int _serviceID;
+
+        public int ServiceID
+        {
+            get { return _serviceID; }
+            set { Set(ref _serviceID, value); }
+        }
+
         private bool _valid;
 
         public bool Valid

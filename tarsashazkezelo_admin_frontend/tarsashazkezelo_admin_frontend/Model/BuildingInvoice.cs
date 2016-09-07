@@ -13,6 +13,14 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _id, value); }
         }
 
+        private int _mainMeterID;
+
+        public int MainMeterID
+        {
+            get { return _mainMeterID; }
+            set { Set(ref _mainMeterID, value); }
+        }
+
         private double _amount;
 
         public double Amount
@@ -29,12 +37,12 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _date, value); }
         }
 
-        private string _desc;
+        private string _description;
 
         public string Description
         {
-            get { return _desc; }
-            set { Set(ref _desc, value); }
+            get { return _description; }
+            set { Set(ref _description, value); }
         } 
     }
 }

@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using tarsashazkezelo_admin_frontend.Model;
 
 namespace tarsashazkezelo_admin_frontend.ViewModel
@@ -16,15 +17,12 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
     {
         public ObservableCollection<Service> Services { get; }
 
-        private Service _editedService;
+        private Service _selectedService;
 
-        public Service EditedService
+        public Service SelectedService
         {
-            get { return _editedService; }
-            set
-            {
-                Set(ref _editedService, value);
-            }
+            get { return _selectedService; }
+            set { Set(ref _selectedService, value); }
         }
 
         private MainMeter _selectedMainMeter;
@@ -39,22 +37,18 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void AddServiceMethod()
         {
-            EditedService=new Service() { ID = Services.Count() + 1, Name = "" };
-        }
-
-        public ICommand SaveServiceCommand { get; private set; }
-
-        public void SaveServiceMethod()
-        {
-            Services.Add(EditedService);
-            EditedService = null;
-
+            Service newService = new Service();
+            Messenger.Default.Send(new NotificationMessage("AddServiceWindow"));
+            Messenger.Default.Send(newService, "AddService");
         }
 
         public ServiceViewModel()
         {
             AddServiceCommand = new RelayCommand(AddServiceMethod);
-            SaveServiceCommand=new RelayCommand(SaveServiceMethod);
+            Messenger.Default.Register<Service>(this, "AddServiceOKButton", (service) =>
+            {
+                Services.Add(service);
+            });
             Services = new ObservableCollection<Service>();
         }
     }

@@ -18,6 +18,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ServiceViewModel>();
+            SimpleIoc.Default.Register<AddServiceViewModel>();
             //SimpleIoc.Default.Register<MainMeterViewModel>();
         }
 
@@ -32,6 +33,11 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public ServiceViewModel Service
         {
             get { return ServiceLocator.Current.GetInstance<ServiceViewModel>(); }
+        }
+
+        public AddServiceViewModel AddService
+        {
+            get { return ServiceLocator.Current.GetInstance<AddServiceViewModel>(); }
         }
 
         //public MainMeterViewModel MainMeter

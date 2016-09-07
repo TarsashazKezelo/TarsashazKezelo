@@ -17,6 +17,14 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _id, value); }
         }
 
+        private int _readingID;
+
+        public int ReadingID
+        {
+            get { return _readingID; }
+            set { Set(ref _readingID, value); }
+        }
+
         private float _amount;
 
         public float Amount
@@ -33,6 +41,15 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _deadLine, value); }
         }
 
-        
+        private string _description;
+
+        public string Description
+        {
+            get { return _description; }
+            set { Set(ref _description, value); }
+        }
+
+
+
     }
 }
