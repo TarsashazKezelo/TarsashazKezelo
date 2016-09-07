@@ -59,5 +59,16 @@ namespace Repository.Repos
                 context.SaveChanges();
             }
         }
+        public override void Insert(Users newEntity)
+        {
+            foreach (var item in GetAll())
+            {
+                if (item.AppartmentId==newEntity.AppartmentId)
+                {
+                    return;
+                }
+            }
+            base.Insert(newEntity);
+        }
     }
 }
