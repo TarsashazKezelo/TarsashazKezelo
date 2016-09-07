@@ -53,9 +53,9 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         {
             serviceRepo.Insert(service);
         }
-        public BindingList<Appartments> GetAppartments()
+        public ObservableCollection<Appartments> GetAppartments()
         {
-            return new BindingList<Appartments>(appartmentRepo.GetAll().ToList());
+            return new ObservableCollection<Appartments>(appartmentRepo.GetAll());
         }
         public ObservableCollection<BuildingInvoices> GetBuildingInvoices()
         {
@@ -80,6 +80,11 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         public void ModifyAppartment(Appartments appartment)
         {
             appartmentRepo.Modify(appartment.Id, appartment.Owner, appartment.Residents.Value, appartment.Balance.Value);
+        }
+
+        public void InitDatabase()
+        {
+            InitDatabase init = Repository.InitDatabase.Instance;
         }
     }
 }

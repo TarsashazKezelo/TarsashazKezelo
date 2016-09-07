@@ -11,7 +11,7 @@ namespace Repository.Repos
 {
     interface IAdminRepo
     {
-        BindingList<Appartments> GetAppartments();
+        ObservableCollection<Appartments> GetAppartments();
         void ModifyAppartment(Appartments appartment);
         ObservableCollection<BuildingInvoices> GetBuildingInvoices();
         void AddBuildingInvoice(BuildingInvoices buildingInvoice);
@@ -22,5 +22,6 @@ namespace Repository.Repos
         void AddMeter(Meters meter);
         ObservableCollection<Services> GetServices();
         void AddService(Services service);
+        void InitDatabase();
     }
 }
