@@ -23,6 +23,19 @@ namespace Repository.Repos
         public void Modify(int id, string owner, int residents, double balance)
         {
             Appartments akt = GetById(id);
+            if (owner != akt.Owner)
+            {
+                UserEFRepo userRepo = new UserEFRepo(context);
+                Users oldUser = akt.Users.SingleOrDefault();
+                userRepo.Delete(oldUser);
+                if (owner!=null)
+                {
+                    Users newUser = new Users();
+                    newUser.AppartmentId = id;
+                    newUser.Password = "";
+                    userRepo.Insert(newUser);
+                }
+            }
             if (akt == null)
             {
                 throw new ArgumentException("No Data");
@@ -32,6 +45,18 @@ namespace Repository.Repos
             akt.Balance = balance;
             context.Entry<Appartments>(akt).State = EntityState.Modified;
             context.SaveChanges();
+        }
+        public override void Insert(Appartments newEntity)
+        {
+            if (newEntity.Owner!=null)
+            {
+                UserEFRepo userRepo = new UserEFRepo(context);
+                Users newUser = new Users();
+                newUser.AppartmentId = newEntity.Id;
+                newUser.Password = "";
+                userRepo.Insert(newUser);
+            }
+            base.Insert(newEntity);
         }
     }
 }
