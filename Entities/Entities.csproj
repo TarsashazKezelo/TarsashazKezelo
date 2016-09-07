@@ -78,6 +78,9 @@
     <Compile Include="MainMeters.cs">
       <DependentUpon>TarsashazDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Messages.cs">
+      <DependentUpon>TarsashazDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Meters.cs">
       <DependentUpon>TarsashazDBModel.tt</DependentUpon>
     </Compile>
@@ -102,6 +105,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TarsashazDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>TarsashazDBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

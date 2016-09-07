@@ -29,8 +29,10 @@ namespace Entities
         public virtual DbSet<BuildingInvoices> BuildingInvoices { get; set; }
         public virtual DbSet<Invoices> Invoices { get; set; }
         public virtual DbSet<MainMeters> MainMeters { get; set; }
+        public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<Meters> Meters { get; set; }
         public virtual DbSet<Readings> Readings { get; set; }
         public virtual DbSet<Services> Services { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

@@ -44,6 +44,15 @@
           <Property Name="Reading" Type="float" />
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppartmentId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ToAdmin" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Meters">
           <Key>
             <PropertyRef Name="Id" />
@@ -69,6 +78,14 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CalculateByResidents" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppartmentId" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_BuildingInvoices_MainMeters">
           <End Role="MainMeters" Type="Self.MainMeters" Multiplicity="1" />
@@ -103,6 +120,18 @@
             </Principal>
             <Dependent Role="MainMeters">
               <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Appartments">
+          <End Role="Appartments" Type="Self.Appartments" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appartments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="AppartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -142,14 +171,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Appartments">
+          <End Role="Appartments" Type="Self.Appartments" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appartments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="AppartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TarsashazDBModelStoreContainer">
           <EntitySet Name="Appartments" EntityType="Self.Appartments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BuildingInvoices" EntityType="Self.BuildingInvoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainMeters" EntityType="Self.MainMeters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meters" EntityType="Self.Meters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Readings" EntityType="Self.Readings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BuildingInvoices_MainMeters" Association="Self.FK_BuildingInvoices_MainMeters">
             <End Role="MainMeters" EntitySet="MainMeters" />
             <End Role="BuildingInvoices" EntitySet="BuildingInvoices" />
@@ -162,6 +205,10 @@
             <End Role="Services" EntitySet="Services" />
             <End Role="MainMeters" EntitySet="MainMeters" />
           </AssociationSet>
+          <AssociationSet Name="FK_Messages_Appartments" Association="Self.FK_Messages_Appartments">
+            <End Role="Appartments" EntitySet="Appartments" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
           <AssociationSet Name="FK_Meters_Appartments" Association="Self.FK_Meters_Appartments">
             <End Role="Appartments" EntitySet="Appartments" />
             <End Role="Meters" EntitySet="Meters" />
@@ -173,6 +220,10 @@
           <AssociationSet Name="FK_Readings_Meters" Association="Self.FK_Readings_Meters">
             <End Role="Meters" EntitySet="Meters" />
             <End Role="Readings" EntitySet="Readings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Appartments" Association="Self.FK_Users_Appartments">
+            <End Role="Appartments" EntitySet="Appartments" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -189,7 +240,9 @@
           <Property Name="Size" Type="Double" />
           <Property Name="Residents" Type="Int32" />
           <Property Name="Balance" Type="Double" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_Appartments" FromRole="Appartments" ToRole="Messages" />
           <NavigationProperty Name="Meters" Relationship="Self.FK_Meters_Appartments" FromRole="Appartments" ToRole="Meters" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Appartments" FromRole="Appartments" ToRole="Users" />
         </EntityType>
         <EntityType Name="BuildingInvoices">
           <Key>
@@ -224,6 +277,16 @@
           <NavigationProperty Name="BuildingInvoices" Relationship="Self.FK_BuildingInvoices_MainMeters" FromRole="MainMeters" ToRole="BuildingInvoices" />
           <NavigationProperty Name="Services" Relationship="Self.FK_MainMeters_Services" FromRole="MainMeters" ToRole="Services" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ToAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Appartments" Relationship="Self.FK_Messages_Appartments" FromRole="Messages" ToRole="Appartments" />
+        </EntityType>
         <EntityType Name="Meters">
           <Key>
             <PropertyRef Name="Id" />
@@ -257,6 +320,27 @@
           <NavigationProperty Name="MainMeters" Relationship="Self.FK_MainMeters_Services" FromRole="Services" ToRole="MainMeters" />
           <NavigationProperty Name="Meters" Relationship="Self.FK_Meters_Services" FromRole="Services" ToRole="Meters" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Appartments" Relationship="Self.FK_Users_Appartments" FromRole="Users" ToRole="Appartments" />
+        </EntityType>
+        <Association Name="FK_Messages_Appartments">
+          <End Role="Appartments" Type="Self.Appartments" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appartments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="AppartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Meters_Appartments">
           <End Role="Appartments" Type="Self.Appartments" Multiplicity="1" />
           <End Role="Meters" Type="Self.Meters" Multiplicity="*" />
@@ -265,6 +349,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Meters">
+              <PropertyRef Name="AppartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Appartments">
+          <End Role="Appartments" Type="Self.Appartments" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appartments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
               <PropertyRef Name="AppartmentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -334,12 +430,22 @@
           <EntitySet Name="BuildingInvoices" EntityType="Self.BuildingInvoices" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" />
           <EntitySet Name="MainMeters" EntityType="Self.MainMeters" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" />
           <EntitySet Name="Meters" EntityType="Self.Meters" />
           <EntitySet Name="Readings" EntityType="Self.Readings" />
           <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Messages_Appartments" Association="Self.FK_Messages_Appartments">
+            <End Role="Appartments" EntitySet="Appartments" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
           <AssociationSet Name="FK_Meters_Appartments" Association="Self.FK_Meters_Appartments">
             <End Role="Appartments" EntitySet="Appartments" />
             <End Role="Meters" EntitySet="Meters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Appartments" Association="Self.FK_Users_Appartments">
+            <End Role="Appartments" EntitySet="Appartments" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_BuildingInvoices_MainMeters" Association="Self.FK_BuildingInvoices_MainMeters">
             <End Role="MainMeters" EntitySet="MainMeters" />
@@ -411,6 +517,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="TarsashazDBModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AppartmentId" ColumnName="AppartmentId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ToAdmin" ColumnName="ToAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Meters">
             <EntityTypeMapping TypeName="TarsashazDBModel.Meters">
               <MappingFragment StoreEntitySet="Meters">
@@ -437,6 +553,15 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CalculateByResidents" ColumnName="CalculateByResidents" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TarsashazDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AppartmentId" ColumnName="AppartmentId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
