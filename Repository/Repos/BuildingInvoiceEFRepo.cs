@@ -27,7 +27,7 @@ namespace Repository.Repos
 
         public BuildingInvoices GetLast()
         {
-            return GetAll().OrderBy(akt => akt.Id).Last();
+            return GetAll().Last();
         }
         public override void Insert(BuildingInvoices newEntity)
         {

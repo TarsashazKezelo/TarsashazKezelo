@@ -36,7 +36,7 @@ namespace Repository.Repos
 
         public Invoices GetLast()
         {
-            return GetAll().OrderBy(akt => akt.Id).Last();
+            return GetAll().Last();
         }
         public override void Insert(Invoices newEntity)
         {

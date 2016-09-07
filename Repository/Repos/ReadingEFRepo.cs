@@ -22,8 +22,8 @@ namespace Repository.Repos
 
         public double GetLastReadingDifference(int meterId)
         {
-            Readings last = GetReadingsByMeter(meterId).OrderBy(akt => akt.Id).Last();
-            Readings prev = GetReadingsByMeter(meterId).Where(akt => akt != last).OrderBy(akt => akt.Id).Last();
+            Readings last = GetReadingsByMeter(meterId).Last();
+            Readings prev = GetReadingsByMeter(meterId).Where(akt => akt != last).Last();
             return (last.Reading - prev.Reading).Value;
         }
 

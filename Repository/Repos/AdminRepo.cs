@@ -43,12 +43,6 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         Type Service;
         Type Apartment;
         Type Invoice;
-        object bI;
-        object mM;
-        object m;
-        object s;
-        object a;
-        object i;
         void Reflection()
         {
             string location = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName) +
@@ -60,12 +54,6 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
             Service = refLib.GetType("tarsashazkezelo_admin_frontend.Model.Service");
             Apartment = refLib.GetType("tarsashazkezelo_admin_frontend.Model.Apartment");
             Invoice = refLib.GetType("tarsashazkezelo_admin_frontend.Model.Invoice");
-            bI = Activator.CreateInstance(BuildingInvoice);
-            mM = Activator.CreateInstance(MainMeter);
-            m = Activator.CreateInstance(Meter);
-            s = Activator.CreateInstance(Service);
-            a = Activator.CreateInstance(Apartment);
-            i = Activator.CreateInstance(Invoice);
         }
         public void AddBuildingInvoice(BuildingInvoice buildingInvoice)
         {
