@@ -18,8 +18,8 @@ namespace Entities
         public int ReadingId { get; set; }
         public double Amount { get; set; }
         public System.DateTime Deadline { get; set; }
-        public string Description { get; set; }
         public bool Paid { get; set; }
+        public string Description { get; set; }
     
         public virtual Readings Readings { get; set; }
     }

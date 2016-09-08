@@ -64,9 +64,9 @@ namespace Repository.Repos
         {
             return new ObservableCollection<Invoices>(invoiceRepo.GetAll());
         }
-        public ObservableCollection<MainMeters> GetMainMeters()
+        public ObservableCollection<MainMeters> GetMainMetersByService(int serviceId)
         {
-            return new ObservableCollection<MainMeters>(mainMeterRepo.GetAll());
+            return new ObservableCollection<MainMeters>(mainMeterRepo.GetMainMetersByService(serviceId));
         }
         public ObservableCollection<Meters> GetMeters()
         {

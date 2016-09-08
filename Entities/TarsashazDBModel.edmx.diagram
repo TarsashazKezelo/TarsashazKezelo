@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ed8ddb566a24a7094bef4bc5f9842c2" Name="Diagram1" ZoomLevel="71">
-        <EntityTypeShape EntityType="TarsashazDBModel.Appartments" Width="1.5" PointX="3.375" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TarsashazDBModel.BuildingInvoices" Width="1.5" PointX="0.5" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TarsashazDBModel.Invoices" Width="1.5" PointX="2.25" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TarsashazDBModel.MainMeters" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TarsashazDBModel.Messages" Width="1.5" PointX="6.25" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TarsashazDBModel.Meters" Width="1.5" PointX="2.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TarsashazDBModel.Readings" Width="1.5" PointX="2.25" PointY="6" IsExpanded="true" />
+      <Diagram DiagramId="adb547abe73740698832390bc3fba34a" Name="Diagram1" ZoomLevel="57">
+        <EntityTypeShape EntityType="TarsashazDBModel.Appartments" Width="1.5" PointX="3.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TarsashazDBModel.BuildingInvoices" Width="1.5" PointX="0.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TarsashazDBModel.Invoices" Width="1.5" PointX="2.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TarsashazDBModel.MainMeters" Width="1.5" PointX="0.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TarsashazDBModel.Messages" Width="1.5" PointX="6.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TarsashazDBModel.Meters" Width="1.5" PointX="2.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TarsashazDBModel.Readings" Width="1.5" PointX="2.875" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TarsashazDBModel.Services" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TarsashazDBModel.Users" Width="1.5" PointX="6.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TarsashazDBModel.Users" Width="1.5" PointX="6.125" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="TarsashazDBModel.FK_Messages_Appartments" ManuallyRouted="false" />
         <AssociationConnector Association="TarsashazDBModel.FK_Meters_Appartments" ManuallyRouted="false" />
         <AssociationConnector Association="TarsashazDBModel.FK_Users_Appartments" ManuallyRouted="false" />

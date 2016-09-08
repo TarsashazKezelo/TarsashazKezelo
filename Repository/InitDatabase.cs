@@ -10,13 +10,12 @@ using Entities;
 
 namespace Repository
 {
-    class InitDatabase
+    public class InitDatabase
     {
         static DbContext context = new TarsashazDBEntities();
         AppartmentEFRepo appRepo;
         ServiceEFRepo servRepo;
         MainMeterEFRepo mMRepo;
-        BuildingInvoiceEFRepo bInvRepo;
         MeterEFRepo mRepo;
         ReadingEFRepo rRepo;
         InvoiceEFRepo invRepo;
@@ -28,16 +27,6 @@ namespace Repository
             AddAppartments();
             AddMeters();
             AddReadings();
-            AddBuildingInvoices();
-
-        }
-        private void AddBuildingInvoices()
-        {
-            bInvRepo.Insert(new BuildingInvoices() { Amount =36000, Date = new DateTime(2016, 08, 31), Description = "közös költség", MainMeterId = 5});
-            bInvRepo.Insert(new BuildingInvoices() { Amount =49562, Date = new DateTime(2016, 07, 10), Description = "gáz1", MainMeterId = 1});
-            bInvRepo.Insert(new BuildingInvoices() { Amount =54231, Date = new DateTime(2016, 08, 10), Description = "gáz1", MainMeterId = 2});
-            bInvRepo.Insert(new BuildingInvoices() { Amount =25468, Date = new DateTime(2016, 07, 25), Description = "villany1", MainMeterId = 3});
-            bInvRepo.Insert(new BuildingInvoices() { Amount =24632, Date = new DateTime(2016, 08, 25), Description = "villany2", MainMeterId = 4});
         }
         private void AddReadings()
         {
@@ -97,7 +86,6 @@ namespace Repository
             appRepo = new AppartmentEFRepo(context);
             servRepo = new ServiceEFRepo(context);
             mMRepo = new MainMeterEFRepo(context);
-            bInvRepo = new BuildingInvoiceEFRepo(context);
             mRepo = new MeterEFRepo(context);
             rRepo = new ReadingEFRepo(context);
             invRepo = new InvoiceEFRepo(context);

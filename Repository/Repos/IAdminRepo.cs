@@ -16,7 +16,7 @@ namespace Repository.Repos
         ObservableCollection<BuildingInvoices> GetBuildingInvoices();
         void AddBuildingInvoice(BuildingInvoices buildingInvoice);
         ObservableCollection<Invoices> GetInvoices();
-        ObservableCollection<MainMeters> GetMainMeters();
+        ObservableCollection<MainMeters> GetMainMetersByService(int serviceId);
         void AddMainMeter(MainMeters mainMeter);
         ObservableCollection<Meters> GetMeters();
         void AddMeter(Meters meter);

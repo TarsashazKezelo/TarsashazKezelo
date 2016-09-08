@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TarsashazDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TarsashazDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Appartments">
           <Key>
             <PropertyRef Name="Id" />
@@ -227,7 +227,8 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TarsashazDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -263,9 +264,9 @@
           <Property Name="ReadingId" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Paid" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Readings" Relationship="Self.FK_Invoices_Readings" FromRole="Invoices" ToRole="Readings" />
-          <Property Name="Paid" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="MainMeters">
           <Key>
@@ -500,11 +501,11 @@
           <EntitySetMapping Name="Invoices">
             <EntityTypeMapping TypeName="TarsashazDBModel.Invoices">
               <MappingFragment StoreEntitySet="Invoices">
-                <ScalarProperty Name="Paid" ColumnName="Paid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReadingId" ColumnName="ReadingId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
