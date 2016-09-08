@@ -54,7 +54,8 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                 Services.Add(service);
                 Messenger.Default.Send(service, "ServiceAdded");
             });
-            Services = new ObservableCollection<Service>();
+            //Services = new ObservableCollection<Service>();
+            Services = _adminFunctions.GetServices();
         }
     }
 }

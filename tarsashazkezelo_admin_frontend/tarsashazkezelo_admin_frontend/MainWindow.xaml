@@ -26,9 +26,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="ServiceButton" Grid.Column="0" Content="Szolgáltatások" Command="{Binding Path=ServiceButtonCommand}"/>
             <Button Grid.Column="1" Content="Főórák" Command="{Binding Path=MainMeterButtonCommand}"></Button>
+            <Button Grid.Column="2" Content="Adatbázis beindítása" Command="{Binding Path=InitDatabaseButtonCommand}"/>
         </Grid>
 
         <StackPanel Grid.Row="1" Visibility="{Binding Path=ServiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
