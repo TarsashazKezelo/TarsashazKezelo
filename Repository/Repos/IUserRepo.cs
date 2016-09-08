@@ -9,7 +9,7 @@ namespace Repository.Repos
 {
     interface IUserRepo
     {
-        void AddReading(Readings reading);
+        void AddReading(int meterId, double reading);
         IQueryable<Meters> GetMeters();
         IQueryable<Readings> GetReadingsByMeter(int meterId);
         IQueryable<Invoices> GetInvoices();
@@ -17,7 +17,7 @@ namespace Repository.Repos
         IQueryable<Invoices> GetActiveInvoices();
         IQueryable<Invoices> GetExpiredActiveInvoices();
         Appartments GetAppartmentData();
-        void ModifyPassword(string oldPassword, string newPassword);
+        void ModifyPassword(int appartmentId, string oldPassword, string newPassword);
         void AddMessage(string message);
         void DeleteMessage(int messageId);
         IQueryable<Messages> GetMessages();
@@ -25,6 +25,6 @@ namespace Repository.Repos
         IQueryable<Messages> GetOutbox();
         void PayToBalance(double amount);
         void PayFromBalance(int invoiceId);
-        void LogIn(int appartmentId);
+        void LogIn(int appartmentId, string password);
     }
 }

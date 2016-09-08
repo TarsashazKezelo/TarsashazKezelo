@@ -34,14 +34,13 @@ namespace Repository.Repos
         {
             InitRepos();
         }
-        public void LogIn(int id)
+        public void AddReading(int meterId, double reading)
         {
-            APPARTMENTID = userRepo.GetById(id).AppartmentId;
-        }
-        //for login: if Compare is true, LogIn
-        public void AddReading(Readings reading)
-        {
-            readingRepo.Insert(reading);
+            Readings read = new Readings();
+            read.Date = DateTime.Today;
+            read.MeterId = meterId;
+            read.Reading = reading;
+            readingRepo.Insert(read);
         }
         public Appartments GetAppartmentData()
         {
@@ -55,7 +54,7 @@ namespace Repository.Repos
 
         public IQueryable<Readings> GetReadingsByMeter(int meterId)
         {
-            return readingRepo.GetReadingsByAppartment(APPARTMENTID).Where(akt => akt.MeterId == meterId);
+            return readingRepo.GetReadingsByMeter(meterId);
         }
 
         public IQueryable<Meters> GetMeters()
@@ -78,9 +77,9 @@ namespace Repository.Repos
             return invoiceRepo.Get(akt => !akt.Paid && akt.Deadline < DateTime.Today);
         }
 
-        public void ModifyPassword(string oldPassword, string newPassword)
+        public void ModifyPassword(int appartmentId, string oldPassword, string newPassword)
         {
-            userRepo.Modify(APPARTMENTID, oldPassword, newPassword);
+            userRepo.ModifyPassword(userRepo.GetByAppartmentId(appartmentId).Id, oldPassword, newPassword);
         }
 
         public void AddMessage(string message)
@@ -122,6 +121,14 @@ namespace Repository.Repos
             Invoices inv = invoiceRepo.GetById(invoiceId);
             appartmentRepo.GetById(APPARTMENTID).Balance -= inv.Amount;
             inv.Paid = true;
+        }
+
+        public void LogIn(int appartmentId, string password)
+        {
+            if (userRepo.Compare(userRepo.GetByAppartmentId(appartmentId).Id, password))
+            {
+                APPARTMENTID = appartmentId;
+            }
         }
     }
 }

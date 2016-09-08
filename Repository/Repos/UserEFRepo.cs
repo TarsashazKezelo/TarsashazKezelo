@@ -49,7 +49,7 @@ namespace Repository.Repos
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
 
-        public void Modify(int id, string oldPassword, string newPassword)
+        public void ModifyPassword(int id, string oldPassword, string newPassword)
         {
             Users akt = GetById(id);
             if (Compare(id, oldPassword))
@@ -69,6 +69,11 @@ namespace Repository.Repos
                 }
             }
             base.Insert(newEntity);
+        }
+
+        public Users GetByAppartmentId(int appartmentId)
+        {
+            return Get(akt => akt.AppartmentId == appartmentId).SingleOrDefault();
         }
     }
 }

@@ -12,7 +12,8 @@ namespace Repository.Repos
     {
         void Delete(int id);
         void Delete(Users userToDelete);
-        void Modify(int id, string oldPassword, string newPassword);
+        void ModifyPassword(int id, string oldPassword, string newPassword);
         bool Compare(int id, string password);
+        Users GetByAppartmentId(int appartmentId);
     }
 }
