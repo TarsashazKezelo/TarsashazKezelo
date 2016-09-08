@@ -65,7 +65,7 @@
                     <Button Content="Főóra állás hozzáadása" Grid.Column="0" Command="{Binding Path=AddMainMeterCommand}"></Button>
                 </Grid>
                 <ComboBox DockPanel.Dock="Top" FontSize="20" Margin="10" ItemsSource="{Binding Path=Services}" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name"></ComboBox>
-                <ListBox ItemsSource="{Binding Path=SelectedService.MainMeters}" FontSize="20" SelectedItem="{Binding Path=SelectedMainMeter}" DisplayMemberPath="Date" Width="200" Margin="10" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="545" />
+                <ListBox ItemsSource="{Binding Path=SelectedService.MainMeters}" FontSize="20" SelectedItem="{Binding Path=SelectedMainMeter}" DisplayMemberPath="Date" ItemStringFormat="yyyy-MM-dd" Width="200" Margin="10" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="545" />
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
