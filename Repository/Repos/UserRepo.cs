@@ -14,10 +14,7 @@ namespace Repository.Repos
 
         int APPARTMENTID;
 
-        static string loc = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Entities\\TarsashazDB.mdf");
-        static string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;
-AttachDbFilename=" + loc + ";Integrated Security=True";
-        static DbContext context = new DbContext(connString);
+        static DbContext context = new TarsashazDBEntities();
         ReadingEFRepo readingRepo;
         AppartmentEFRepo appartmentRepo;
         InvoiceEFRepo invoiceRepo;
