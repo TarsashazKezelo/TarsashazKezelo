@@ -23,5 +23,10 @@ namespace Repository.Repos
         ObservableCollection<Services> GetServices();
         void AddService(Services service);
         void InitDatabase();
+        void AddMessage(string message, int appartmentId);
+        void DeleteMessage(int messageId);
+        IQueryable<Messages> GetMessages();
+        IQueryable<Messages> GetInbox();
+        IQueryable<Messages> GetOutbox();
     }
 }

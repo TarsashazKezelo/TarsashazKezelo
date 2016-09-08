@@ -65,12 +65,12 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
 
         public IQueryable<Invoices> GetActiveInvoices()
         {
-            throw new NotImplementedException();
+            return invoiceRepo.Get(akt => !akt.Paid);
         }
 
         public IQueryable<Invoices> GetExpiredActiveInvoices()
         {
-            throw new NotImplementedException();
+            return invoiceRepo.Get(akt => !akt.Paid && akt.Deadline < DateTime.Today);
         }
 
         public void ModifyPassword(string oldPassword, string newPassword)
@@ -105,6 +105,18 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         public IQueryable<Messages> GetOutbox()
         {
             return messageRepo.GetToAdminByAppartment(APPARTMENTID);
+        }
+
+        public void PayToBalance(double amount)
+        {
+            appartmentRepo.GetById(APPARTMENTID).Balance += amount;
+        }
+
+        public void PayFromBalance(int invoiceId)
+        {
+            Invoices inv = invoiceRepo.GetById(invoiceId);
+            appartmentRepo.GetById(APPARTMENTID).Balance -= inv.Amount;
+            inv.Paid = true;
         }
     }
 }
