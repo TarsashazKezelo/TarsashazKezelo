@@ -1,0 +1,32 @@
+﻿<Window x:Class="tarsashazkezelo_admin_frontend.AddMainMeterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tarsashazkezelo_admin_frontend"
+        mc:Ignorable="d"
+        Title="AddMainMeterWindow" Height="304.121" Width="293.406"
+        DataContext="{Binding Source={StaticResource Locator}, Path=AddMainMeter}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="button" Grid.Row="1" Content="OK" Margin="10,10,200,10"  Width="75" Command="{Binding Path=OkButtonCommand}"/>
+        <Button x:Name="button1" Grid.Row="1" Content="Mégse"  Margin="200,10,10,10"  Width="75" Command="{Binding Path=CancelButtonCommand}"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Leolvasás:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=NewMainMeter.Reading}" VerticalAlignment="Center" Margin="10"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Dátum:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></Label>
+            <Calendar Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" SelectedDate="{Binding Path=NewMainMeter.Date}" VerticalAlignment="Center" Margin="10"/>
+        </Grid>
+    </Grid>
+</Window>

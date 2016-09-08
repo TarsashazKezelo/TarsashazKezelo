@@ -27,7 +27,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="ServiceButton" Grid.Column="0" Content="Szolgáltatások" FontSize="20" Margin="10" Command="{Binding Path=ServiceButtonCommand}"/>
+            <Button x:Name="ServiceButton" Grid.Column="0" Content="Szolgáltatások" Command="{Binding Path=ServiceButtonCommand}"/>
+            <Button Grid.Column="1" Content="Főórák" Command="{Binding Path=MainMeterButtonCommand}"></Button>
         </Grid>
 
         <StackPanel Grid.Row="1" Visibility="{Binding Path=ServiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
@@ -54,6 +55,35 @@
                     </Grid.Resources>
                     <Label Content="Név:" Grid.Column="0"></Label>
                     <Label Grid.Column="1" Content="{Binding Path=SelectedService.Name}"></Label>
+                </Grid>
+            </DockPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Visibility="{Binding Path=MainMeterVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+            <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=MainMeter}">
+                <Grid DockPanel.Dock="Bottom">
+                    <Button Content="Főóra állás hozzáadása" Grid.Column="0" Command="{Binding Path=AddMainMeterCommand}"></Button>
+                </Grid>
+                <ComboBox DockPanel.Dock="Top" FontSize="20" Margin="10" ItemsSource="{Binding Path=Services}" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name"></ComboBox>
+                <ListBox ItemsSource="{Binding Path=SelectedService.MainMeters}" FontSize="20" SelectedItem="{Binding Path=SelectedMainMeter}" DisplayMemberPath="Date" Width="200" Margin="10" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="545" />
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="20"></Setter>
+                            <Setter Property="FontSize" Value="20"></Setter>
+                            <Setter Property="Height" Value="40"></Setter>
+                        </Style>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="20"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Label Content="Leolvasás:" Grid.Column="0"></Label>
+                    <Label Grid.Column="1" Content="{Binding Path=SelectedMainMeter.Reading}"></Label>
                 </Grid>
             </DockPanel>
         </StackPanel>

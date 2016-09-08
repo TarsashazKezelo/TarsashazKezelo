@@ -10,18 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace tarsashazkezelo_admin_frontend
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddMainMeterWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddMainMeterWindow : Window
     {
-        public MainWindow()
+        public AddMainMeterWindow()
         {
             InitializeComponent();
             Messenger.Default.Register<NotificationMessage>(this, NotificationMessageReceived);
@@ -29,15 +28,9 @@ namespace tarsashazkezelo_admin_frontend
 
         private void NotificationMessageReceived(NotificationMessage msg)
         {
-            if (msg.Notification == "AddServiceWindow")
+            if (msg.Notification == "AddMainMeterClose")
             {
-                var addservice = new AddServiceWindow();
-                addservice.Show();
-            }
-            if (msg.Notification == "AddMainMeterWindow")
-            {
-                var addmainmeter = new AddMainMeterWindow();
-                addmainmeter.Show();
+                this.Close();
             }
         }
     }

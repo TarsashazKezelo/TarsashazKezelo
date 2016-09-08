@@ -36,6 +36,24 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public void ServiceButtonMethod()
         {
             ServiceVisibility = true;
+            MainMeterVisibility = false;
+
+        }
+
+        private bool _mainMeterVisibility;
+
+        public bool MainMeterVisibility
+        {
+            get { return _mainMeterVisibility; }
+            set { Set(ref _mainMeterVisibility, value); }
+        }
+
+        public ICommand MainMeterButtonCommand { get; private set; }
+
+        public void MainMeterButtonMethod()
+        {
+            MainMeterVisibility = true;
+            ServiceVisibility = false;
         }
 
         /// <summary>
@@ -44,6 +62,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public MainViewModel()
         {
             ServiceButtonCommand = new RelayCommand(ServiceButtonMethod);
+            MainMeterButtonCommand = new RelayCommand(MainMeterButtonMethod);
         }
     }
 }

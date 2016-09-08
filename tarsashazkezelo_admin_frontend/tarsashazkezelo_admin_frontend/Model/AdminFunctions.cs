@@ -12,7 +12,7 @@ using tarsashazkezelo_admin_frontend.Interfaces;
 
 namespace tarsashazkezelo_admin_frontend.Model
 {
-    class AdminFunctions : IAdminFunctions
+    public class AdminFunctions : IAdminFunctions
     {
         IAdminRepo _adminRepo = new AdminRepo();
 

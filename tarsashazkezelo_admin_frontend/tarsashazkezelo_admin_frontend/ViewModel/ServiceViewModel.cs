@@ -9,12 +9,15 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
+using tarsashazkezelo_admin_frontend.Interfaces;
 using tarsashazkezelo_admin_frontend.Model;
 
 namespace tarsashazkezelo_admin_frontend.ViewModel
 {
     public class ServiceViewModel : ViewModelBase
     {
+        private IAdminFunctions _adminFunctions;
+
         public ObservableCollection<Service> Services { get; }
 
         private Service _selectedService;
@@ -44,10 +47,12 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public ServiceViewModel()
         {
+            _adminFunctions=new AdminFunctions();
             AddServiceCommand = new RelayCommand(AddServiceMethod);
             Messenger.Default.Register<Service>(this, "AddServiceOKButton", (service) =>
             {
                 Services.Add(service);
+                Messenger.Default.Send(service, "ServiceAdded");
             });
             Services = new ObservableCollection<Service>();
         }
