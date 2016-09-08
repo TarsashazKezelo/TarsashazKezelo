@@ -9,12 +9,16 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
+using tarsashazkezelo_admin_frontend.Interfaces;
 using tarsashazkezelo_admin_frontend.Model;
 
 namespace tarsashazkezelo_admin_frontend.ViewModel
 {
+
     public class MainMeterViewModel:ViewModelBase
     {
+        private IAdminFunctions _adminFunctions;
+
         public ObservableCollection<Service> Services { get; }
 
         private Service _selectedService;
@@ -51,10 +55,16 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public MainMeterViewModel()
         {
-            Services=new ObservableCollection<Service>() {};
+            _adminFunctions=new AdminFunctions();
+            Services=_adminFunctions.GetServices();
+            foreach (Service service in Services)
+            {
+                service.MainMeters = _adminFunctions.GetMainMetersByService(service);
+            }
             AddMainMeterCommand = new RelayCommand(AddMainMeterMethod);
             Messenger.Default.Register<MainMeter>(this, "AddMainMeterOKButton", (mainMeter) =>
             {
+                _adminFunctions.AddMainMeter(mainMeter);
                 SelectedService.MainMeters.Add(mainMeter);
             });
             Messenger.Default.Register<Service>(this, "ServiceAdded", (service) =>

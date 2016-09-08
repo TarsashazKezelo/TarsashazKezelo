@@ -37,10 +37,5 @@ namespace tarsashazkezelo_admin_frontend.Model
             get { return _mainMeters; }
             set { Set(ref _mainMeters, value); }
         }
-
-        public Service()
-        {
-            _mainMeters=new ObservableCollection<MainMeter>();
-        }
     }
 }

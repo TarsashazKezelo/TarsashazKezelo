@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using tarsashazkezelo_admin_frontend.Interfaces;
 using tarsashazkezelo_admin_frontend.Model;
 
@@ -46,7 +47,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public bool MainMeterVisibility
         {
             get { return _mainMeterVisibility; }
-            set { Set(ref _mainMeterVisibility, value); }
+            set {  }
         }
 
         public ICommand MainMeterButtonCommand { get; private set; }
@@ -61,18 +62,18 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void InitDatabaseButtonMethod()
         {
-           _adminFunctions.InitDatabase();
+            _adminFunctions.InitDatabase();
         }
 
-    /// <summary>
+        /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            _adminFunctions=new AdminFunctions();
+            _adminFunctions = new AdminFunctions();
             ServiceButtonCommand = new RelayCommand(ServiceButtonMethod);
             MainMeterButtonCommand = new RelayCommand(MainMeterButtonMethod);
-            InitDatabaseButtonCommand=new RelayCommand(InitDatabaseButtonMethod);
+            InitDatabaseButtonCommand = new RelayCommand(InitDatabaseButtonMethod);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
 using tarsashazkezelo_admin_frontend.Model;
 
 namespace tarsashazkezelo_admin_frontend.Interfaces
@@ -23,7 +24,7 @@ namespace tarsashazkezelo_admin_frontend.Interfaces
 
         void AddMainMeter(MainMeter mm);
 
-        ObservableCollection<MainMeter> GetMainMeters();
+        ObservableCollection<MainMeter> GetMainMetersByService(Service s);
 
         void AddMeter(Meter m);
 

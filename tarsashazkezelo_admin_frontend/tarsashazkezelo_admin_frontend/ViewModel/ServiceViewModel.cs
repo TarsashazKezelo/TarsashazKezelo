@@ -50,7 +50,8 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             _adminFunctions=new AdminFunctions();
             AddServiceCommand = new RelayCommand(AddServiceMethod);
             Messenger.Default.Register<Service>(this, "AddServiceOKButton", (service) =>
-            {
+            {                
+                _adminFunctions.AddService(service);
                 Services.Add(service);
                 Messenger.Default.Send(service, "ServiceAdded");
             });

@@ -69,9 +69,9 @@ namespace tarsashazkezelo_admin_frontend.Model
             _adminRepo.AddMainMeter(RepoConverter.ConvertMainMeterToMainMeters(mm));
         }
 
-        public ObservableCollection<MainMeter> GetMainMeters()
+        public ObservableCollection<MainMeter> GetMainMetersByService(Service s)
         {
-            ObservableCollection<MainMeters> collection = _adminRepo.GetMainMeters();
+            ObservableCollection<MainMeters> collection = _adminRepo.GetMainMetersByService(s.ID);
             ObservableCollection<MainMeter> convertedCollection = new ObservableCollection<MainMeter>();
 
             foreach (MainMeters i in collection)
