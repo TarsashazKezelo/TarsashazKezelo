@@ -16,13 +16,13 @@ namespace TarsashazKezelo
         static void Main(string[] args)
         {
             DbContext context = new TarsashazDBEntities();
-            InitDatabase db = InitDatabase.Instance;
-            ServiceEFRepo sefr = new ServiceEFRepo(context);
-            foreach (var item in sefr.GetAll())
-            {
-                Console.WriteLine(item.Id);
-                Console.WriteLine(item.Name);
-            }
+            AppartmentEFRepo apprepo = new AppartmentEFRepo(context);
+            Console.WriteLine(apprepo.GetById(1).Owner);
+            Appartments app = new Appartments();
+            app.Owner = "valaki nagyon más";
+            app.Residents = 3;
+            app.Size = 3;
+            apprepo.Insert(app);
             Console.ReadLine();
         }
     }

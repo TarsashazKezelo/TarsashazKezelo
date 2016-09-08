@@ -30,11 +30,19 @@ namespace Repository.Repos
             userRepo = new UserEFRepo(context);
             messageRepo = new MessageEFRepo(context);
         }
+        public UserRepo()
+        {
+            InitRepos();
+        }
+        public void LogIn(int id)
+        {
+            APPARTMENTID = userRepo.GetById(id).AppartmentId;
+        }
+        //for login: if Compare is true, LogIn
         public void AddReading(Readings reading)
         {
             readingRepo.Insert(reading);
         }
-
         public Appartments GetAppartmentData()
         {
             return appartmentRepo.GetById(APPARTMENTID);
