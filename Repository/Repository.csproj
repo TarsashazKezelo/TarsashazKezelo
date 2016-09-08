@@ -77,7 +77,6 @@
     <Compile Include="Repos\ServiceEFRepo.cs" />
     <Compile Include="Repos\UserEFRepo.cs" />
     <Compile Include="Repos\UserRepo.cs" />
-    <Compile Include="SqlDriver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
