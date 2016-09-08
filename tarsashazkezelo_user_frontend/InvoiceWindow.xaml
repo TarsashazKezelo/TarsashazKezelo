@@ -1,0 +1,17 @@
+﻿<Window x:Class="tarsashazkezelo_user_frontend.InvoiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tarsashazkezelo_user_frontend"
+        mc:Ignorable="d"
+        Title="InvoiceWindow" Height="400" Width="700">
+    <Grid>
+        <Button x:Name="button" Content="Vissza" HorizontalAlignment="Left" Margin="607,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="91,10,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="Szolgáltatás:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="319" Margin="10,41,0,0" VerticalAlignment="Top" Width="672"/>
+        <Button x:Name="button1" Content="Összes Befizetése" HorizontalAlignment="Left" Margin="493,10,0,0" VerticalAlignment="Top" Width="109"/>
+
+    </Grid>
+</Window>

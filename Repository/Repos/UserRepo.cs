@@ -130,5 +130,9 @@ namespace Repository.Repos
                 APPARTMENTID = appartmentId;
             }
         }
+        public void LogOut()
+        {
+            APPARTMENTID = 0;
+        }
     }
 }

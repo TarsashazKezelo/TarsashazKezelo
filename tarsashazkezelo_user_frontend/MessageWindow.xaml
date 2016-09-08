@@ -1,0 +1,22 @@
+﻿<Window x:Class="tarsashazkezelo_user_frontend.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tarsashazkezelo_user_frontend"
+        mc:Ignorable="d"
+        Title="MessageWindow" Height="400" Width="700">
+    <Grid>
+        <Button x:Name="button" Content="Vissza" HorizontalAlignment="Left" Margin="607,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Content="Bejövő üzenetek" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="292" Margin="10,68,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="label1" Content="Elküldött üzenetek" HorizontalAlignment="Left" Margin="125,37,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="292" Margin="125,68,0,0" VerticalAlignment="Top" Width="110"/>
+        <Grid HorizontalAlignment="Left" Height="292" Margin="240,68,0,0" VerticalAlignment="Top" Width="442">
+            <Button x:Name="button2" Content="Küldés" HorizontalAlignment="Left" Margin="357,260,0,0" VerticalAlignment="Top" Width="75"/>
+            <Label x:Name="label2" Content="Itt jelenjen meg az üzenet amire rámegy, ha megnyomja az új üzenet gombot&#xD;&#xA;akkor meg valami textbox küldés gombbal, vagy felugró is lehet az új&#xD;&#xA;üzenet." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Button x:Name="button1" Content="Új üzenet" HorizontalAlignment="Left" Margin="527,10,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

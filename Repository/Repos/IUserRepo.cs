@@ -26,5 +26,6 @@ namespace Repository.Repos
         void PayToBalance(double amount);
         void PayFromBalance(int invoiceId);
         void LogIn(int appartmentId, string password);
+        void LogOut();
     }
 }
