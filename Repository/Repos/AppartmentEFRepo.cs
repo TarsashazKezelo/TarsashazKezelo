@@ -48,7 +48,8 @@ namespace Repository.Repos
         }
         public override void Insert(Appartments newEntity)
         {
-            if (newEntity.Owner!=null)
+            base.Insert(newEntity);
+            if (newEntity.Owner != null)
             {
                 UserEFRepo userRepo = new UserEFRepo(context);
                 Users newUser = new Users();
@@ -56,7 +57,6 @@ namespace Repository.Repos
                 newUser.Password = "";
                 userRepo.Insert(newUser);
             }
-            base.Insert(newEntity);
         }
     }
 }

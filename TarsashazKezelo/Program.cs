@@ -19,6 +19,11 @@ namespace TarsashazKezelo
             Services serv = new Services();
             serv.CalculateByResidents = false;
             serv.Name = "valami";
+            foreach (var item in servRepo.GetAll())
+            {
+                Console.WriteLine(item.Id);
+            }
+            Console.ReadLine();
             servRepo.Insert(serv);
             foreach (var item in servRepo.GetAll())
             {
