@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -14,7 +15,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 {
     public class MainMeterViewModel:ViewModelBase
     {
-        public ObservableCollection<Service> Services { get; private set; }
+        public ObservableCollection<Service> Services { get; }
 
         private Service _selectedService;
 
@@ -36,14 +37,21 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void AddMainMeterMethod()
         {
-            MainMeter newMainMeter = new MainMeter();
-            Messenger.Default.Send(new NotificationMessage("AddMainMeterWindow"));
-            Messenger.Default.Send(newMainMeter, "AddMainMeter");
+            if (Services.Count>0 && SelectedService!=null)
+            {
+                MainMeter newMainMeter = new MainMeter();
+                Messenger.Default.Send(new NotificationMessage("AddMainMeterWindow"));
+                Messenger.Default.Send(newMainMeter, "AddMainMeter");
+            }
+            else
+            {
+                MessageBox.Show("Nincs szolgáltatás kiválasztva");
+            }
         }
 
         public MainMeterViewModel()
         {
-            Services=new ObservableCollection<Service>() {new Service() {ID=0, Name = "Víz", CalculateByResidents = false}, new Service() { ID = 1, Name = "Gáz", CalculateByResidents = false } };
+            Services=new ObservableCollection<Service>() {};
             AddMainMeterCommand = new RelayCommand(AddMainMeterMethod);
             Messenger.Default.Register<MainMeter>(this, "AddMainMeterOKButton", (mainMeter) =>
             {
