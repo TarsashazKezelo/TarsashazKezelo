@@ -25,9 +25,9 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _readingID, value); }
         }
 
-        private float _amount;
+        private double _amount;
 
-        public float Amount
+        public double Amount
         {
             get { return _amount; }
             set { Set(ref _amount, value); }

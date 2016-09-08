@@ -22,14 +22,6 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _name, value); }
         }
 
-        private ObservableCollection<MainMeter> _mainMeters;
-
-        public ObservableCollection<MainMeter> MainMeters
-        {
-            get { return _mainMeters; }
-            set { Set(ref _mainMeters, value); }
-        }
-
         private bool _calculateByResidents;
 
         public bool CalculateByResidents
@@ -38,7 +30,13 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _calculateByResidents, value); }
         }
 
-        
+        private ObservableCollection<MainMeter> _mainMeters;
+
+        public ObservableCollection<MainMeter> MainMeters
+        {
+            get { return _mainMeters; }
+            set { Set(ref _mainMeters, value); }
+        }
 
         public Service()
         {

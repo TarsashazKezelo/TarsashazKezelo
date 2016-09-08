@@ -26,25 +26,25 @@ namespace tarsashazkezelo_admin_frontend.Model
             set { Set(ref _owner, value); }
         }
 
-        private float _size;
+        private double? _size;
 
-        public float Size
+        public double? Size
         {
             get { return _size; }
             set { Set(ref _size, value); }
         }
 
-        private int _residents;
+        private int? _residents;
 
-        public int Residents
+        public int? Residents
         {
             get { return _residents; }
             set { Set(ref _residents, value); }
         }
 
-        private float _balance;
+        private double? _balance;
 
-        public float Balance
+        public double? Balance
         {
             get { return _balance; }
             set { Set(ref _balance, value); }

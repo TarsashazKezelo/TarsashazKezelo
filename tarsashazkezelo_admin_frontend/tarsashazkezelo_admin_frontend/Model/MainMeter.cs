@@ -23,9 +23,9 @@ namespace tarsashazkezelo_admin_frontend.Model
         }
 
 
-        private float _reading;
+        private double? _reading;
 
-        public float Reading
+        public double? Reading
         {
             get { return _reading; }
             set { Set(ref _reading, value); }

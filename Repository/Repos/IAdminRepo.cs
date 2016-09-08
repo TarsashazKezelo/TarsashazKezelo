@@ -9,9 +9,9 @@ using Entities;
 
 namespace Repository.Repos
 {
-    interface IAdminRepo
+    public interface IAdminRepo
     {
-        ObservableCollection<Appartments> GetAppartments();
+        BindingList<Appartments> GetAppartments();
         void ModifyAppartment(Appartments appartment);
         ObservableCollection<BuildingInvoices> GetBuildingInvoices();
         void AddBuildingInvoice(BuildingInvoices buildingInvoice);

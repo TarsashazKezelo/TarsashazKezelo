@@ -78,7 +78,9 @@
     <Compile Include="AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\RepoConverter.cs" />
     <Compile Include="Interfaces\IAdminFunctions.cs" />
+    <Compile Include="Model\AdminFunctions.cs" />
     <Compile Include="Model\Apartment.cs" />
     <Compile Include="Model\BuildingInvoice.cs" />
     <Compile Include="Model\Invoice.cs" />
@@ -133,6 +135,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Entities\Entities.csproj">
+      <Project>{A34B17A5-9BE4-4214-940B-3439D476E165}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Repository\Repository.csproj">
+      <Project>{a9bf4f98-2a7c-49cd-bb24-45782f0169a4}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

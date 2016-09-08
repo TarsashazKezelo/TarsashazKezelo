@@ -12,7 +12,7 @@ using System.ComponentModel;
 
 namespace Repository.Repos
 {
-    class AdminRepo : IAdminRepo
+    public class AdminRepo : IAdminRepo
     {
         static string loc = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Entities\\TarsashazDB.mdf");
         static string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;
@@ -53,9 +53,9 @@ AttachDbFilename=" + loc + ";Integrated Security=True";
         {
             serviceRepo.Insert(service);
         }
-        public ObservableCollection<Appartments> GetAppartments()
+        public BindingList<Appartments> GetAppartments()
         {
-            return new ObservableCollection<Appartments>(appartmentRepo.GetAll());
+            return new BindingList<Appartments>(appartmentRepo.GetAll().ToList());
         }
         public ObservableCollection<BuildingInvoices> GetBuildingInvoices()
         {

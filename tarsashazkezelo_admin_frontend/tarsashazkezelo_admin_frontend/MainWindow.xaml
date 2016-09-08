@@ -34,7 +34,6 @@
             <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=Service}">
                 <Grid DockPanel.Dock="Bottom">
                     <Button Content="Szolgáltatás hozzáadása" Grid.Column="0" Command="{Binding Path=AddServiceCommand}"></Button>
-
                 </Grid>
                 <ListBox ItemsSource="{Binding Path=Services}" FontSize="20" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" Width="200" Margin="10" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="597" />
                 <Grid Margin="10">
