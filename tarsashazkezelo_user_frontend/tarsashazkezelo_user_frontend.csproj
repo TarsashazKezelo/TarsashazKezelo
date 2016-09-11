@@ -84,19 +84,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\AppartmentConverter.cs" />
-    <Compile Include="Converters\InvoiceConverter.cs" />
-    <Compile Include="Converters\MessageConverter.cs" />
-    <Compile Include="Converters\MeterConverter.cs" />
-    <Compile Include="Converters\ReadingConverter.cs" />
-    <Compile Include="Converters\ServiceConverter.cs" />
-    <Compile Include="Converters\UserConverter.cs" />
+    <Compile Include="Converters\AppartmentsToAppartmentConverter.cs" />
+    <Compile Include="Converters\InvoicesToInvoiceConverter.cs" />
+    <Compile Include="Converters\MessagesToMessageConverter.cs" />
+    <Compile Include="Converters\MetersToMeterConverter.cs" />
+    <Compile Include="Converters\ReadingsToReadingConverter.cs" />
+    <Compile Include="Converters\ServicesToServiceConverter.cs" />
+    <Compile Include="Converters\UsersToUserConverter.cs" />
+    <Compile Include="Interfaces\IUserFunctions.cs" />
     <Compile Include="InvoiceWindow.xaml.cs">
       <DependentUpon>InvoiceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Appartment.cs" />
+    <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\Meter.cs" />
+    <Compile Include="Model\Reading.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserFunctions.cs" />
     <Compile Include="PayWindow.xaml.cs">
       <DependentUpon>PayWindow.xaml</DependentUpon>
     </Compile>

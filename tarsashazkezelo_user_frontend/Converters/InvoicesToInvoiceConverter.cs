@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace tarsashazkezelo_user_frontend.Converters
 {
-    class MessageConverter : IValueConverter
+    class InvoicesToInvoiceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
