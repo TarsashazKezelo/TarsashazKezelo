@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight;
 
 namespace tarsashazkezelo_user_frontend.Model
 {
-    class Invoice : ObservableObject
+    public class Invoice : ObservableObject
     {
         int _id;
         int _readingId;

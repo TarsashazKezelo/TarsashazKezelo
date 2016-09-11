@@ -7,7 +7,7 @@ using tarsashazkezelo_user_frontend.Interfaces;
 
 namespace tarsashazkezelo_user_frontend.Model
 {
-    class UserFunctions : IUserFunctions
+    public class UserFunctions : IUserFunctions
     {
     }
 }

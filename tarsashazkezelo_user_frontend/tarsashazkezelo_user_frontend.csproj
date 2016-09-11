@@ -84,13 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\AppartmentsToAppartmentConverter.cs" />
-    <Compile Include="Converters\InvoicesToInvoiceConverter.cs" />
-    <Compile Include="Converters\MessagesToMessageConverter.cs" />
-    <Compile Include="Converters\MetersToMeterConverter.cs" />
-    <Compile Include="Converters\ReadingsToReadingConverter.cs" />
-    <Compile Include="Converters\ServicesToServiceConverter.cs" />
-    <Compile Include="Converters\UsersToUserConverter.cs" />
+    <Compile Include="Converters\RepoConverter.cs" />
     <Compile Include="Interfaces\IUserFunctions.cs" />
     <Compile Include="InvoiceWindow.xaml.cs">
       <DependentUpon>InvoiceWindow.xaml</DependentUpon>
@@ -103,6 +97,7 @@
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Meter.cs" />
     <Compile Include="Model\Reading.cs" />
+    <Compile Include="Model\Service.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserFunctions.cs" />
     <Compile Include="PayWindow.xaml.cs">
@@ -176,6 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{A34B17A5-9BE4-4214-940B-3439D476E165}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

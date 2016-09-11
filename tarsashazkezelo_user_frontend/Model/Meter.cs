@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace tarsashazkezelo_user_frontend.Model
 {
-    class Meter : ObservableObject
+    public class Meter : ObservableObject
     {
         int _id;
         int _appartmentId;

@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace tarsashazkezelo_user_frontend.Model
 {
-    public class Message : ObservableObject
+    public class Service: ObservableObject
     {
         int _id;
-        int _appartmentId;
-        string _messageValue;
-        bool _toAdmin;
+        string _name;
+        bool _calculateByResidents;
 
         public int Id
         {
@@ -27,42 +26,29 @@ namespace tarsashazkezelo_user_frontend.Model
             }
         }
 
-        public int AppartmentId
+        public string Name
         {
             get
             {
-                return _appartmentId;
+                return _name;
             }
 
             set
             {
-                Set(ref _appartmentId, value);
+                Set(ref _name, value);
             }
         }
 
-        public string MessageValue
+        public bool CalculateByResidents
         {
             get
             {
-                return _messageValue;
+                return _calculateByResidents;
             }
 
             set
             {
-                Set(ref _messageValue, value);
-            }
-        }
-
-        public bool ToAdmin
-        {
-            get
-            {
-                return _toAdmin;
-            }
-
-            set
-            {
-                Set(ref _toAdmin, value);
+                Set(ref _calculateByResidents, value);
             }
         }
     }
