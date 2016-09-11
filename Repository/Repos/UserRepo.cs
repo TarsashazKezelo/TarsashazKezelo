@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class UserRepo : IUserRepo
+    public class UserRepo : IUserRepo
     {
 
         int APPARTMENTID;

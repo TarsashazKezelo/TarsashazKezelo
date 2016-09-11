@@ -7,7 +7,7 @@ using Entities;
 
 namespace Repository.Repos
 {
-    interface IUserRepo
+    public interface IUserRepo
     {
         void AddReading(int meterId, double reading);
         IQueryable<Meters> GetMeters();
