@@ -58,5 +58,13 @@ namespace Repository.Repos
                 userRepo.Insert(newUser);
             }
         }
+
+        public void Init(int quantity)
+        {
+            for (int i = 0; i < quantity; i++)
+            {
+                Insert(new Appartments());
+            }
+        }
     }
 }
