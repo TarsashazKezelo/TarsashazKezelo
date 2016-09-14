@@ -83,6 +83,8 @@ CREATE TABLE [dbo].[Messages](
 	[AppartmentId] [int] NOT NULL,
 	[Message] [nvarchar](max) NOT NULL,
 	[ToAdmin] [bit] NOT NULL,
+	[DeletedByAdmin] [bit] NOT NULL,
+	[DeletedByUser] [bit] NOT NULL,
  CONSTRAINT [PK_Messages] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

@@ -27,7 +27,7 @@ namespace Repository
             InitRepos();
             Empty();
             Console.WriteLine("all deleted");
-            //AddAll();
+            AddAll();
             Console.WriteLine("all added");
         }
         void AddAll()

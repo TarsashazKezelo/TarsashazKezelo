@@ -33,8 +33,8 @@
           <Property Name="ReadingId" Type="int" Nullable="false" />
           <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="Deadline" Type="date" Nullable="false" />
-          <Property Name="Paid" Type="bit" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Paid" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="MainMeters">
           <Key>
@@ -53,6 +53,8 @@
           <Property Name="AppartmentId" Type="int" Nullable="false" />
           <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ToAdmin" Type="bit" Nullable="false" />
+          <Property Name="DeletedByAdmin" Type="bit" Nullable="false" />
+          <Property Name="DeletedByUser" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Meters">
           <Key>
@@ -264,8 +266,8 @@
           <Property Name="ReadingId" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Paid" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Paid" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Readings" Relationship="Self.FK_Invoices_Readings" FromRole="Invoices" ToRole="Readings" />
         </EntityType>
         <EntityType Name="MainMeters">
@@ -287,6 +289,8 @@
           <Property Name="AppartmentId" Type="Int32" Nullable="false" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ToAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedByAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedByUser" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Appartments" Relationship="Self.FK_Messages_Appartments" FromRole="Messages" ToRole="Appartments" />
         </EntityType>
         <EntityType Name="Meters">
@@ -505,8 +509,8 @@
                 <ScalarProperty Name="ReadingId" ColumnName="ReadingId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Deadline" ColumnName="Deadline" />
-                <ScalarProperty Name="Paid" ColumnName="Paid" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -527,6 +531,8 @@
                 <ScalarProperty Name="AppartmentId" ColumnName="AppartmentId" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="ToAdmin" ColumnName="ToAdmin" />
+                <ScalarProperty Name="DeletedByAdmin" ColumnName="DeletedByAdmin" />
+                <ScalarProperty Name="DeletedByUser" ColumnName="DeletedByUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

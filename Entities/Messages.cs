@@ -18,6 +18,8 @@ namespace Entities
         public int AppartmentId { get; set; }
         public string Message { get; set; }
         public bool ToAdmin { get; set; }
+        public bool DeletedByAdmin { get; set; }
+        public bool DeletedByUser { get; set; }
     
         public virtual Appartments Appartments { get; set; }
     }
