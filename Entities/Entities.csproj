@@ -126,8 +126,8 @@
       <LastGenOutput>TarsashazDBModel.cs</LastGenOutput>
     </Content>
     <Content Include="TarsashazDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>TarsashazDB.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

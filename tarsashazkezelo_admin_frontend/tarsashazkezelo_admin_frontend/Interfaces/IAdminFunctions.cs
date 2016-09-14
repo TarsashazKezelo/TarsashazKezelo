@@ -18,7 +18,7 @@ namespace tarsashazkezelo_admin_frontend.Interfaces
 
         void AddBuildingInvoice(BuildingInvoice bi);
 
-        ObservableCollection<BuildingInvoice> GetBuildingInvoices();
+        ObservableCollection<BuildingInvoice> GetBuildingInvoicesByService(Service s);
 
         ObservableCollection<Invoice> GetInvoices();
 

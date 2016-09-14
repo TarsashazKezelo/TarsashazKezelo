@@ -66,10 +66,12 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             {
                 _adminFunctions.AddMainMeter(mainMeter);
                 SelectedService.MainMeters.Add(mainMeter);
+                Messenger.Default.Send<MainMeter>(mainMeter, "MainMeterAdded");
             });
             Messenger.Default.Register<Service>(this, "ServiceAdded", (service) =>
             {
                 Services.Add(service);
+                service.MainMeters = _adminFunctions.GetMainMetersByService(service);
             });
         }
     }
