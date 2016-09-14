@@ -92,8 +92,8 @@
             </DockPanel>
         </StackPanel>
 
-        <!--Visibility="{Binding Path=BuildingInvoiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}"-->
-        <StackPanel Grid.Row="1">
+
+        <StackPanel Grid.Row="1" Visibility="{Binding Path=BuildingInvoiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
             <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=BuildingInvoice}">
                 <Grid DockPanel.Dock="Bottom">
                     <Button Content="Épületszámla hozzáadása" Grid.Column="0" Command="{Binding Path=AddBuildingInvoiceCommand}"></Button>
