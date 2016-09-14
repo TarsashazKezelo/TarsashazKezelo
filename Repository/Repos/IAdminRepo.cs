@@ -28,5 +28,7 @@ namespace Repository.Repos
         IQueryable<Messages> GetMessages();
         IQueryable<Messages> GetInbox();
         IQueryable<Messages> GetOutbox();
+        void PaymentToBalance(int appartmentId, double amount);
+        void PaymentFromBalance(int appartmentId, int invoiceId);
     }
 }

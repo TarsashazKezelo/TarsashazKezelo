@@ -24,8 +24,6 @@ namespace tarsashazkezelo_user_frontend.Interfaces
         ObservableCollection<Message> GetMessages();
         ObservableCollection<Message> GetInbox();
         ObservableCollection<Message> GetOutbox();
-        void PayToBalance(double amount);
-        void PayFromBalance(int invoiceId);
         void LogIn(int appartmentId, string password);
         void LogOut();
     }

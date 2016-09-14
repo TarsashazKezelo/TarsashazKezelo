@@ -137,15 +137,5 @@ namespace tarsashazkezelo_user_frontend.Model
         {
             repo.ModifyPassword(appartmentId, oldPassword, newPassword);
         }
-
-        public void PayFromBalance(int invoiceId)
-        {
-            repo.PayFromBalance(invoiceId);
-        }
-
-        public void PayToBalance(double amount)
-        {
-            repo.PayToBalance(amount);
-        }
     }
 }

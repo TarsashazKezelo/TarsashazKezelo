@@ -110,19 +110,6 @@ namespace Repository.Repos
         {
             return messageRepo.GetToAdminByAppartmentShowUser(APPARTMENTID);
         }
-
-        public void PayToBalance(double amount)
-        {
-            appartmentRepo.GetById(APPARTMENTID).Balance += amount;
-        }
-
-        public void PayFromBalance(int invoiceId)
-        {
-            Invoices inv = invoiceRepo.GetById(invoiceId);
-            appartmentRepo.GetById(APPARTMENTID).Balance -= inv.Amount;
-            inv.Paid = true;
-        }
-
         public void LogIn(int appartmentId, string password)
         {
             if (userRepo.Compare(userRepo.GetByAppartmentId(appartmentId).Id, password))

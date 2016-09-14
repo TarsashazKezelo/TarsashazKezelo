@@ -114,5 +114,17 @@ namespace Repository.Repos
         {
             return messageRepo.GetFromAdminShowAdmin();
         }
+
+        public void PaymentToBalance(int appartmentId, double amount)
+        {
+            appartmentRepo.GetById(appartmentId).Balance += amount;
+        }
+
+        public void PaymentFromBalance(int appartmentId, int invoiceId)
+        {
+            Invoices inv = invoiceRepo.GetById(invoiceId);
+            appartmentRepo.GetById(appartmentId).Balance -= inv.Amount;
+            inv.Paid = true;
+        }
     }
 }
