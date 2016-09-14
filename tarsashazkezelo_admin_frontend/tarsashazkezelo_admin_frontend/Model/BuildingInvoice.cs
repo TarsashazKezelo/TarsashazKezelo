@@ -43,6 +43,16 @@ namespace tarsashazkezelo_admin_frontend.Model
         {
             get { return _description; }
             set { Set(ref _description, value); }
-        } 
+        }
+
+        private bool _valid;
+
+        public bool Valid
+        {
+            get { return _valid; }
+            set { Set(ref _valid, value); }
+        }
+
+        
     }
 }

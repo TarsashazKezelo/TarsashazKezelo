@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
 using tarsashazkezelo_admin_frontend.Model;
@@ -18,33 +17,29 @@ using tarsashazkezelo_admin_frontend.Model;
 namespace tarsashazkezelo_admin_frontend
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddBuildingInvoiceWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddBuildingInvoiceWindow : Window
     {
-        public MainWindow()
+        public AddBuildingInvoiceWindow(BuildingInvoice bi)
         {
             InitializeComponent();
+            Messenger.Default.Send<BuildingInvoice>(bi, "AddBuildingInvoice");
             Messenger.Default.Register<NotificationMessage>(this, NotificationMessageReceived);
-            Messenger.Default.Register<BuildingInvoice>(this, "AddBuildingInvoiceWindow", (buildingInvoice) =>
+            Messenger.Default.Register<BuildingInvoice>(this, "AddBuildingInvoiceOKButton", (buildingInvoice) =>
             {
-                var addBuildingInvoice=new AddBuildingInvoiceWindow(buildingInvoice);
-                addBuildingInvoice.ShowDialog();
+                Close();
+                Messenger.Default.Send(buildingInvoice, "BuildingInvoiceAdded");
             });
         }
 
         private void NotificationMessageReceived(NotificationMessage msg)
         {
-            if (msg.Notification == "AddServiceWindow")
+            if (msg.Notification == "AddBuildingInvoiceClose")
             {
-                var addservice = new AddServiceWindow();
-                addservice.Show();
-            }
-            if (msg.Notification == "AddMainMeterWindow")
-            {
-                var addmainmeter = new AddMainMeterWindow();
-                addmainmeter.Show();
+                Close();
             }
         }
+
     }
 }

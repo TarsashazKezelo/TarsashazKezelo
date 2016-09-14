@@ -84,6 +84,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddBuildingInvoiceWindow.xaml.cs">
+      <DependentUpon>AddBuildingInvoiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddMainMeterWindow.xaml.cs">
       <DependentUpon>AddMainMeterWindow.xaml</DependentUpon>
     </Compile>
@@ -99,12 +102,18 @@
     <Compile Include="Model\MainMeter.cs" />
     <Compile Include="Model\Meter.cs" />
     <Compile Include="Model\Service.cs" />
+    <Compile Include="ViewModel\AddBuildingInvoiceViewModel.cs" />
     <Compile Include="ViewModel\AddMainMeterViewModel.cs" />
     <Compile Include="ViewModel\AddServiceViewModel.cs" />
+    <Compile Include="ViewModel\BuildingInvoiceViewModel.cs" />
     <Compile Include="ViewModel\MainMeterViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ServiceViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="AddBuildingInvoiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddMainMeterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

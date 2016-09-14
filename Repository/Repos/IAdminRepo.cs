@@ -13,7 +13,7 @@ namespace Repository.Repos
     {
         BindingList<Appartments> GetAppartments();
         void ModifyAppartment(Appartments appartment);
-        ObservableCollection<BuildingInvoices> GetBuildingInvoices();
+        ObservableCollection<BuildingInvoices> GetBuildingInvoicesByService(int serviceId);
         void AddBuildingInvoice(BuildingInvoices buildingInvoice);
         ObservableCollection<Invoices> GetInvoices();
         ObservableCollection<MainMeters> GetMainMetersByService(int serviceId);

@@ -40,9 +40,9 @@ namespace tarsashazkezelo_admin_frontend.Model
             _adminRepo.AddBuildingInvoice(RepoConverter.ConvertBuildingInvoiceToBuildingInvoices(bi));
         }
 
-        public ObservableCollection<BuildingInvoice> GetBuildingInvoices()
+        public ObservableCollection<BuildingInvoice> GetBuildingInvoicesByService(Service s)
         {
-            ObservableCollection<BuildingInvoices> collection = _adminRepo.GetBuildingInvoices();
+            ObservableCollection<BuildingInvoices> collection = _adminRepo.GetBuildingInvoicesByService(s.ID);
             ObservableCollection<BuildingInvoice> convertedCollection=new ObservableCollection<BuildingInvoice>();
 
             foreach (BuildingInvoices bi in collection)

@@ -56,9 +56,9 @@ namespace Repository.Repos
         {
             return new BindingList<Appartments>(appartmentRepo.GetAll().ToList());
         }
-        public ObservableCollection<BuildingInvoices> GetBuildingInvoices()
+        public ObservableCollection<BuildingInvoices> GetBuildingInvoicesByService(int serviceId)
         {
-            return new ObservableCollection<BuildingInvoices>(buildingRepo.GetAll());
+            return new ObservableCollection<BuildingInvoices>(buildingRepo.GetBuildingInvoicesByService(serviceId));
         }
         public ObservableCollection<Invoices> GetInvoices()
         {
