@@ -14,34 +14,81 @@ namespace Repository.Repos
         public MessageEFRepo(DbContext context) : base(context)
         {
         }
-        public IQueryable<Messages> GetAllFromAdmin()
-        {
-            return Get(akt => !akt.ToAdmin);
-        }
-
-        public IQueryable<Messages> GetAllToAdmin()
-        {
-            return Get(akt => akt.ToAdmin);
-        }
-
         public override Messages GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
-
-        public IQueryable<Messages> GetFromAdminByAppartment(int appartmentId)
+        public override void Delete(Messages entityToDelete)
         {
-            return GetMessagesByAppartment(appartmentId).Where(akt => !akt.ToAdmin);
+            if (entityToDelete.DeletedByUser && entityToDelete.DeletedByAdmin)
+            {
+                base.Delete(entityToDelete);
+            }
+        }
+        public void UserDelete(Messages messageToDelete)
+        {
+            messageToDelete.DeletedByUser = true;
+            Delete(messageToDelete);
+        }
+        public void AdminDelete(Messages messageToDelete)
+        {
+            messageToDelete.DeletedByAdmin = true;
+            Delete(messageToDelete);
         }
 
-        public IQueryable<Messages> GetMessagesByAppartment(int appartmentId)
+        public IQueryable<Messages> GetByAppartmentShowUser(int appartmentId)
         {
-            return Get(akt => akt.AppartmentId == appartmentId);
+            return Get(akt => akt.AppartmentId == appartmentId && !akt.DeletedByUser);
         }
 
-        public IQueryable<Messages> GetToAdminByAppartment(int appartmentId)
+        public IQueryable<Messages> GetToAdminByAppartmentShowUser(int appartmentId)
         {
-            return GetMessagesByAppartment(appartmentId).Where(akt => akt.ToAdmin);
+            return GetByAppartmentShowUser(appartmentId).Where(akt => akt.ToAdmin);
+        }
+
+        public IQueryable<Messages> GetFromAdminByAppartmentShowUser(int appartmentId)
+        {
+            return GetByAppartmentShowUser(appartmentId).Where(akt => !akt.ToAdmin);
+        }
+
+        public IQueryable<Messages> GetByAppartmentShowAdmin(int appartmentId)
+        {
+            return Get(akt => akt.AppartmentId == appartmentId && !akt.DeletedByAdmin);
+        }
+
+        public IQueryable<Messages> GetToAdminByAppartmentShowAdmin(int appartmentId)
+        {
+            return GetToAdminShowAdmin().Where(akt => akt.AppartmentId == appartmentId);
+        }
+
+        public IQueryable<Messages> GetFromAdminByAppartmentShowAdmin(int appartmentId)
+        {
+            return GetFromAdminShowAdmin().Where(akt => akt.AppartmentId == appartmentId);
+        }
+
+        public IQueryable<Messages> GetToAdminShowAdmin()
+        {
+            return Get(akt => akt.ToAdmin && !akt.DeletedByAdmin);
+        }
+
+        public IQueryable<Messages> GetFromAdminShowAdmin()
+        {
+            return Get(akt => !akt.ToAdmin && !akt.DeletedByAdmin);
+        }
+
+        public void UserDelete(int messageId)
+        {
+            UserDelete(GetById(messageId));
+        }
+
+        public void AdminDelete(int messageId)
+        {
+            AdminDelete(GetById(messageId));
+        }
+
+        public IQueryable<Messages> GetShowAdmin()
+        {
+            return Get(akt => !akt.DeletedByAdmin);
         }
     }
 }

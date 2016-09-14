@@ -93,22 +93,22 @@ namespace Repository.Repos
 
         public void DeleteMessage(int messageId)
         {
-            messageRepo.Delete(messageId);
+            messageRepo.UserDelete(messageId);
         }
 
         public IQueryable<Messages> GetMessages()
         {
-            return messageRepo.GetMessagesByAppartment(APPARTMENTID);
+            return messageRepo.GetByAppartmentShowUser(APPARTMENTID);
         }
 
         public IQueryable<Messages> GetInbox()
         {
-            return messageRepo.GetFromAdminByAppartment(APPARTMENTID);
+            return messageRepo.GetFromAdminByAppartmentShowUser(APPARTMENTID);
         }
 
         public IQueryable<Messages> GetOutbox()
         {
-            return messageRepo.GetToAdminByAppartment(APPARTMENTID);
+            return messageRepo.GetToAdminByAppartmentShowUser(APPARTMENTID);
         }
 
         public void PayToBalance(double amount)

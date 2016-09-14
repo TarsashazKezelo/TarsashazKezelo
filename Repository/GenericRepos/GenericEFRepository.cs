@@ -34,7 +34,7 @@ namespace Repository.GenericRepos
             context.Entry<TEntity>(newEntity).State = EntityState.Added;
             context.SaveChanges();
         }
-        public void Delete(TEntity entityToDelete)
+        public virtual void Delete(TEntity entityToDelete)
         {
             context.Set<TEntity>().Remove(entityToDelete);
             context.Entry<TEntity>(entityToDelete).State = EntityState.Deleted;

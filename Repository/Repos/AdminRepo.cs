@@ -97,22 +97,22 @@ namespace Repository.Repos
 
         public void DeleteMessage(int messageId)
         {
-            messageRepo.Delete(messageId);
+            messageRepo.AdminDelete(messageId);
         }
 
         public IQueryable<Messages> GetMessages()
         {
-            return messageRepo.GetAll();
+            return messageRepo.GetShowAdmin();
         }
 
         public IQueryable<Messages> GetInbox()
         {
-            return messageRepo.GetAllToAdmin();
+            return messageRepo.GetToAdminShowAdmin();
         }
 
         public IQueryable<Messages> GetOutbox()
         {
-            return messageRepo.GetAllFromAdmin();
+            return messageRepo.GetFromAdminShowAdmin();
         }
     }
 }

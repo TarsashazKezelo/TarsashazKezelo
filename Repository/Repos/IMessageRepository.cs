@@ -10,12 +10,18 @@ namespace Repository.Repos
 {
     interface IMessageRepository : IRepository<Messages>
     {
-        void Delete(int id);
-        void Delete(Messages messageToDelete);
-        IQueryable<Messages> GetMessagesByAppartment(int appartmentId);
-        IQueryable<Messages> GetToAdminByAppartment(int appartmentId);
-        IQueryable<Messages> GetFromAdminByAppartment(int appartmentId);
-        IQueryable<Messages> GetAllToAdmin();
-        IQueryable<Messages> GetAllFromAdmin();
+        IQueryable<Messages> GetByAppartmentShowUser(int appartmentId);
+        IQueryable<Messages> GetToAdminByAppartmentShowUser(int appartmentId);
+        IQueryable<Messages> GetFromAdminByAppartmentShowUser(int appartmentId);
+        IQueryable<Messages> GetByAppartmentShowAdmin(int appartmentId);
+        IQueryable<Messages> GetToAdminByAppartmentShowAdmin(int appartmentId);
+        IQueryable<Messages> GetFromAdminByAppartmentShowAdmin(int appartmentId);
+        IQueryable<Messages> GetToAdminShowAdmin();
+        IQueryable<Messages> GetFromAdminShowAdmin();
+        IQueryable<Messages> GetShowAdmin();
+        void UserDelete(Messages messageToDelete);
+        void UserDelete(int messageId);
+        void AdminDelete(Messages messageToDelete);
+        void AdminDelete(int messageId);
     }
 }
