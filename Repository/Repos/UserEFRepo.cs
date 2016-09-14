@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class UserEFRepo : GenericEFRepository<Users>, IUserRepository
+    public class UserEFRepo : GenericEFRepository<Users>, IUserRepository
     {
         public UserEFRepo(DbContext context) : base(context)
         {
@@ -26,24 +26,6 @@ namespace Repository.Repos
                 return false;
             }
         }
-
-        public void Delete(Users userToDelete)
-        {
-            context.Set<Users>().Remove(userToDelete);
-            context.Entry<Users>(userToDelete).State = EntityState.Deleted;
-            context.SaveChanges();
-        }
-
-        public void Delete(int id)
-        {
-            Users userToDelete = GetById(id);
-            if (userToDelete == null)
-            {
-                throw new ArgumentException("No Data");
-            }
-            Delete(userToDelete);
-        }
-
         public override Users GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();

@@ -17,12 +17,11 @@ namespace TarsashazKezelo
         {
             DbContext context = new TarsashazDBEntities();
             AppartmentEFRepo apprepo = new AppartmentEFRepo(context);
-            Console.WriteLine(apprepo.GetById(1).Owner);
-            Appartments app = new Appartments();
-            app.Owner = "valaki nagyon más";
-            app.Residents = 3;
-            app.Size = 3;
-            apprepo.Insert(app);
+            apprepo.DeleteAll();
+            foreach (var item in apprepo.GetAll())
+            {
+                Console.WriteLine(item.Id);
+            }
             Console.ReadLine();
         }
     }

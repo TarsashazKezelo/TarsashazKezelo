@@ -14,24 +14,6 @@ namespace Repository.Repos
         public MessageEFRepo(DbContext context) : base(context)
         {
         }
-
-        public void Delete(Messages messageToDelete)
-        {
-            context.Set<Messages>().Remove(messageToDelete);
-            context.Entry<Messages>(messageToDelete).State = EntityState.Deleted;
-            context.SaveChanges();
-        }
-
-        public void Delete(int id)
-        {
-            Messages messageToDelete = GetById(id);
-            if (messageToDelete == null)
-            {
-                throw new ArgumentException("No Data");
-            }
-            Delete(messageToDelete);
-        }
-
         public IQueryable<Messages> GetAllFromAdmin()
         {
             return Get(akt => !akt.ToAdmin);

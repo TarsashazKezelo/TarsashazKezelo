@@ -10,6 +10,8 @@ namespace Repository.GenericRepos
     public interface IRepository<TEntity> : IDisposable where TEntity : class
     {
         void Insert(TEntity newEntity);
+        void Delete(TEntity entityToDelete);
+        void Delete(int id);
         TEntity GetById(int id);
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter);

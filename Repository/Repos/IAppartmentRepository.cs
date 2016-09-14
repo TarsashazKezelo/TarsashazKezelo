@@ -11,5 +11,6 @@ namespace Repository.Repos
     interface IAppartmentRepository :IRepository<Appartments>
     {
         void Modify(int id, string owner, int residents, double balance);
+        void Init(int quantity);
     }
 }
