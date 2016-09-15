@@ -59,10 +59,13 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             Services = _adminFunctions.GetServices();
             Messenger.Default.Register<NotificationMessage>(this, (msg) =>
             {
+                if (msg.Notification == "ClearDB")
+                {
+                    Services.Clear();
+                }
                 if (msg.Notification=="InitDB")
                 {
                     ObservableCollection<Service> newCollection = _adminFunctions.GetServices();
-                    Services.Clear();
                     foreach (Service service in newCollection)
                     {
                         Services.Add(service);

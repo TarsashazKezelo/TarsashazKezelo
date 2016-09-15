@@ -83,6 +83,13 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                 SelectedMainMeter.BuildingInvoice = bi;
                 bi.Valid = true;
             });
+            Messenger.Default.Register<NotificationMessage>(this, (msg) =>
+            {
+                if (msg.Notification == "ClearDB")
+                {
+                    Services.Clear();
+                }
+            });
         }
     }
 }

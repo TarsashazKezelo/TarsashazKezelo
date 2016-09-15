@@ -85,6 +85,13 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                     }
                 }
             });
+            Messenger.Default.Register<NotificationMessage>(this, (msg) =>
+            {
+                if (msg.Notification == "ClearDB")
+                {
+                    Services.Clear();
+                }
+            });
             Messenger.Default.Register<Service>(this, "PassService", (service) =>
             {
                 Services.Add(service);

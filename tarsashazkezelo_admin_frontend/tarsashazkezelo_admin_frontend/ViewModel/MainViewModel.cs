@@ -81,6 +81,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public void InitDatabaseButtonMethod()
         {
             _adminFunctions.InitDatabase();
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage("ClearDB"));
             Messenger.Default.Send<NotificationMessage>(new NotificationMessage("InitDB"));
         }
 
