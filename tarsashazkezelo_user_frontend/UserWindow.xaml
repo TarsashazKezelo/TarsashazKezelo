@@ -48,18 +48,18 @@
         <Grid Visibility="Visible">
             <Label Content="Tulaj neve" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top"/>
             <Button Content="Kijelentkezés" HorizontalAlignment="Left" Margin="594,10,0,0" VerticalAlignment="Top" Width="88"/>
-            <Grid HorizontalAlignment="Left" Height="86" Margin="27,91,0,0" VerticalAlignment="Top" Width="655">
+            <Grid HorizontalAlignment="Left" Height="86" Margin="10,68,0,0" VerticalAlignment="Top" Width="672" Background="#7FC80000">
                 <Label Content="Nincs tartozás./Tartozás:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label  Content="Összeg" HorizontalAlignment="Left" Margin="597,10,0,0" VerticalAlignment="Top"/>
                 <Button Content="Számlák" HorizontalAlignment="Left" Margin="464,54,0,0" VerticalAlignment="Top" Width="88"/>
                 <Button Content="Befizetés" HorizontalAlignment="Left" Margin="557,54,0,0" VerticalAlignment="Top" Width="88"/>
             </Grid>
-            <Grid HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="655" Margin="27,182,0,0">
+            <Grid HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="672" Margin="10,159,0,0" Background="#7F00C800">
                 <Label Content="Nincs új üzenet./Új üzenetek:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="X új üzenet" HorizontalAlignment="Left" Margin="576,10,0,0" VerticalAlignment="Top"/>
                 <Button Content="Üzenetek" HorizontalAlignment="Left" Margin="557,55,0,0" VerticalAlignment="Top" Width="88"/>
             </Grid>
-            <Grid HorizontalAlignment="Left" Height="86" Margin="27,274,0,0" VerticalAlignment="Top" Width="655">
+            <Grid HorizontalAlignment="Left" Height="86" Margin="10,251,0,0" VerticalAlignment="Top" Width="672" Background="#7FC8C800">
                 <Button Content="Szolgáltatások" HorizontalAlignment="Left" Margin="557,54,0,0" VerticalAlignment="Top" Width="88"/>
                 <Label Content="Szolgáltatás kezelő/Jelentse be a mérőállását!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="Szolgáltatás" HorizontalAlignment="Left" Margin="572,10,0,0" VerticalAlignment="Top"/>

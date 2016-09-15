@@ -16,18 +16,20 @@ namespace Repository.Repos
         MeterEFRepo meterRepo;
         MainMeterEFRepo mainRepo;
         InvoiceEFRepo invRepo;
+        ServiceEFRepo servRepo;
         private void InitRepos()
         {
             bInvRepo = new BuildingInvoiceEFRepo(context);
             meterRepo = new MeterEFRepo(context);
             mainRepo = new MainMeterEFRepo(context);
             invRepo = new InvoiceEFRepo(context);
+            servRepo = new ServiceEFRepo(context);
         }
         public void Calculate(BuildingInvoices buildingInvoice)
         {
             InitRepos();
-            MainMeters main = buildingInvoice.MainMeters;
-            Services serv = main.Services;
+            MainMeters main = mainRepo.GetById(buildingInvoice.MainMeterId);
+            Services serv = servRepo.GetById(main.ServiceId);
             double amount = buildingInvoice.Amount;
             string desc = buildingInvoice.Description;
             if (main.Reading != null)
