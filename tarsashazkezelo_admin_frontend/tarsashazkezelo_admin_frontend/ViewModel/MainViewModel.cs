@@ -37,10 +37,8 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void ServiceButtonMethod()
         {
+            HideAll();
             ServiceVisibility = true;
-            MainMeterVisibility = false;
-            BuildingInvoiceVisibility = false;
-
         }
 
         private bool _mainMeterVisibility;
@@ -55,9 +53,8 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void MainMeterButtonMethod()
         {
+            HideAll();
             MainMeterVisibility = true;
-            ServiceVisibility = false;
-            BuildingInvoiceVisibility = false;
         }
 
         private bool _buildingInvoiceVisibility;
@@ -65,15 +62,14 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public bool BuildingInvoiceVisibility
         {
             get { return _buildingInvoiceVisibility; }
-            set { _buildingInvoiceVisibility = value; }
+            set { Set( ref _buildingInvoiceVisibility, value); }
         }
 
         public ICommand BuildingInvoiceButtonCommand { get; private set; }
 
         public void BuildingInvoiceButtonMethod()
         {
-            MainMeterVisibility = false;
-            ServiceVisibility = false;
+            HideAll();
             BuildingInvoiceVisibility = true;
         }
 
@@ -82,6 +78,13 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public void InitDatabaseButtonMethod()
         {
             _adminFunctions.InitDatabase();
+        }
+
+        private void HideAll()
+        {
+            ServiceVisibility = false;
+            BuildingInvoiceVisibility = false;
+            MainMeterVisibility = false;
         }
 
         /// <summary>

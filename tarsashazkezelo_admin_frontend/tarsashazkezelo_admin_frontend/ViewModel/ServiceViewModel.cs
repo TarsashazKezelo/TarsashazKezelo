@@ -52,8 +52,9 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             Messenger.Default.Register<Service>(this, "AddServiceOKButton", (service) =>
             {                
                 _adminFunctions.AddService(service);
-                Services.Add(service);
-                Messenger.Default.Send(service, "ServiceAdded");
+                Service s = _adminFunctions.GetServices().Last();
+                Services.Add(s);
+                Messenger.Default.Send(s, "ServiceAdded");
             });
             Services = _adminFunctions.GetServices();
         }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using tarsashazkezelo_admin_frontend.Interfaces;
 using tarsashazkezelo_admin_frontend.Model;
@@ -15,7 +16,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 {
     public class BuildingInvoiceViewModel : ViewModelBase
     {
-        IAdminFunctions _adminFunctions=new AdminFunctions();
+        IAdminFunctions _adminFunctions = new AdminFunctions();
         public ObservableCollection<Service> Services { get; private set; }
 
         private Service _selectedService;
@@ -40,7 +41,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         {
             if (Services.Count > 0 && SelectedService != null)
             {
-                if (SelectedMainMeter!=null)
+                if (SelectedMainMeter != null)
                 {
                     if (!SelectedMainMeter.BuildingInvoice.Valid)
                     {
@@ -55,9 +56,6 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                 {
                     MessageBox.Show("Nincs főóra állás kiválasztva");
                 }
-                MainMeter newMainMeter = new MainMeter();
-                Messenger.Default.Send(new NotificationMessage("AddMainMeterWindow"));
-                Messenger.Default.Send(newMainMeter, "AddMainMeter");
             }
             else
             {
@@ -67,6 +65,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public BuildingInvoiceViewModel()
         {
+            AddBuildingInvoiceCommand = new RelayCommand(AddBuildingInvoiceMethod);
             Services = _adminFunctions.GetServices();
             foreach (Service service in Services)
             {
@@ -83,9 +82,11 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             });
             Messenger.Default.Register<BuildingInvoice>(this, "BuildingInvoiceAdded", (buildingInvoice) =>
             {
+                buildingInvoice.MainMeterID = SelectedMainMeter.ID;
                 _adminFunctions.AddBuildingInvoice(buildingInvoice);
-                SelectedMainMeter.BuildingInvoice = buildingInvoice;
-                buildingInvoice.Valid = true;
+                BuildingInvoice bi= _adminFunctions.GetBuildingInvoicesByService(SelectedService).SingleOrDefault(x => x.MainMeterID == SelectedMainMeter.ID);
+                SelectedMainMeter.BuildingInvoice = bi;
+                bi.Valid = true;
             });
         }
     }

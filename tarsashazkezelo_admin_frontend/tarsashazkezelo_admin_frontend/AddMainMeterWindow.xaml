@@ -19,14 +19,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Content="Leolvasás:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=NewMainMeter.Reading}" VerticalAlignment="Center" Margin="10"/>
-            <Label Grid.Column="0" Grid.Row="1" Content="Dátum:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></Label>
-            <DatePicker Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" SelectedDate="{Binding Path=NewMainMeter.Date}" DisplayDate=""></DatePicker>
+            <Label Grid.Column="0" Content="Leolvasás:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></Label>
+            <TextBox Grid.Column="1" Text="{Binding Path=NewMainMeter.Reading}" VerticalAlignment="Center" Margin="10"/>
         </Grid>
     </Grid>
 </Window>

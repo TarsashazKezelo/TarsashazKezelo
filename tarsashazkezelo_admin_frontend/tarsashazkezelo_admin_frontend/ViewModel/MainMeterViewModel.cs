@@ -43,7 +43,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         {
             if (Services.Count>0 && SelectedService!=null)
             {
-                MainMeter newMainMeter = new MainMeter();
+                MainMeter newMainMeter = new MainMeter() {ServiceID = SelectedService.ID};
                 Messenger.Default.Send(new NotificationMessage("AddMainMeterWindow"));
                 Messenger.Default.Send(newMainMeter, "AddMainMeter");
             }
@@ -63,10 +63,11 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             }
             AddMainMeterCommand = new RelayCommand(AddMainMeterMethod);
             Messenger.Default.Register<MainMeter>(this, "AddMainMeterOKButton", (mainMeter) =>
-            {
+            {              
                 _adminFunctions.AddMainMeter(mainMeter);
-                SelectedService.MainMeters.Add(mainMeter);
-                Messenger.Default.Send<MainMeter>(mainMeter, "MainMeterAdded");
+                MainMeter mm = _adminFunctions.GetMainMetersByService(SelectedService).Last();
+                SelectedService.MainMeters.Add(mm);
+                Messenger.Default.Send(mm, "MainMeterAdded");
             });
             Messenger.Default.Register<Service>(this, "ServiceAdded", (service) =>
             {

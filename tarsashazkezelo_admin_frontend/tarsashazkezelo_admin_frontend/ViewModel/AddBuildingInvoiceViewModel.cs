@@ -25,7 +25,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void OkButtonMethod()
         {
-            Messenger.Default.Send<BuildingInvoice>(NewBuildingInvoice, "AddServiceOKButton");
+            Messenger.Default.Send<BuildingInvoice>(NewBuildingInvoice, "AddBuildingInvoiceOKButton");
         }
 
         public ICommand CancelButtonCommand { get; private set; }

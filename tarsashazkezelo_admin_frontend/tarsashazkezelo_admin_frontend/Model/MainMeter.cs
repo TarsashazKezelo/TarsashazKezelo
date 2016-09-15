@@ -49,7 +49,7 @@ namespace tarsashazkezelo_admin_frontend.Model
 
         public MainMeter()
         {
-            BuildingInvoice=new BuildingInvoice() {MainMeterID = ID, Date = Date};
+            BuildingInvoice = new BuildingInvoice();
         }
     }
 }
