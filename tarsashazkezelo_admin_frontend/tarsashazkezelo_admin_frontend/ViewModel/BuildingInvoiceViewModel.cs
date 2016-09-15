@@ -71,14 +71,9 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             {
                 service.MainMeters = _adminFunctions.GetMainMetersByService(service);
             }
-            Messenger.Default.Register<Service>(this, "ServiceAdded", (service) =>
+            Messenger.Default.Register<Service>(this, "PassService", (service) =>
             {
                 Services.Add(service);
-            });
-            Messenger.Default.Register<MainMeter>(this, "MainMeterAdded", (mainMeter) =>
-            {
-                Service s = Services.SingleOrDefault(x => x.ID == mainMeter.ServiceID);
-                s.MainMeters.Add(mainMeter);
             });
             Messenger.Default.Register<BuildingInvoice>(this, "BuildingInvoiceAdded", (buildingInvoice) =>
             {

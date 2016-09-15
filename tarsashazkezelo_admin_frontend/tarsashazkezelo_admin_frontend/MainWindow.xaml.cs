@@ -25,26 +25,21 @@ namespace tarsashazkezelo_admin_frontend
         public MainWindow()
         {
             InitializeComponent();
-            Messenger.Default.Register<NotificationMessage>(this, NotificationMessageReceived);
             Messenger.Default.Register<BuildingInvoice>(this, "AddBuildingInvoiceWindow", (buildingInvoice) =>
             {
                 var addBuildingInvoice=new AddBuildingInvoiceWindow(buildingInvoice);
                 addBuildingInvoice.ShowDialog();
             });
-        }
-
-        private void NotificationMessageReceived(NotificationMessage msg)
-        {
-            if (msg.Notification == "AddServiceWindow")
+            Messenger.Default.Register<Service>(this, "AddServiceWindow", (service) =>
             {
-                var addservice = new AddServiceWindow();
-                addservice.Show();
-            }
-            if (msg.Notification == "AddMainMeterWindow")
+                var addService = new AddServiceWindow(service);
+                addService.ShowDialog();
+            });
+            Messenger.Default.Register<MainMeter>(this, "AddMainMeterWindow", (mainMeter) =>
             {
-                var addmainmeter = new AddMainMeterWindow();
-                addmainmeter.Show();
-            }
+                var addMainMeter = new AddMainMeterWindow(mainMeter);
+                addMainMeter.ShowDialog();
+            });
         }
     }
 }

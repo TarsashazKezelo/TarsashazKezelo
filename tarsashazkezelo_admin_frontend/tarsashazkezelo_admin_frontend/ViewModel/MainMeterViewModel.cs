@@ -15,7 +15,7 @@ using tarsashazkezelo_admin_frontend.Model;
 namespace tarsashazkezelo_admin_frontend.ViewModel
 {
 
-    public class MainMeterViewModel:ViewModelBase
+    public class MainMeterViewModel : ViewModelBase
     {
         private IAdminFunctions _adminFunctions;
 
@@ -41,11 +41,10 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void AddMainMeterMethod()
         {
-            if (Services.Count>0 && SelectedService!=null)
+            if (Services.Count > 0 && SelectedService != null)
             {
-                MainMeter newMainMeter = new MainMeter() {ServiceID = SelectedService.ID};
-                Messenger.Default.Send(new NotificationMessage("AddMainMeterWindow"));
-                Messenger.Default.Send(newMainMeter, "AddMainMeter");
+                MainMeter newMainMeter = new MainMeter() { ServiceID = SelectedService.ID };
+                Messenger.Default.Send(newMainMeter, "AddMainMeterWindow");
             }
             else
             {
@@ -55,21 +54,38 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public MainMeterViewModel()
         {
-            _adminFunctions=new AdminFunctions();
-            Services=_adminFunctions.GetServices();
+            _adminFunctions = new AdminFunctions();
+            Services = _adminFunctions.GetServices();
             foreach (Service service in Services)
             {
                 service.MainMeters = _adminFunctions.GetMainMetersByService(service);
             }
             AddMainMeterCommand = new RelayCommand(AddMainMeterMethod);
-            Messenger.Default.Register<MainMeter>(this, "AddMainMeterOKButton", (mainMeter) =>
-            {              
-                _adminFunctions.AddMainMeter(mainMeter);
-                MainMeter mm = _adminFunctions.GetMainMetersByService(SelectedService).Last();
-                SelectedService.MainMeters.Add(mm);
-                Messenger.Default.Send(mm, "MainMeterAdded");
+            Messenger.Default.Register<MainMeter>(this, "MainMeterAdded", (mainMeter) =>
+            {
+                if (SelectedService.MainMeters.Count == 0)
+                {
+                    _adminFunctions.AddMainMeter(mainMeter);
+                    MainMeter mm = _adminFunctions.GetMainMetersByService(SelectedService).Last();
+                    SelectedService.MainMeters.Add(mm);
+                    Messenger.Default.Send(mm, "PassMainMeter");
+                }
+                else
+                {
+                    if (SelectedService.MainMeters.Last().Reading<mainMeter.Reading)
+                    {
+                        _adminFunctions.AddMainMeter(mainMeter);
+                        MainMeter mm = _adminFunctions.GetMainMetersByService(SelectedService).Last();
+                        SelectedService.MainMeters.Add(mm);
+                        Messenger.Default.Send(mm, "PassMainMeter");
+                    }
+                    else
+                    {
+                        MessageBox.Show("A megadott óraállás kisebb mint a legutolsó óraállás");
+                    }
+                }
             });
-            Messenger.Default.Register<Service>(this, "ServiceAdded", (service) =>
+            Messenger.Default.Register<Service>(this, "PassService", (service) =>
             {
                 Services.Add(service);
                 service.MainMeters = _adminFunctions.GetMainMetersByService(service);

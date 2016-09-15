@@ -26,7 +26,6 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public void OkButtonMethod()
         {
             Messenger.Default.Send(NewMainMeter, "AddMainMeterOKButton");
-            Messenger.Default.Send(new NotificationMessage("AddMainMeterClose"));
         }
 
         public ICommand CancelButtonCommand { get; private set; }

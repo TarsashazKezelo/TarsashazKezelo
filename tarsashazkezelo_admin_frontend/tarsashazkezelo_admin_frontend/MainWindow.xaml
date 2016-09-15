@@ -40,7 +40,7 @@
                 <Grid DockPanel.Dock="Bottom">
                     <Button Content="Szolgáltatás hozzáadása" Grid.Column="0" Command="{Binding Path=AddServiceCommand}"></Button>
                 </Grid>
-                <ListBox ItemsSource="{Binding Path=Services}" FontSize="20" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="478" />
+                <ListBox ItemsSource="{Binding Path=Services}" FontSize="15" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="478" />
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
