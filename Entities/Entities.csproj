@@ -113,7 +113,7 @@
   <ItemGroup>
     <Content Include="sql\script.txt" />
     <Content Include="TarsashazDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TarsashazDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -126,7 +126,7 @@
       <LastGenOutput>TarsashazDBModel.cs</LastGenOutput>
     </Content>
     <Content Include="TarsashazDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>TarsashazDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>

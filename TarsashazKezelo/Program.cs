@@ -16,12 +16,13 @@ namespace TarsashazKezelo
         static void Main(string[] args)
         {
             DbContext context = new TarsashazDBEntities();
-            AppartmentEFRepo apprepo = new AppartmentEFRepo(context);
-            apprepo.DeleteAll();
-            foreach (var item in apprepo.GetAll())
+            InvoiceEFRepo invRepo = new InvoiceEFRepo(context);
+            IQueryable<Invoices> invoices = invRepo.GetAll();
+            foreach (var item in invoices)
             {
-                Console.WriteLine(item.Id);
+                Console.WriteLine("{0} - {1}", item.Readings.Meters.AppartmentId, item.Amount);
             }
+            Console.WriteLine("finished");
             Console.ReadLine();
         }
     }
