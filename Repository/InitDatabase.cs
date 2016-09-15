@@ -40,18 +40,18 @@ namespace Repository
         }
         private void AddReadings()
         {
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 07, 01), MeterId = mRepo.GetAll().ToList()[1].Id, Reading = 53 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 07, 01), MeterId = mRepo.GetAll().ToList()[4].Id, Reading = 49 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 07, 01), MeterId = mRepo.GetAll().ToList()[7].Id, Reading = 64 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 08, 01), MeterId = mRepo.GetAll().ToList()[1].Id, Reading = 60 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 08, 01), MeterId = mRepo.GetAll().ToList()[4].Id, Reading = 55 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 08, 01), MeterId = mRepo.GetAll().ToList()[7].Id, Reading = 70 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 07, 16), MeterId = mRepo.GetAll().ToList()[2].Id, Reading = 165 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 07, 16), MeterId = mRepo.GetAll().ToList()[5].Id, Reading = 109 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 07, 16), MeterId = mRepo.GetAll().ToList()[8].Id, Reading = 198 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 08, 16), MeterId = mRepo.GetAll().ToList()[2].Id, Reading = 201 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 08, 16), MeterId = mRepo.GetAll().ToList()[5].Id, Reading = 153 });
-            rRepo.Insert(new Readings() { Date = new DateTime(2016, 08, 16), MeterId = mRepo.GetAll().ToList()[8].Id, Reading = 261 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[1].Id, Reading = 53 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[4].Id, Reading = 49 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[7].Id, Reading = 64 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[1].Id, Reading = 60 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[4].Id, Reading = 55 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[7].Id, Reading = 70 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[2].Id, Reading = 165 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[5].Id, Reading = 109 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[8].Id, Reading = 198 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[2].Id, Reading = 201 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[5].Id, Reading = 153 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[8].Id, Reading = 261 });
         }
 
         private void AddMeters()
@@ -65,18 +65,13 @@ namespace Repository
             mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[2].Id, ServiceId = (servRepo.GetAll()).ToList()[0].Id, Valid = false });
             mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[2].Id, ServiceId = (servRepo.GetAll()).ToList()[1].Id, Valid = false });
             mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[2].Id, ServiceId = (servRepo.GetAll()).ToList()[2].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[0].Id, ServiceId = (servRepo.GetAll()).ToList()[0].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[1].Id, ServiceId = (servRepo.GetAll()).ToList()[0].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[2].Id, ServiceId = (servRepo.GetAll()).ToList()[0].Id, Valid = false });
         }
 
         private void AddMainMeters()
         {
-            mMRepo.Insert(new MainMeters { Date = new DateTime(2016, 07, 01), Reading = 172, ServiceId = (servRepo.GetAll()).ToList()[1].Id });
-            mMRepo.Insert(new MainMeters { Date = new DateTime(2016, 08, 01), Reading = 435, ServiceId = (servRepo.GetAll()).ToList()[1].Id });
-            mMRepo.Insert(new MainMeters { Date = new DateTime(2016, 07, 16), Reading = 532, ServiceId = (servRepo.GetAll()).ToList()[2].Id });
-            mMRepo.Insert(new MainMeters { Date = new DateTime(2016, 08, 16), Reading = 1152, ServiceId = (servRepo.GetAll()).ToList()[2].Id });
-            mMRepo.Insert(new MainMeters { Date = new DateTime(2016, 08, 31), ServiceId = (servRepo.GetAll()).ToList()[0].Id });
+            mMRepo.Insert(new MainMeters { Reading = 172, ServiceId = (servRepo.GetAll()).ToList()[1].Id });
+            mMRepo.Insert(new MainMeters { Reading = 532, ServiceId = (servRepo.GetAll()).ToList()[2].Id });
+            mMRepo.Insert(new MainMeters { ServiceId = (servRepo.GetAll()).ToList()[0].Id });
         }
 
         private void AddServices()

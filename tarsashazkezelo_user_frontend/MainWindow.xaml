@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tarsashazkezelo_user_frontend"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="400" Width="700">
     <Grid>
-        <Button x:Name="button3" Content="Kijelentkezés" HorizontalAlignment="Left" Margin="399,10,0,0" VerticalAlignment="Top" Width="88"/>
-        <Grid HorizontalAlignment="Left" Height="86" Margin="27,37,0,0" VerticalAlignment="Top" Width="460">
+        <Button x:Name="button3" Content="Kijelentkezés" HorizontalAlignment="Left" Margin="594,10,0,0" VerticalAlignment="Top" Width="88"/>
+        <Grid HorizontalAlignment="Left" Height="86" Margin="27,91,0,0" VerticalAlignment="Top" Width="655">
             <Label x:Name="label" Content="Nincs tartozás./Tartozás:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label1" Content="Összeg" HorizontalAlignment="Left" Margin="402,10,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="button2" Content="Számlák" HorizontalAlignment="Left" Margin="269,54,0,0" VerticalAlignment="Top" Width="88"/>
-            <Button x:Name="button4" Content="Befizetés" HorizontalAlignment="Left" Margin="362,54,0,0" VerticalAlignment="Top" Width="88"/>
+            <Label x:Name="label1" Content="Összeg" HorizontalAlignment="Left" Margin="597,10,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="button2" Content="Számlák" HorizontalAlignment="Left" Margin="464,54,0,0" VerticalAlignment="Top" Width="88"/>
+            <Button x:Name="button4" Content="Befizetés" HorizontalAlignment="Left" Margin="557,54,0,0" VerticalAlignment="Top" Width="88"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="460" Margin="27,128,0,0">
+        <Grid HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="655" Margin="27,182,0,0">
             <Label x:Name="label2" Content="Nincs új üzenet./Új üzenetek:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label3" Content="X új üzenet" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="button" Content="Üzenetek" HorizontalAlignment="Left" Margin="362,55,0,0" VerticalAlignment="Top" Width="88"/>
+            <Label x:Name="label3" Content="X új üzenet" HorizontalAlignment="Left" Margin="576,10,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="button" Content="Üzenetek" HorizontalAlignment="Left" Margin="557,55,0,0" VerticalAlignment="Top" Width="88"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="86" Margin="27,220,0,0" VerticalAlignment="Top" Width="460">
-            <Button x:Name="button1" Content="Szolgáltatások" HorizontalAlignment="Left" Margin="362,54,0,0" VerticalAlignment="Top" Width="88"/>
+        <Grid HorizontalAlignment="Left" Height="86" Margin="27,274,0,0" VerticalAlignment="Top" Width="655">
+            <Button x:Name="button1" Content="Szolgáltatások" HorizontalAlignment="Left" Margin="557,54,0,0" VerticalAlignment="Top" Width="88"/>
             <Label x:Name="label4" Content="Szolgáltatás kezelő/Jelentse be a mérőállását!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label5" Content="Szolgáltatás" HorizontalAlignment="Left" Margin="377,10,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label5" Content="Szolgáltatás" HorizontalAlignment="Left" Margin="572,10,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Label x:Name="label6" Content="Tulaj neve" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top"/>
     </Grid>
