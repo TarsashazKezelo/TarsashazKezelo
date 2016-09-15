@@ -62,6 +62,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                 if (msg.Notification=="InitDB")
                 {
                     ObservableCollection<Service> newCollection = _adminFunctions.GetServices();
+                    Services.Clear();
                     foreach (Service service in newCollection)
                     {
                         Services.Add(service);
