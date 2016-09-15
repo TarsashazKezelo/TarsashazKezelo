@@ -42,20 +42,19 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public void AddServiceMethod()
         {
             Service newService = new Service();
-            Messenger.Default.Send(new NotificationMessage("AddServiceWindow"));
-            Messenger.Default.Send(newService, "AddService");
+            Messenger.Default.Send(newService, "AddServiceWindow");
         }
 
         public ServiceViewModel()
         {
             _adminFunctions=new AdminFunctions();
             AddServiceCommand = new RelayCommand(AddServiceMethod);
-            Messenger.Default.Register<Service>(this, "AddServiceOKButton", (service) =>
+            Messenger.Default.Register<Service>(this, "ServiceAdded", (service) =>
             {                
                 _adminFunctions.AddService(service);
                 Service s = _adminFunctions.GetServices().Last();
                 Services.Add(s);
-                Messenger.Default.Send(s, "ServiceAdded");
+                Messenger.Default.Send(s, "PassService");
             });
             Services = _adminFunctions.GetServices();
             Messenger.Default.Register<NotificationMessage>(this, (msg) =>
@@ -66,7 +65,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                     foreach (Service service in newCollection)
                     {
                         Services.Add(service);
-                        Messenger.Default.Send(service, "ServiceAdded");
+                        Messenger.Default.Send(service, "PassService");
                     }
                 }
             });

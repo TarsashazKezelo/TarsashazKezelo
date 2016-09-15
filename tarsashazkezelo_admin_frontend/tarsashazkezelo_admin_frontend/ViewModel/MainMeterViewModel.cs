@@ -44,8 +44,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             if (Services.Count > 0 && SelectedService != null)
             {
                 MainMeter newMainMeter = new MainMeter() { ServiceID = SelectedService.ID };
-                Messenger.Default.Send(new NotificationMessage("AddMainMeterWindow"));
-                Messenger.Default.Send(newMainMeter, "AddMainMeter");
+                Messenger.Default.Send(newMainMeter, "AddMainMeterWindow");
             }
             else
             {
@@ -62,14 +61,14 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                 service.MainMeters = _adminFunctions.GetMainMetersByService(service);
             }
             AddMainMeterCommand = new RelayCommand(AddMainMeterMethod);
-            Messenger.Default.Register<MainMeter>(this, "AddMainMeterOKButton", (mainMeter) =>
+            Messenger.Default.Register<MainMeter>(this, "MainMeterAdded", (mainMeter) =>
             {
                 if (SelectedService.MainMeters.Count == 0)
                 {
                     _adminFunctions.AddMainMeter(mainMeter);
                     MainMeter mm = _adminFunctions.GetMainMetersByService(SelectedService).Last();
                     SelectedService.MainMeters.Add(mm);
-                    Messenger.Default.Send(mm, "MainMeterAdded");
+                    Messenger.Default.Send(mm, "PassMainMeter");
                 }
                 else
                 {
@@ -78,7 +77,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                         _adminFunctions.AddMainMeter(mainMeter);
                         MainMeter mm = _adminFunctions.GetMainMetersByService(SelectedService).Last();
                         SelectedService.MainMeters.Add(mm);
-                        Messenger.Default.Send(mm, "MainMeterAdded");
+                        Messenger.Default.Send(mm, "PassMainMeter");
                     }
                     else
                     {
@@ -86,7 +85,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                     }
                 }
             });
-            Messenger.Default.Register<Service>(this, "ServiceAdded", (service) =>
+            Messenger.Default.Register<Service>(this, "PassService", (service) =>
             {
                 Services.Add(service);
                 service.MainMeters = _adminFunctions.GetMainMetersByService(service);

@@ -24,7 +24,7 @@ namespace tarsashazkezelo_admin_frontend
         public AddBuildingInvoiceWindow(BuildingInvoice bi)
         {
             InitializeComponent();
-            Messenger.Default.Send<BuildingInvoice>(bi, "AddBuildingInvoice");
+            Messenger.Default.Send(bi, "AddBuildingInvoice");
             Messenger.Default.Register<NotificationMessage>(this, NotificationMessageReceived);
             Messenger.Default.Register<BuildingInvoice>(this, "AddBuildingInvoiceOKButton", (buildingInvoice) =>
             {
