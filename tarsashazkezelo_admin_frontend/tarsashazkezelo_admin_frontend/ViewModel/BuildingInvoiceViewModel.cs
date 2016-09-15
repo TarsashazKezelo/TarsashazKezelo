@@ -75,11 +75,6 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             {
                 Services.Add(service);
             });
-            Messenger.Default.Register<MainMeter>(this, "MainMeterAdded", (mainMeter) =>
-            {
-                Service s = Services.SingleOrDefault(x => x.ID == mainMeter.ServiceID);
-                s.MainMeters.Add(mainMeter);
-            });
             Messenger.Default.Register<BuildingInvoice>(this, "BuildingInvoiceAdded", (buildingInvoice) =>
             {
                 buildingInvoice.MainMeterID = SelectedMainMeter.ID;

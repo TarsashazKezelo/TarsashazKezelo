@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
@@ -57,6 +58,18 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                 Messenger.Default.Send(s, "ServiceAdded");
             });
             Services = _adminFunctions.GetServices();
+            Messenger.Default.Register<NotificationMessage>(this, (msg) =>
+            {
+                if (msg.Notification=="InitDB")
+                {
+                    ObservableCollection<Service> newCollection = _adminFunctions.GetServices();
+                    foreach (Service service in newCollection)
+                    {
+                        Services.Add(service);
+                        Messenger.Default.Send(service, "ServiceAdded");
+                    }
+                }
+            });
         }
     }
 }

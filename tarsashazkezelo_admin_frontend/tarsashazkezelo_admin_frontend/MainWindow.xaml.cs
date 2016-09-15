@@ -40,7 +40,7 @@ namespace tarsashazkezelo_admin_frontend
                 var addservice = new AddServiceWindow();
                 addservice.Show();
             }
-            if (msg.Notification == "AddMainMeterWindow")
+            else if (msg.Notification == "AddMainMeterWindow")
             {
                 var addmainmeter = new AddMainMeterWindow();
                 addmainmeter.Show();

@@ -39,6 +39,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         {
             HideAll();
             ServiceVisibility = true;
+            Messenger.Default.Send(new NotificationMessage("ServiceVisible"));
         }
 
         private bool _mainMeterVisibility;
@@ -55,6 +56,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         {
             HideAll();
             MainMeterVisibility = true;
+            Messenger.Default.Send(new NotificationMessage("MainMeterVisible"));
         }
 
         private bool _buildingInvoiceVisibility;
@@ -71,6 +73,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         {
             HideAll();
             BuildingInvoiceVisibility = true;
+            Messenger.Default.Send(new NotificationMessage("BuildingInvoiceVisible"));
         }
 
         public ICommand InitDatabaseButtonCommand { get; private set; }
@@ -78,6 +81,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public void InitDatabaseButtonMethod()
         {
             _adminFunctions.InitDatabase();
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage("InitDB"));
         }
 
         private void HideAll()
