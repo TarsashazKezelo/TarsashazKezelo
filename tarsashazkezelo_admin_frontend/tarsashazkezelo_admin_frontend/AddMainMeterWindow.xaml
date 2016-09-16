@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tarsashazkezelo_admin_frontend"
         mc:Ignorable="d"
-        Title="Írd be főóra állását" Height="304.121" Width="293.406"
+        Title="Írd be főóra állását" Height="300" Width="300"
         DataContext="{Binding Source={StaticResource Locator}, Path=AddMainMeter}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="1" Content="OK" Margin="10,10,200,10"  Width="75" Command="{Binding Path=OkButtonCommand}"/>
-        <Button Grid.Row="1" Content="Mégse"  Margin="200,10,10,10"  Width="75" Command="{Binding Path=CancelButtonCommand}"/>
+        <Button Grid.Row="1" Content="OK" Margin="10"  Width="75" Command="{Binding Path=OkButtonCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <Button Grid.Row="1" Content="Mégse"  Margin="10"  Width="75" Command="{Binding Path=CancelButtonCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

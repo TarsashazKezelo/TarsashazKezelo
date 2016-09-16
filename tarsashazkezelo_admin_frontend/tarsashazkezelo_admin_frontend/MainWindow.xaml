@@ -28,17 +28,18 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Szolgáltatások" Command="{Binding Path=ServiceButtonCommand}"/>
-            <Button Grid.Column="1" Content="Főórák" Command="{Binding Path=MainMeterButtonCommand}"></Button>
-            <Button Grid.Column="2" Content="Épületszámlák" Command="{Binding Path=BuildingInvoiceButtonCommand}"></Button>
-            <Button Grid.Column="3" Content="Lakások" Command="{Binding Path=ApartmentButtonCommand}"></Button>
-            <Button Grid.Column="4" Content="Mérőórák" Command="{Binding Path=MeterButtonCommand}"></Button>
-            <Button Grid.Column="5" Content="Számlák" Command="{Binding Path=InvoiceButtonCommand}"></Button>
-            <Button Grid.Column="6" Content="Adatbázis beindítása" Command="{Binding Path=InitDatabaseButtonCommand}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" Content="Szolgáltatások" Command="{Binding Path=ServiceButtonCommand}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="Főórák" Command="{Binding Path=MainMeterButtonCommand}"></Button>
+            <Button Grid.Column="2" Grid.Row="0" Content="Épületszámlák" Command="{Binding Path=BuildingInvoiceButtonCommand}"></Button>
+            <Button Grid.Column="0" Grid.Row="1" Content="Lakások" Command="{Binding Path=ApartmentButtonCommand}"></Button>
+            <Button Grid.Column="1" Grid.Row="1" Content="Mérőórák" Command="{Binding Path=MeterButtonCommand}"></Button>
+            <Button Grid.Column="2" Grid.Row="1" Content="Számlák" Command="{Binding Path=InvoiceButtonCommand}"></Button>
+            <Button Grid.Column="3" Grid.Row="0" Content="Adatbázis beindítása" Command="{Binding Path=InitDatabaseButtonCommand}"/>
         </Grid>
 
         <DockPanel Grid.Row="1" Visibility="{Binding Path=ServiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
