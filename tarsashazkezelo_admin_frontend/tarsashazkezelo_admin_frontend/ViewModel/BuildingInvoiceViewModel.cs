@@ -82,6 +82,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
                 BuildingInvoice bi= _adminFunctions.GetBuildingInvoicesByService(SelectedService).SingleOrDefault(x => x.MainMeterID == SelectedMainMeter.ID);
                 SelectedMainMeter.BuildingInvoice = bi;
                 bi.Valid = true;
+                Messenger.Default.Send(new NotificationMessage("RefreshInvoices"));
             });
             Messenger.Default.Register<NotificationMessage>(this, (msg) =>
             {

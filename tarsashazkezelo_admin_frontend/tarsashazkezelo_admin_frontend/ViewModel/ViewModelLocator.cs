@@ -23,6 +23,10 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             SimpleIoc.Default.Register<AddMainMeterViewModel>();
             SimpleIoc.Default.Register<BuildingInvoiceViewModel>();
             SimpleIoc.Default.Register<AddBuildingInvoiceViewModel>();
+            SimpleIoc.Default.Register<ApartmentViewModel>();
+            SimpleIoc.Default.Register<MeterViewModel>();
+            SimpleIoc.Default.Register<AddMeterViewModel>();
+            SimpleIoc.Default.Register<InvoiceViewModel>();
         }
 
         public MainViewModel Main
@@ -62,6 +66,27 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         {
             get { return ServiceLocator.Current.GetInstance<AddBuildingInvoiceViewModel>(); }
         }
+
+        public ApartmentViewModel Apartment
+        {
+            get { return ServiceLocator.Current.GetInstance<ApartmentViewModel>(); }
+        }
+
+        public MeterViewModel Meter
+        {
+            get { return ServiceLocator.Current.GetInstance<MeterViewModel>(); }
+        }
+
+        public AddMeterViewModel AddMeter
+        {
+            get { return ServiceLocator.Current.GetInstance<AddMeterViewModel>(); }
+        }
+
+        public InvoiceViewModel Invoice
+        {
+            get { return ServiceLocator.Current.GetInstance<InvoiceViewModel>(); }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

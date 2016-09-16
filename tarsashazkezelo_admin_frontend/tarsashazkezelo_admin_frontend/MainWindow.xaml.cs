@@ -40,6 +40,11 @@ namespace tarsashazkezelo_admin_frontend
                 var addMainMeter = new AddMainMeterWindow(mainMeter);
                 addMainMeter.ShowDialog();
             });
+            Messenger.Default.Register<Meter>(this, "AddMeterWindow", (meter) =>
+            {
+                var addMeter = new AddMeterWindow(meter);
+                addMeter.ShowDialog();
+            });
         }
     }
 }

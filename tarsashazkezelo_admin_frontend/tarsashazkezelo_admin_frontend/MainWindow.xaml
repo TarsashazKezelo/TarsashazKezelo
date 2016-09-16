@@ -28,19 +28,25 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Szolgáltatások" Command="{Binding Path=ServiceButtonCommand}"/>
             <Button Grid.Column="1" Content="Főórák" Command="{Binding Path=MainMeterButtonCommand}"></Button>
             <Button Grid.Column="2" Content="Épületszámlák" Command="{Binding Path=BuildingInvoiceButtonCommand}"></Button>
-            <Button Grid.Column="3" Content="Adatbázis beindítása" Command="{Binding Path=InitDatabaseButtonCommand}"/>
+            <Button Grid.Column="3" Content="Lakások" Command="{Binding Path=ApartmentButtonCommand}"></Button>
+            <Button Grid.Column="4" Content="Mérőórák" Command="{Binding Path=MeterButtonCommand}"></Button>
+            <Button Grid.Column="5" Content="Számlák" Command="{Binding Path=InvoiceButtonCommand}"></Button>
+            <Button Grid.Column="6" Content="Adatbázis beindítása" Command="{Binding Path=InitDatabaseButtonCommand}"/>
         </Grid>
 
-        <StackPanel Grid.Row="1" Visibility="{Binding Path=ServiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+        <DockPanel Grid.Row="1" Visibility="{Binding Path=ServiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
             <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=Service}">
                 <Grid DockPanel.Dock="Bottom">
                     <Button Content="Szolgáltatás hozzáadása" Grid.Column="0" Command="{Binding Path=AddServiceCommand}"></Button>
                 </Grid>
-                <ListBox ItemsSource="{Binding Path=Services}" FontSize="15" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="478" />
+                <ListBox ItemsSource="{Binding Path=Services}" FontSize="15" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2"/>
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -61,15 +67,15 @@
                     <Label Grid.Column="1" Content="{Binding Path=SelectedService.Name}"></Label>
                 </Grid>
             </DockPanel>
-        </StackPanel>
+        </DockPanel>
 
-        <StackPanel Grid.Row="1" Visibility="{Binding Path=MainMeterVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+        <DockPanel Grid.Row="1" Visibility="{Binding Path=MainMeterVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
             <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=MainMeter}">
                 <Grid DockPanel.Dock="Bottom">
                     <Button Content="Főóra állás hozzáadása" Grid.Column="0" Command="{Binding Path=AddMainMeterCommand}"></Button>
                 </Grid>
                 <ComboBox DockPanel.Dock="Top" FontSize="15" Margin="5" ItemsSource="{Binding Path=Services}" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name"></ComboBox>
-                <ListBox ItemsSource="{Binding Path=SelectedService.MainMeters}" FontSize="15" SelectedItem="{Binding Path=SelectedMainMeter}" DisplayMemberPath="Date" ItemStringFormat="yyyy-MM-dd" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="448" />
+                <ListBox ItemsSource="{Binding Path=SelectedService.MainMeters}" FontSize="15" SelectedItem="{Binding Path=SelectedMainMeter}" DisplayMemberPath="Date" ItemStringFormat="yyyy-MM-dd" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2"/>
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -90,16 +96,14 @@
                     <Label Grid.Column="1" Content="{Binding Path=SelectedMainMeter.Reading}"></Label>
                 </Grid>
             </DockPanel>
-        </StackPanel>
-
-
-        <StackPanel Grid.Row="1" Visibility="{Binding Path=BuildingInvoiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+        </DockPanel>
+        <DockPanel Grid.Row="1" Visibility="{Binding Path=BuildingInvoiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
             <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=BuildingInvoice}">
                 <Grid DockPanel.Dock="Bottom">
                     <Button Content="Épületszámla hozzáadása" Grid.Column="0" Command="{Binding Path=AddBuildingInvoiceCommand}"></Button>
                 </Grid>
                 <ComboBox DockPanel.Dock="Top" FontSize="15" Margin="5" ItemsSource="{Binding Path=Services}" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name"></ComboBox>
-                <ListBox ItemsSource="{Binding Path=SelectedService.MainMeters}" FontSize="15" SelectedItem="{Binding Path=SelectedMainMeter}" DisplayMemberPath="Date" ItemStringFormat="yyyy-MM-dd" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2" Height="448" />
+                <ListBox ItemsSource="{Binding Path=SelectedService.MainMeters}" FontSize="15" SelectedItem="{Binding Path=SelectedMainMeter}" DisplayMemberPath="Date" ItemStringFormat="yyyy-MM-dd" Width="200" Margin="5" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="2"/>
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -123,9 +127,116 @@
                     <Label Content="Összeg:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                     <Label Content="Leírás:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                     <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=SelectedMainMeter.BuildingInvoice.Amount}" ></Label>
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=SelectedMainMeter.BuildingInvoice.Description}"></TextBlock>
+                    <Border BorderBrush="Black" BorderThickness="2" Grid.Column="1" Grid.Row="1">
+                        <TextBlock Text="{Binding Path=SelectedMainMeter.BuildingInvoice.Description}" ></TextBlock>
+                    </Border>
+                    
                 </Grid>
             </DockPanel>
-        </StackPanel>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1" Visibility="{Binding Path=ApartmentVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+            <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=Apartment}">
+                <Button DockPanel.Dock="Bottom" Content="Változtatások mentése" Command="{Binding Path=ModifyApartmentCommand}"></Button>
+                <ComboBox DockPanel.Dock="Top" FontSize="15" Margin="5" ItemsSource="{Binding Path=Apartments}" SelectedItem="{Binding Path=SelectedApartment}" DisplayMemberPath="Owner"></ComboBox>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="10"></Setter>
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="Height" Value="30"></Setter>
+                        </Style>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Label Content="Tulajdonos:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <Label Content="Lakók száma:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <Label Content="Egyenleg:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <Label Content="Lakás mérete:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=SelectedApartment.Owner}" ></TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=SelectedApartment.Residents}"></TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=SelectedApartment.Balance}"></TextBox>
+                    <Label Grid.Column="1" Grid.Row="3" Content="{Binding Path=SelectedApartment.Size}" ContentStringFormat=" {0} m2"></Label>
+                </Grid>
+            </DockPanel>
+        </DockPanel>
+
+
+        <DockPanel Grid.Row="1" Visibility="{Binding Path=MeterVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+            <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=Meter}">
+                <Button DockPanel.Dock="Bottom" Content="Mérőóra hozzáadása" Command="{Binding Path=AddMeterCommand}"></Button>
+                <ComboBox DockPanel.Dock="Top" FontSize="15" Margin="5" ItemsSource="{Binding Path=Apartments}" SelectedItem="{Binding Path=SelectedApartment}" DisplayMemberPath="Owner"></ComboBox>
+                <ListBox DockPanel.Dock="Left" Width="200" FontSize="15" Margin="5" ItemsSource="{Binding Path=SelectedApartment.Meters}" SelectedItem="{Binding Path=SelectedMeter}" DisplayMemberPath="ID">
+                </ListBox>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="10"></Setter>
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="Height" Value="30"></Setter>
+                        </Style>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Label Content="Szolgáltatás neve:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <Label Grid.Column="1" Content="{Binding Path=SelectedMeterService.Name}"></Label>
+                </Grid>
+            </DockPanel>
+        </DockPanel>
+
+
+        <DockPanel Grid.Row="1" Visibility="{Binding Path=InvoiceVisibility, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}">
+            <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=Invoice}">
+                <ComboBox DockPanel.Dock="Top" FontSize="15" Margin="5" ItemsSource="{Binding Path=Apartments}" SelectedItem="{Binding Path=SelectedApartment}" DisplayMemberPath="Owner"></ComboBox>
+                <ListBox DockPanel.Dock="Left" Width="200" FontSize="15" Margin="5" ItemsSource="{Binding Path=SelectedApartment.Invoices}" SelectedItem="{Binding Path=SelectedInvoice}" DisplayMemberPath="DeadLine">
+                </ListBox>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="10"></Setter>
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="Height" Value="30"></Setter>
+                        </Style>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Label Content="Összeg:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <Label Content="Leírás:" Grid.Column="0" Grid.Row="1"></Label>
+                    <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=SelectedInvoice.Amount}"></Label>
+                    <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="2">
+                        <TextBlock Text="{Binding Path=SelectedInvoice.Description}"></TextBlock>
+                    </Border>
+                </Grid>
+            </DockPanel>
+        </DockPanel>
     </Grid>
 </Window>

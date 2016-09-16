@@ -15,12 +15,13 @@ namespace Repository.Repos
         void ModifyAppartment(Appartments appartment);
         ObservableCollection<BuildingInvoices> GetBuildingInvoicesByService(int serviceId);
         void AddBuildingInvoice(BuildingInvoices buildingInvoice);
-        ObservableCollection<Invoices> GetInvoices();
+        ObservableCollection<Invoices> GetInvoicesByAppartment(int appartmentId);
         ObservableCollection<MainMeters> GetMainMetersByService(int serviceId);
         void AddMainMeter(MainMeters mainMeter);
-        ObservableCollection<Meters> GetMeters();
+        ObservableCollection<Meters> GetMetersByAppartment(int appartmentId);
         void AddMeter(Meters meter);
         ObservableCollection<Services> GetServices();
+        Services GetServiceById(int id);
         void AddService(Services service);
         void InitDatabase();
         void AddMessage(string message, int appartmentId);

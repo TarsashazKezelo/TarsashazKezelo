@@ -20,7 +20,7 @@ namespace tarsashazkezelo_admin_frontend.Interfaces
 
         ObservableCollection<BuildingInvoice> GetBuildingInvoicesByService(Service s);
 
-        ObservableCollection<Invoice> GetInvoices();
+        ObservableCollection<Invoice> GetInvoicesByApartment(Apartment a);
 
         void AddMainMeter(MainMeter mm);
 
@@ -28,9 +28,11 @@ namespace tarsashazkezelo_admin_frontend.Interfaces
 
         void AddMeter(Meter m);
 
-        ObservableCollection<Meter> GetMeters();
+        ObservableCollection<Meter> GetMetersByApartment(Apartment a);
 
         void AddService(Service s);
+
+        Service GetServiceById(int id);
 
         ObservableCollection<Service> GetServices();
 

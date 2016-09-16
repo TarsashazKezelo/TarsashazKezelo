@@ -1,0 +1,19 @@
+﻿<Window x:Class="tarsashazkezelo_admin_frontend.AddMeterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tarsashazkezelo_admin_frontend"
+        mc:Ignorable="d"
+        Title="Válaszd ki a szolgáltatást" Height="300" Width="300"
+        DataContext="{Binding Source={StaticResource Locator}, Path=AddMeter}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0" Height="20" Margin="10" ItemsSource="{Binding Path=Services}" SelectedItem="{Binding Path=SelectedService}" DisplayMemberPath="Name"></ComboBox>
+        <Button Grid.Row="1" Content="OK" Margin="5"  Width="75" Command="{Binding Path=OkButtonCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <Button Grid.Row="1" Content="Mégse"  Margin="5"  Width="75" Command="{Binding Path=CancelButtonCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+    </Grid>
+</Window>

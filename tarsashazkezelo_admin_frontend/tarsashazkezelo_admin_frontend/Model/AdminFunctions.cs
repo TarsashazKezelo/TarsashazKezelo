@@ -52,9 +52,9 @@ namespace tarsashazkezelo_admin_frontend.Model
             return convertedCollection;
         }
 
-        public ObservableCollection<Invoice> GetInvoices()
+        public ObservableCollection<Invoice> GetInvoicesByApartment(Apartment a)
         {
-            ObservableCollection<Invoices> collection = _adminRepo.GetInvoices();
+            ObservableCollection<Invoices> collection = _adminRepo.GetInvoicesByAppartment(a.ID);
             ObservableCollection<Invoice> convertedCollection = new ObservableCollection<Invoice>();
 
             foreach (Invoices i in collection)
@@ -86,9 +86,9 @@ namespace tarsashazkezelo_admin_frontend.Model
             _adminRepo.AddMeter(RepoConverter.ConvertMeterToMeters(m));
         }
 
-        public ObservableCollection<Meter> GetMeters()
+        public ObservableCollection<Meter> GetMetersByApartment(Apartment a)
         {
-            ObservableCollection<Meters> collection = _adminRepo.GetMeters();
+            ObservableCollection<Meters> collection = _adminRepo.GetMetersByAppartment(a.ID);
             ObservableCollection<Meter> convertedCollection = new ObservableCollection<Meter>();
 
             foreach (Meters m in collection)
@@ -113,6 +113,11 @@ namespace tarsashazkezelo_admin_frontend.Model
                 convertedCollection.Add(RepoConverter.ConvertServicesToService(s));
             }
             return convertedCollection;
+        }
+
+        public Service GetServiceById(int id)
+        {
+            return RepoConverter.ConvertServicesToService(_adminRepo.GetServiceById(id));
         }
 
         public void InitDatabase()

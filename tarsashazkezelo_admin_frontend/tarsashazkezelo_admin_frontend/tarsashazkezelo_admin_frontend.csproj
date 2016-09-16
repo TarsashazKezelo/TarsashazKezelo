@@ -90,6 +90,9 @@
     <Compile Include="AddMainMeterWindow.xaml.cs">
       <DependentUpon>AddMainMeterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddMeterWindow.xaml.cs">
+      <DependentUpon>AddMeterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
@@ -104,10 +107,14 @@
     <Compile Include="Model\Service.cs" />
     <Compile Include="ViewModel\AddBuildingInvoiceViewModel.cs" />
     <Compile Include="ViewModel\AddMainMeterViewModel.cs" />
+    <Compile Include="ViewModel\AddMeterViewModel.cs" />
     <Compile Include="ViewModel\AddServiceViewModel.cs" />
+    <Compile Include="ViewModel\ApartmentViewModel.cs" />
     <Compile Include="ViewModel\BuildingInvoiceViewModel.cs" />
+    <Compile Include="ViewModel\InvoiceViewModel.cs" />
     <Compile Include="ViewModel\MainMeterViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MeterViewModel.cs" />
     <Compile Include="ViewModel\ServiceViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="AddBuildingInvoiceWindow.xaml">
@@ -115,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddMainMeterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddMeterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

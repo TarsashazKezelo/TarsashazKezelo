@@ -41,15 +41,5 @@ namespace tarsashazkezelo_admin_frontend.Model
             get { return _valid; }
             set { Set(ref _valid, value); }
         }
-
-        private ObservableCollection<Invoice> _invoices;
-
-        public ObservableCollection<Invoice> Invoices
-        {
-            get { return _invoices; }
-            set { Set(ref _invoices, value); }
-        }
-
-
     }
 }

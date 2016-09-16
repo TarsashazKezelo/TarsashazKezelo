@@ -57,5 +57,13 @@ namespace tarsashazkezelo_admin_frontend.Model
             get { return _meters; }
             set { Set(ref _meters, value); }
         }
+
+        private ObservableCollection<Invoice> _invoices;
+
+        public ObservableCollection<Invoice> Invoices
+        {
+            get { return _invoices; }
+            set { Set(ref _invoices, value); }
+        }
     }
 }

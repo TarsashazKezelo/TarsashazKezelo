@@ -60,21 +60,25 @@ namespace Repository.Repos
         {
             return new ObservableCollection<BuildingInvoices>(buildingRepo.GetBuildingInvoicesByService(serviceId));
         }
-        public ObservableCollection<Invoices> GetInvoices()
+        public ObservableCollection<Invoices> GetInvoicesByAppartment(int appartmentId)
         {
-            return new ObservableCollection<Invoices>(invoiceRepo.GetAll());
+            return new ObservableCollection<Invoices>(invoiceRepo.GetInvoicesByAppartment(appartmentId));
         }
         public ObservableCollection<MainMeters> GetMainMetersByService(int serviceId)
         {
             return new ObservableCollection<MainMeters>(mainMeterRepo.GetMainMetersByService(serviceId));
         }
-        public ObservableCollection<Meters> GetMeters()
+        public ObservableCollection<Meters> GetMetersByAppartment(int appartmentId)
         {
-            return new ObservableCollection<Meters>(meterRepo.GetAll());
+            return new ObservableCollection<Meters>(meterRepo.GetMetersByAppartment(appartmentId));
         }
         public ObservableCollection<Services> GetServices()
         {
             return new ObservableCollection<Services>(serviceRepo.GetAll());
+        }
+        public Services GetServiceById(int serviceId)
+        {
+            return serviceRepo.GetById(serviceId);
         }
         public void ModifyAppartment(Appartments appartment)
         {
