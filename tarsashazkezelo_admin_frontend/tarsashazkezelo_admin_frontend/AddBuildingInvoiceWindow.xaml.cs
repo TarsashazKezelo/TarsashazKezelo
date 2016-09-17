@@ -30,6 +30,8 @@ namespace tarsashazkezelo_admin_frontend
             {
                 Close();
                 Messenger.Default.Send(buildingInvoice, "BuildingInvoiceAdded");
+                Messenger.Default.Unregister<BuildingInvoice>(this, "AddBuildingInvoiceOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
             });
         }
 
@@ -38,6 +40,8 @@ namespace tarsashazkezelo_admin_frontend
             if (msg.Notification == "AddBuildingInvoiceClose")
             {
                 Close();
+                Messenger.Default.Unregister<BuildingInvoice>(this, "AddBuildingInvoiceOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
             }
         }
 

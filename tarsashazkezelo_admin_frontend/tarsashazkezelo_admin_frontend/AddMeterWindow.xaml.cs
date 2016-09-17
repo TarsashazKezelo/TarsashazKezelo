@@ -30,13 +30,17 @@ namespace tarsashazkezelo_admin_frontend
             {
                 Close();
                 Messenger.Default.Send(meter, "MeterAdded");
+                Messenger.Default.Unregister<Meter>(this, "AddMeterOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
             });
         }
         private void NotificationMessageReceived(NotificationMessage msg)
         {
-            if (msg.Notification == "AddServiceClose")
+            if (msg.Notification == "AddMeterClose")
             {
                 Close();
+                Messenger.Default.Unregister<Meter>(this, "AddMeterOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
             }
         }
     }

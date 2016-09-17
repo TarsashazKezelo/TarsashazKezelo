@@ -30,6 +30,8 @@ namespace tarsashazkezelo_admin_frontend
             {
                 Close();
                 Messenger.Default.Send(mainMeter, "MainMeterAdded");
+                Messenger.Default.Unregister<MainMeter>(this, "AddMainMeterOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
             });
         }
 
@@ -38,6 +40,8 @@ namespace tarsashazkezelo_admin_frontend
             if (msg.Notification == "AddMainMeterClose")
             {
                 this.Close();
+                Messenger.Default.Unregister<MainMeter>(this, "AddMainMeterOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
             }
         }
     }

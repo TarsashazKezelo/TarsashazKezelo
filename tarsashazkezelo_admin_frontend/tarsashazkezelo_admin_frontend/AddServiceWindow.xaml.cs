@@ -30,6 +30,9 @@ namespace tarsashazkezelo_admin_frontend
             {
                 Close();
                 Messenger.Default.Send(service, "ServiceAdded");
+                Messenger.Default.Unregister<Service>(this, "AddServiceOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
+
             });
         }
 
@@ -38,6 +41,8 @@ namespace tarsashazkezelo_admin_frontend
             if (msg.Notification == "AddServiceClose")
             {
                 Close();
+                Messenger.Default.Unregister<Service>(this, "AddServiceOKButton");
+                Messenger.Default.Unregister<NotificationMessage>(this, NotificationMessageReceived);
             }
         }
     }
