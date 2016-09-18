@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Írd be főóra állását" Height="300" Width="300"
         DataContext="{Binding Source={StaticResource Locator}, Path=AddMainMeter}">
-    <Grid>
+    <Grid Background="#A5BBFFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Írd be a számla összegét és a leírását" Height="277.941" Width="330.147"
         DataContext="{Binding Source={StaticResource Locator}, Path=AddBuildingInvoice}">
-    <Grid>
+    <Grid Background="#A5BBFFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
