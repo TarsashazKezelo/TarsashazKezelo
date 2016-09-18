@@ -93,7 +93,9 @@ namespace tarsashazkezelo_admin_frontend.Model
 
             foreach (Meters m in collection)
             {
-                convertedCollection.Add(RepoConverter.ConvertMetersToMeter(m));
+                Meter meter = RepoConverter.ConvertMetersToMeter(m);
+                meter.ServiceName = _adminRepo.GetServices().SingleOrDefault(x=>x.Id==m.ServiceId).Name;
+                convertedCollection.Add(meter);
             }
             return convertedCollection;
         }
