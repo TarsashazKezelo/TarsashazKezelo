@@ -20,17 +20,40 @@ namespace Repository.Repos
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
 
-        public double GetLastReadingDifference(int serviceId)
-        {
-            MainMeters last = GetMainMetersByService(serviceId).Last();
-            MainMeters prev = GetMainMetersByService(serviceId).Where(akt=>akt!=last).Last();
-            return (last.Reading - prev.Reading).Value;
-        }
-
         public IQueryable<MainMeters> GetMainMetersByService(int serviceId)
         {
             return Get(akt => akt.ServiceId == serviceId);
         }
+
+        public double GetReadingDifference(int id)
+        {
+            MainMeters mainMeter = GetById(id);
+            double? prev = null;
+            if (mainMeter.Reading != null)
+            {
+                try
+                {
+                    prev = GetMainMetersByService(mainMeter.ServiceId).Where(akt => akt.Date < mainMeter.Date).ToList().Last().Reading;
+                }
+                catch (Exception)
+                {
+
+                }
+                if (prev == null)
+                {
+                    return mainMeter.Reading.Value;
+                }
+                else
+                {
+                    return mainMeter.Reading.Value - prev.Value;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public override void Insert(MainMeters newEntity)
         {
             foreach (var item in GetMainMetersByService(newEntity.ServiceId))

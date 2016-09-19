@@ -14,17 +14,37 @@ namespace Repository.Repos
         public ReadingEFRepo(DbContext context) : base(context)
         {
         }
-
         public override Readings GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
-
-        public double GetLastReadingDifference(int meterId)
+        public double GetReadingDifference(int id)
         {
-            Readings last = GetReadingsByMeter(meterId).Last();
-            Readings prev = GetReadingsByMeter(meterId).Where(akt => akt != last).Last();
-            return (last.Reading - prev.Reading).Value;
+            Readings reading = GetById(id);
+            double? prev = null;
+            if (reading.Reading != null)
+            {
+                try
+                {
+                    prev = GetReadingsByMeter(reading.MeterId).Where(akt => akt.Id < id).ToList().Last().Reading;
+                }
+                catch (Exception)
+                {
+
+                }
+                if (prev == null)
+                {
+                    return reading.Reading.Value;
+                }
+                else
+                {
+                    return reading.Reading.Value - prev.Value;
+                }
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public IQueryable<Readings> GetReadingsByAppartment(int appId)
@@ -45,13 +65,18 @@ namespace Repository.Repos
         {
             foreach (var item in GetReadingsByMeter(newEntity.MeterId))
             {
-                if (newEntity.Reading<item.Reading)
+                if (newEntity.Reading < item.Reading)
                 {
                     return;
                 }
             }
             newEntity.Date = DateTime.Today;
             base.Insert(newEntity);
+        }
+
+        public void LateInsert(DateTime date, int meterId)
+        {
+            base.Insert(new Readings() { Date = date, MeterId = meterId });
         }
     }
 }

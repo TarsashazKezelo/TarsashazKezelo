@@ -11,12 +11,18 @@ namespace Repository.Repos
 {
     class ComplexRepositoryMethods : IComplexRepositoryMethods
     {
-        static DbContext context = new TarsashazDBEntities();
+        static DbContext context;
         BuildingInvoiceEFRepo bInvRepo;
         MeterEFRepo meterRepo;
         MainMeterEFRepo mainRepo;
         InvoiceEFRepo invRepo;
         ServiceEFRepo servRepo;
+        ReadingEFRepo readingRepo;
+        public ComplexRepositoryMethods(DbContext ctx)
+        {
+            context = ctx;
+        }
+
         private void InitRepos()
         {
             bInvRepo = new BuildingInvoiceEFRepo(context);
@@ -24,6 +30,7 @@ namespace Repository.Repos
             mainRepo = new MainMeterEFRepo(context);
             invRepo = new InvoiceEFRepo(context);
             servRepo = new ServiceEFRepo(context);
+            readingRepo = new ReadingEFRepo(context);
         }
         public void Calculate(BuildingInvoices buildingInvoice)
         {
@@ -34,53 +41,70 @@ namespace Repository.Repos
             string desc = buildingInvoice.Description;
             if (main.Reading != null)
             {
-                CalculateByMeters(meterRepo, mainRepo, invRepo, ref amount, serv.Id, desc);
+                CalculateByMeters(ref amount, main, desc);
             }
             if (serv.CalculateByResidents)
             {
-                CalculateByResidents(meterRepo, amount, serv.Id, desc);
+                CalculateByResidents(amount, main, desc);
             }
             else
             {
-                CalculateBySize(meterRepo, amount, serv.Id, desc);
+                CalculateBySize(amount, main, desc);
             }
         }
-        private void CalculateByMeters(MeterEFRepo repo, MainMeterEFRepo mainRepo, InvoiceEFRepo invRepo, ref double amount, int serviceId, string description)
+        private void CalculateByMeters(ref double amount, MainMeters main, string description)
         {
-            IQueryable<Meters> meters = repo.GetValidByService(serviceId);
+            List<Meters> meters = new List<Meters>(meterRepo.GetValidByService(main.ServiceId));
             foreach (var item in meters)
             {
-                double unit = amount / mainRepo.GetLastReadingDifference(serviceId);
+                double unit = amount / mainRepo.GetReadingDifference(main.Id);
                 Invoices inv = new Invoices();
                 inv.Deadline = DateTime.Today.AddDays(14);
-                inv.Amount = repo.GetLastReadingDifference(item.Id) * unit;
-                inv.ReadingId = repo.GetLastReadingId(item.Id);
+                inv.ReadingId = readingRepo.Get(akt => akt.MeterId == item.Id && akt.Date == main.Date).SingleOrDefault().Id;
+                inv.Amount = unit * readingRepo.GetReadingDifference(inv.ReadingId);
                 inv.Description = description;
                 inv.Paid = false;
                 invRepo.Insert(inv);
             }
         }
-        private void CalculateBySize(MeterEFRepo repo, double amount, int serviceId, string description)
+        private void CalculateBySize(double amount, MainMeters main, string description)
         {
-            IQueryable<Meters> meters = meterRepo.GetInvalidByService(serviceId);
+            List<Meters> meters = new List<Meters>(meterRepo.GetInvalidByService(main.ServiceId));
+            if (amount != 0 && meters.Count() == 0)
+            {
+                meters = new List<Meters>(meterRepo.GetMetersByService(main.ServiceId));
+            }
             double allsize = 0;
             foreach (var item in meters)
             {
                 allsize += item.Appartments.Size.Value;
             }
-            foreach (var item in meters)
+            foreach (var item in meters.ToList())
             {
                 Invoices inv = new Invoices();
                 inv.Amount = (item.Appartments.Size * amount / allsize).Value;
                 inv.Deadline = DateTime.Today.AddDays(14);
                 inv.Description = description;
                 inv.Paid = false;
+                try
+                {
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
+                catch (Exception)
+                {
+                    readingRepo.LateInsert(main.Date, item.Id);
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
                 invRepo.Insert(inv);
             }
         }
-        private void CalculateByResidents(MeterEFRepo repo, double amount, int serviceId, string description)
+        private void CalculateByResidents(double amount, MainMeters main, string description)
         {
-            IQueryable<Meters> meters = meterRepo.GetInvalidByService(serviceId);
+            List<Meters> meters = new List<Meters>(meterRepo.GetInvalidByService(main.ServiceId));
+            if (amount != 0 && meters.Count() == 0)
+            {
+                meters = new List<Meters>(meterRepo.GetMetersByService(main.ServiceId));
+            }
             int allresidents = 0;
             foreach (var item in meters)
             {
@@ -93,6 +117,15 @@ namespace Repository.Repos
                 inv.Deadline = DateTime.Today.AddDays(14);
                 inv.Description = description;
                 inv.Paid = false;
+                try
+                {
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
+                catch (Exception)
+                {
+                    readingRepo.LateInsert(main.Date, item.Id);
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
                 invRepo.Insert(inv);
             }
         }

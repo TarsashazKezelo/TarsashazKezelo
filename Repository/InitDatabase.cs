@@ -40,45 +40,43 @@ namespace Repository
         }
         private void AddReadings()
         {
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[1].Id, Reading = 53 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[4].Id, Reading = 49 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[7].Id, Reading = 64 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[1].Id, Reading = 60 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[4].Id, Reading = 55 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[7].Id, Reading = 70 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[2].Id, Reading = 165 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[5].Id, Reading = 109 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[8].Id, Reading = 198 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[2].Id, Reading = 201 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[5].Id, Reading = 153 });
-            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[8].Id, Reading = 261 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[0].Id, Reading = 40 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[1].Id, Reading = 30 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[2].Id, Reading = 30 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[3].Id, Reading = 50 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[4].Id, Reading = 60 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[5].Id, Reading = 40 });
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[6].Id});
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[7].Id});
+            rRepo.Insert(new Readings() { MeterId = mRepo.GetAll().ToList()[8].Id});
         }
 
         private void AddMeters()
         {
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[0].Id, ServiceId = (servRepo.GetAll()).ToList()[0].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[0].Id, ServiceId = (servRepo.GetAll()).ToList()[1].Id, Valid = true });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[0].Id, ServiceId = (servRepo.GetAll()).ToList()[2].Id, Valid = true });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[1].Id, ServiceId = (servRepo.GetAll()).ToList()[0].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[1].Id, ServiceId = (servRepo.GetAll()).ToList()[1].Id, Valid = true });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[1].Id, ServiceId = (servRepo.GetAll()).ToList()[2].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[2].Id, ServiceId = (servRepo.GetAll()).ToList()[0].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[2].Id, ServiceId = (servRepo.GetAll()).ToList()[1].Id, Valid = false });
-            mRepo.Insert(new Meters() { AppartmentId = (appRepo.GetAll()).ToList()[2].Id, ServiceId = (servRepo.GetAll()).ToList()[2].Id, Valid = false });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[0].Id, ServiceId = servRepo.GetAll().ToList()[0].Id, Valid = true });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[1].Id, ServiceId = servRepo.GetAll().ToList()[0].Id, Valid = true });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[2].Id, ServiceId = servRepo.GetAll().ToList()[0].Id, Valid = true });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[0].Id, ServiceId = servRepo.GetAll().ToList()[1].Id, Valid = true });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[1].Id, ServiceId = servRepo.GetAll().ToList()[1].Id, Valid = true });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[2].Id, ServiceId = servRepo.GetAll().ToList()[1].Id, Valid = true });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[0].Id, ServiceId = servRepo.GetAll().ToList()[2].Id, Valid = false });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[1].Id, ServiceId = servRepo.GetAll().ToList()[2].Id, Valid = false });
+            mRepo.Insert(new Meters() { AppartmentId = appRepo.GetAll().ToList()[2].Id, ServiceId = servRepo.GetAll().ToList()[2].Id, Valid = false });
+            
         }
 
         private void AddMainMeters()
         {
-            mMRepo.Insert(new MainMeters { Reading = 172, ServiceId = (servRepo.GetAll()).ToList()[1].Id });
-            mMRepo.Insert(new MainMeters { Reading = 532, ServiceId = (servRepo.GetAll()).ToList()[2].Id });
-            mMRepo.Insert(new MainMeters { ServiceId = (servRepo.GetAll()).ToList()[0].Id });
+            mMRepo.Insert(new MainMeters() { Reading = 100, ServiceId = (servRepo.GetAll()).ToList()[0].Id });
+            mMRepo.Insert(new MainMeters() { Reading = 150, ServiceId = (servRepo.GetAll()).ToList()[1].Id });
+            mMRepo.Insert(new MainMeters() { ServiceId = (servRepo.GetAll()).ToList()[2].Id });
         }
 
         private void AddServices()
         {
-            servRepo.Insert(new Services() { Name = "Közös költség", CalculateByResidents = true });
             servRepo.Insert(new Services() { Name = "Gáz", CalculateByResidents = false });
             servRepo.Insert(new Services() { Name = "Villany", CalculateByResidents = false });
+            servRepo.Insert(new Services() { Name = "Közös költség", CalculateByResidents = true });
         }
         private void AddAppartments()
         {

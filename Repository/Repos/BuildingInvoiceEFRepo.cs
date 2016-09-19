@@ -11,8 +11,10 @@ namespace Repository.Repos
 {
     public class BuildingInvoiceEFRepo : GenericEFRepository<BuildingInvoices>, IBuildingInvoiceRepository
     {
+        ComplexRepositoryMethods repo;
         public BuildingInvoiceEFRepo(DbContext context) : base(context)
         {
+            repo = new ComplexRepositoryMethods(context);
         }
 
         public IQueryable<BuildingInvoices> GetBuildingInvoicesByService(int serviceId)
@@ -38,7 +40,6 @@ namespace Repository.Repos
                     return;
                 }
             }
-            ComplexRepositoryMethods repo = new ComplexRepositoryMethods();
             repo.Calculate(newEntity);
             base.Insert(newEntity);
         }

@@ -14,7 +14,5 @@ namespace Repository.Repos
         IQueryable<Meters> GetMetersByService(int serviceId);
         IQueryable<Meters> GetValidByService(int serviceId);
         IQueryable<Meters> GetInvalidByService(int serviceId);
-        double GetLastReadingDifference(int id);
-        int GetLastReadingId(int id);
     }
 }
