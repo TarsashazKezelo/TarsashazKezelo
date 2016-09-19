@@ -15,5 +15,6 @@ namespace Repository.Repos
         IQueryable<Readings> GetReadingsByMeter(int meterId);
         double GetReadingDifference(int id);
         void LateInsert(DateTime date, int meterId);
+        double GetLastValue(int meterId);
     }
 }

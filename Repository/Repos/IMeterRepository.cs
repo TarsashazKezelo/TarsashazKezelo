@@ -14,5 +14,6 @@ namespace Repository.Repos
         IQueryable<Meters> GetMetersByService(int serviceId);
         IQueryable<Meters> GetValidByService(int serviceId);
         IQueryable<Meters> GetInvalidByService(int serviceId);
+        double GetAverageConsumption(int meterId);
     }
 }

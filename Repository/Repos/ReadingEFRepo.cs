@@ -18,6 +18,12 @@ namespace Repository.Repos
         {
             return Get(akt => akt.Id == id).SingleOrDefault();
         }
+
+        public double GetLastValue(int meterId)
+        {
+            return GetReadingsByMeter(meterId).ToList().Last().Reading.Value;
+        }
+
         public double GetReadingDifference(int id)
         {
             Readings reading = GetById(id);
@@ -76,7 +82,18 @@ namespace Repository.Repos
 
         public void LateInsert(DateTime date, int meterId)
         {
-            base.Insert(new Readings() { Date = date, MeterId = meterId });
+            MeterEFRepo meterRepo = new MeterEFRepo(context);
+
+            if (!meterRepo.GetById(meterId).Valid)
+            {
+                base.Insert(new Readings() { Date = date, MeterId = meterId });
+            }
+            else
+            {
+                Readings reading = new Readings() { Date = date, MeterId = meterId };
+                reading.Reading = GetLastValue(meterId) + meterRepo.GetAverageConsumption(meterId);
+                base.Insert(reading);
+            }
         }
     }
 }

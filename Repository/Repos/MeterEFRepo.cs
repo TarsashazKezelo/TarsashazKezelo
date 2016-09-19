@@ -14,6 +14,14 @@ namespace Repository.Repos
         public MeterEFRepo(DbContext context) : base(context)
         {
         }
+
+        public double GetAverageConsumption(int meterId)
+        {
+            ReadingEFRepo readingRepo = new ReadingEFRepo(context);
+            List<Readings> readings=readingRepo.GetReadingsByMeter(meterId).ToList();
+            return readings.Last().Reading.Value / readings.Count();
+        }
+
         public override Meters GetById(int id)
         {
             return Get(akt => akt.Id == id).SingleOrDefault();

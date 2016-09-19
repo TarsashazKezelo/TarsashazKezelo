@@ -60,7 +60,15 @@ namespace Repository.Repos
                 double unit = amount / mainRepo.GetReadingDifference(main.Id);
                 Invoices inv = new Invoices();
                 inv.Deadline = DateTime.Today.AddDays(14);
-                inv.ReadingId = readingRepo.Get(akt => akt.MeterId == item.Id && akt.Date == main.Date).SingleOrDefault().Id;
+                try
+                {
+                    inv.ReadingId = readingRepo.Get(akt => akt.MeterId == item.Id && akt.Date == main.Date).SingleOrDefault().Id;
+                }
+                catch (Exception)
+                {
+                    readingRepo.LateInsert(main.Date, item.Id);
+                    inv.ReadingId = readingRepo.Get(akt => akt.MeterId == item.Id && akt.Date == main.Date).SingleOrDefault().Id;
+                }
                 inv.Amount = unit * readingRepo.GetReadingDifference(inv.ReadingId);
                 inv.Description = description;
                 inv.Paid = false;
