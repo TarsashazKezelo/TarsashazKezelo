@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tarsashazkezelo_admin_frontend"
-        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="tarsashazkezelo_admin_frontend.MainWindow"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="tarsashazkezelo_admin_frontend.MainWindow"
         mc:Ignorable="d"
         Title="Társasházkezelő" Height="600" Width="800">
     <Window.Resources>

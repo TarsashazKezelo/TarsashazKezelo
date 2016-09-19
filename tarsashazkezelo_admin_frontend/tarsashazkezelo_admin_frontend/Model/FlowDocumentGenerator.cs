@@ -46,21 +46,22 @@ namespace tarsashazkezelo_admin_frontend.Model
             FlowDocument doc = new FlowDocument();
 
             Paragraph p = new Paragraph();
-            p.Inlines.Add("Some text ");
+            p.Inlines.Add("Számla");
+            p.FontSize = 20;
+            p.TextAlignment = TextAlignment.Center;
 
+            Paragraph p2 = new Paragraph(new LineBreak());
+            p2.Inlines.Add($"Szolgáltatás neve: {serviceName}\n");
+            p2.Inlines.Add($"Lejárati dátum: {i.DeadLine}\n");
+            p2.Inlines.Add($"Összeg: {i.Amount}\n");
+            p2.FontSize = 15;
+            p2.TextAlignment = TextAlignment.Left;
+
+            Paragraph p3 = new Paragraph();
+            p3.Inlines.Add($"Leírás:\n{i.Description}");
             doc.Blocks.Add(p);
-            doc.Blocks.Add(p);
-
-            Rectangle rect = new Rectangle();
-            rect.Height = 50;
-            rect.Width = 100;
-            rect.Fill = Brushes.Green;
-            rect.Stroke = Brushes.Black;
-            p = new Paragraph();
-            p.Inlines.Add(new InlineUIContainer(rect));
-
-            doc.Blocks.Add(p);
-
+            doc.Blocks.Add(p2);
+            doc.Blocks.Add(p3);
             return doc;
         }
 
