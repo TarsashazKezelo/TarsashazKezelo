@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -16,6 +17,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 {
     public class BuildingInvoiceViewModel : ViewModelBase
     {
+
         IAdminFunctions _adminFunctions = new AdminFunctions();
         public ObservableCollection<Service> Services { get; private set; }
 
@@ -63,8 +65,22 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             }
         }
 
+        public ICommand PrintBuildingInvoiceCommand { get; private set; }
+
+        public void PrintBuildingInvoiceMethod()
+        {
+            PrintDialog pd = new PrintDialog();
+            
+            if (pd.ShowDialog() == true)
+            {
+                pd.PrintDocument(FlowDocumentGenerator.GetPaginator(
+                FlowDocumentGenerator.GenerateDocFromBuildingInvoice(SelectedMainMeter.BuildingInvoice, SelectedService.Name)), "Épületszámla");
+            }
+        }
+
         public BuildingInvoiceViewModel()
         {
+            PrintBuildingInvoiceCommand=new RelayCommand(PrintBuildingInvoiceMethod);
             AddBuildingInvoiceCommand = new RelayCommand(AddBuildingInvoiceMethod);
             Services = _adminFunctions.GetServices();
             foreach (Service service in Services)
@@ -79,7 +95,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             {
                 buildingInvoice.MainMeterID = SelectedMainMeter.ID;
                 _adminFunctions.AddBuildingInvoice(buildingInvoice);
-                BuildingInvoice bi= _adminFunctions.GetBuildingInvoicesByService(SelectedService).SingleOrDefault(x => x.MainMeterID == SelectedMainMeter.ID);
+                BuildingInvoice bi = _adminFunctions.GetBuildingInvoicesByService(SelectedService).SingleOrDefault(x => x.MainMeterID == SelectedMainMeter.ID);
                 SelectedMainMeter.BuildingInvoice = bi;
                 bi.Valid = true;
                 Messenger.Default.Send(new NotificationMessage("RefreshInvoices"));

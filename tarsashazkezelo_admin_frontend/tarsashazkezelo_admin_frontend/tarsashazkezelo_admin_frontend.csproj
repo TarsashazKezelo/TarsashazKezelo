@@ -106,6 +106,7 @@
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\MainMeter.cs" />
     <Compile Include="Model\Meter.cs" />
+    <Compile Include="Model\PaginatorWrapper.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="ViewModel\AddBuildingInvoiceViewModel.cs" />
     <Compile Include="ViewModel\AddMainMeterViewModel.cs" />
