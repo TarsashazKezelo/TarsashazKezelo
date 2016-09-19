@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Repository.Repos
 {
-    class MessageEFRepo : GenericEFRepository<Messages>, IMessageRepository
+    public class MessageEFRepo : GenericEFRepository<Messages>, IMessageRepository
     {
         public MessageEFRepo(DbContext context) : base(context)
         {

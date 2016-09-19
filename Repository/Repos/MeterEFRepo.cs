@@ -23,19 +23,6 @@ namespace Repository.Repos
         {
             return Get(akt => !akt.Valid && akt.ServiceId==serviceId);
         }
-
-        public double GetLastReadingDifference(int id)
-        {
-            ReadingEFRepo readingRepo = new ReadingEFRepo(context);
-            return readingRepo.GetLastReadingDifference(id);
-        }
-
-        public int GetLastReadingId(int id)
-        {
-            ReadingEFRepo readingRepo = new ReadingEFRepo(context);
-            return readingRepo.GetReadingsByMeter(id).Last().Id;
-        }
-
         public IQueryable<Meters> GetMetersByAppartment(int appId)
         {
             return Get(akt => akt.AppartmentId == appId);
