@@ -86,6 +86,15 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             foreach (Service service in Services)
             {
                 service.MainMeters = _adminFunctions.GetMainMetersByService(service);
+                foreach (MainMeter mainMeter in service.MainMeters)
+                {
+                    mainMeter.BuildingInvoice =
+                        _adminFunctions.GetBuildingInvoicesByService(service).SingleOrDefault(x => x.MainMeterID == mainMeter.ID);
+                    if (mainMeter.BuildingInvoice==null)
+                    {
+                        mainMeter.BuildingInvoice=new BuildingInvoice();
+                    }
+                }
             }
             Messenger.Default.Register<Service>(this, "PassService", (service) =>
             {

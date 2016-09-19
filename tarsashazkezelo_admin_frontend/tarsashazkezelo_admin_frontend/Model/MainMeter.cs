@@ -46,10 +46,5 @@ namespace tarsashazkezelo_admin_frontend.Model
             get { return _buildingInvoice; }
             set { Set(ref _buildingInvoice, value); }
         }
-
-        public MainMeter()
-        {
-            BuildingInvoice = new BuildingInvoice();
-        }
     }
 }
