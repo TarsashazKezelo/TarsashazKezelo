@@ -41,5 +41,15 @@ namespace tarsashazkezelo_admin_frontend.Model
             get { return _valid; }
             set { Set(ref _valid, value); }
         }
+
+        private string _serviceName;
+
+        public string ServiceName
+        {
+            get { return _serviceName; }
+            set { Set(ref _serviceName, value); }
+        }
+
+        
     }
 }

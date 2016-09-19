@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tarsashazkezelo_admin_frontend"
         mc:Ignorable="d"
-        Title="Írd be a szolgáltatás nevét" Height="235.069" Width="300"
+        Title="Írd be a szolgáltatás nevét" Height="300" Width="300"
         DataContext="{Binding Source={StaticResource Locator}, Path=AddService}">
-    <Grid>
+    <Grid Background="#A5BBFFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>

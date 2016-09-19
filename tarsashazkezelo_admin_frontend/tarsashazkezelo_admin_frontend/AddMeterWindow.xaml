@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Válaszd ki a szolgáltatást" Height="300" Width="300"
         DataContext="{Binding Source={StaticResource Locator}, Path=AddMeter}">
-    <Grid>
+    <Grid Background="#A5BBFFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>

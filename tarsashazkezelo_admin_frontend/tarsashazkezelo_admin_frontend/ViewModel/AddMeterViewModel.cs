@@ -33,6 +33,7 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
         public void OkButtonMethod()
         {
             _newMeter.ServiceID = SelectedService.ID;
+            _newMeter.ServiceName = SelectedService.Name;
             Messenger.Default.Send(_newMeter, "AddMeterOKButton");
         }
 
