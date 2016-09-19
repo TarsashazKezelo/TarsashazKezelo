@@ -69,10 +69,10 @@ namespace Repository.Repos
         }
         private void CalculateBySize(double amount, MainMeters main, string description)
         {
-            List<Meters> meters = new List<Meters>( meterRepo.GetInvalidByService(main.ServiceId));
+            List<Meters> meters = new List<Meters>(meterRepo.GetInvalidByService(main.ServiceId));
             if (amount != 0 && meters.Count() == 0)
             {
-                meters = new List<Meters>( meterRepo.GetMetersByService(main.ServiceId));
+                meters = new List<Meters>(meterRepo.GetMetersByService(main.ServiceId));
             }
             double allsize = 0;
             foreach (var item in meters)
@@ -86,16 +86,24 @@ namespace Repository.Repos
                 inv.Deadline = DateTime.Today.AddDays(14);
                 inv.Description = description;
                 inv.Paid = false;
-                inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                try
+                {
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
+                catch (Exception)
+                {
+                    readingRepo.LateInsert(main.Date, item.Id);
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
                 invRepo.Insert(inv);
             }
         }
         private void CalculateByResidents(double amount, MainMeters main, string description)
         {
-            List<Meters> meters = new List<Meters>( meterRepo.GetInvalidByService(main.ServiceId));
+            List<Meters> meters = new List<Meters>(meterRepo.GetInvalidByService(main.ServiceId));
             if (amount != 0 && meters.Count() == 0)
             {
-                meters = new List<Meters>( meterRepo.GetMetersByService(main.ServiceId));
+                meters = new List<Meters>(meterRepo.GetMetersByService(main.ServiceId));
             }
             int allresidents = 0;
             foreach (var item in meters)
@@ -109,7 +117,15 @@ namespace Repository.Repos
                 inv.Deadline = DateTime.Today.AddDays(14);
                 inv.Description = description;
                 inv.Paid = false;
-                inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                try
+                {
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
+                catch (Exception)
+                {
+                    readingRepo.LateInsert(main.Date, item.Id);
+                    inv.ReadingId = readingRepo.GetReadingsByMeter(item.Id).Where(akt => akt.Date == main.Date).SingleOrDefault().Id;
+                }
                 invRepo.Insert(inv);
             }
         }

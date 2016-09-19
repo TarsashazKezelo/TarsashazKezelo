@@ -73,5 +73,10 @@ namespace Repository.Repos
             newEntity.Date = DateTime.Today;
             base.Insert(newEntity);
         }
+
+        public void LateInsert(DateTime date, int meterId)
+        {
+            base.Insert(new Readings() { Date = date, MeterId = meterId });
+        }
     }
 }
