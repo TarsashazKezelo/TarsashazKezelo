@@ -40,6 +40,7 @@ namespace Repository.Repos
                     return;
                 }
             }
+            newEntity.Date = DateTime.Today;
             repo.Calculate(newEntity);
             base.Insert(newEntity);
         }
