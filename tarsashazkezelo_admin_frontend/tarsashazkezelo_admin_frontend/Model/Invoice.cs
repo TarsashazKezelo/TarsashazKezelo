@@ -48,8 +48,5 @@ namespace tarsashazkezelo_admin_frontend.Model
             get { return _description; }
             set { Set(ref _description, value); }
         }
-
-
-
     }
 }

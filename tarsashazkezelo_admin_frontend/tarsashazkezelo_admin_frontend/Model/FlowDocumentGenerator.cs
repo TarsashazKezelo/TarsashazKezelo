@@ -41,7 +41,7 @@ namespace tarsashazkezelo_admin_frontend.Model
             return doc;
         }
 
-        public static FlowDocument GenerateDocFromInvoice(Invoice i, string serviceName)
+        public static FlowDocument GenerateDocFromInvoice(Invoice i)
         {
             FlowDocument doc = new FlowDocument();
 
@@ -51,7 +51,6 @@ namespace tarsashazkezelo_admin_frontend.Model
             p.TextAlignment = TextAlignment.Center;
 
             Paragraph p2 = new Paragraph(new LineBreak());
-            p2.Inlines.Add($"Szolgáltatás neve: {serviceName}\n");
             p2.Inlines.Add($"Lejárati dátum: {i.DeadLine}\n");
             p2.Inlines.Add($"Összeg: {i.Amount}\n");
             p2.FontSize = 15;

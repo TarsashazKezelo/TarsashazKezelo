@@ -4,7 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using tarsashazkezelo_admin_frontend.Interfaces;
 using tarsashazkezelo_admin_frontend.Model;
@@ -33,8 +37,29 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
             set { Set(ref _selectedInvoice, value); }
         }
 
+        public ICommand PrintInvoiceButtonCommand { get; private set; }
+
+        public void PrintInvoiceButtonMethod()
+        {
+            if (SelectedInvoice!=null)
+            {
+                PrintDialog pd = new PrintDialog();
+
+                if (pd.ShowDialog() == true)
+                {
+                    pd.PrintDocument(FlowDocumentGenerator.GetPaginator(
+                    FlowDocumentGenerator.GenerateDocFromInvoice(SelectedInvoice)), "Épületszámla");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nincs számla kijelölve!");
+            }
+        }
+
         public InvoiceViewModel()
         {
+            PrintInvoiceButtonCommand=new RelayCommand(PrintInvoiceButtonMethod);
             Apartments = _adminFunctions.GetApartments();
             foreach (Apartment apartment in Apartments)
             {

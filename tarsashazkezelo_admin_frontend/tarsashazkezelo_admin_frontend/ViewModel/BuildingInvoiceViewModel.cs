@@ -69,13 +69,21 @@ namespace tarsashazkezelo_admin_frontend.ViewModel
 
         public void PrintBuildingInvoiceMethod()
         {
-            PrintDialog pd = new PrintDialog();
-            
-            if (pd.ShowDialog() == true)
+            if (SelectedMainMeter.BuildingInvoice.Valid)
             {
-                pd.PrintDocument(FlowDocumentGenerator.GetPaginator(
-                FlowDocumentGenerator.GenerateDocFromBuildingInvoice(SelectedMainMeter.BuildingInvoice, SelectedService.Name)), "Épületszámla");
+                PrintDialog pd = new PrintDialog();
+
+                if (pd.ShowDialog() == true)
+                {
+                    pd.PrintDocument(FlowDocumentGenerator.GetPaginator(
+                    FlowDocumentGenerator.GenerateDocFromBuildingInvoice(SelectedMainMeter.BuildingInvoice, SelectedService.Name)), "Épületszámla");
+                }
             }
+            else
+            {
+                MessageBox.Show("Nincs épületszámla hozzáadva!");
+            }
+
         }
 
         public BuildingInvoiceViewModel()

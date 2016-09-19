@@ -544,7 +544,7 @@
                     <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="2">
                         <TextBlock Text="{Binding SelectedInvoice.Description}" FontSize="20"/>
                     </Border>
-                    <Button Background="#A5BBFFFF" Content="Számla nyomtatása" Grid.Column="1" Grid.Row="2"></Button>
+                    <Button Background="#A5BBFFFF" Content="Számla nyomtatása" Grid.Column="1" Grid.Row="2" Command="{Binding Path=PrintInvoiceButtonCommand}"></Button>
                 </Grid>
             </DockPanel>
         </DockPanel>

@@ -47,7 +47,9 @@ namespace tarsashazkezelo_admin_frontend.Model
 
             foreach (BuildingInvoices bi in collection)
             {
-                convertedCollection.Add(RepoConverter.ConvertBuildingInvoicesToBuildingInvoice(bi));
+                BuildingInvoice buildingInvoice = RepoConverter.ConvertBuildingInvoicesToBuildingInvoice(bi);
+                buildingInvoice.Valid = true;
+                convertedCollection.Add(buildingInvoice);
             }
             return convertedCollection;
         }
